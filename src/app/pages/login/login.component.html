@@ -1,14 +1,14 @@
-<div class="d-flex justify-content-center align-items-center h-50">
-  <form class="w-25">
-    <div>
-      <label for="">E-mail</label>
-      <input class="form-control" [(ngModel)]="user.email" name="email" type="text">
+<div class="d-flex justify-content-center align-items-center h-75">
+  <form class="w-50 p-5 border" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="email">E-mail</label>
+      <input class="form-control" formControlName="email" type="text" required>
     </div>
-    <div>
-      <label for="">Senha</label>
-      <input class="form-control" [(ngModel)]="user.password" name="password" type="password">
+    <div class="mb-5">
+      <label for="password">Senha</label>
+      <input class="form-control" formControlName="password" type="password" required>
     </div>
     <br>
-    <button class="btn btn-primary w-100" (click)="save(user)">Login</button>
+    <button type="submit" class="btn btn-primary w-100">Login</button>
   </form>
 </div>

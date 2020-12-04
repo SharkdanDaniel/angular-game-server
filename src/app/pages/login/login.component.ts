@@ -1,5 +1,6 @@
 import { LoginService } from './../../core/services/login.service';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -7,23 +8,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  user = {
-    email: '',
-    password: '',
-  };
+  form: FormGroup;
 
-  constructor(private login: LoginService) {}
+  constructor(private login: LoginService, private formBuilder: FormBuilder) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.form = this.formBuilder.group({
+      email: [null],
+      password: [null],
+    });
+  }
 
-  save(user) {
-    this.login.postLogin(user).subscribe(
+  onSubmit() {
+    this.login.postLogin(this.form.value).subscribe(
       (data) => {
         sessionStorage.setItem('user', JSON.stringify(data));
         console.table(data);
       },
       (err) => {
-        console.error('', err);
+        if (err.status == 401) {
+          console.log('Email ou senha incorretos');
+        }
+        console.log('', err);
       }
     );
   }
