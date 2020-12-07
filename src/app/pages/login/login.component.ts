@@ -1,6 +1,8 @@
-import { LoginService } from './../../core/services/login.service';
+import { LoginService } from '../../core/services/login.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { take } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +12,11 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class LoginComponent implements OnInit {
   form: FormGroup;
 
-  constructor(private login: LoginService, private formBuilder: FormBuilder) {}
+  constructor(
+    private login: LoginService,
+    private formBuilder: FormBuilder,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -20,17 +26,21 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.login.postLogin(this.form.value).subscribe(
-      (data) => {
-        sessionStorage.setItem('user', JSON.stringify(data));
-        console.table(data);
-      },
-      (err) => {
-        if (err.status == 401) {
-          console.log('Email ou senha incorretos');
+    this.login
+      .postLogin(this.form.value)
+      .pipe(take(1))
+      .subscribe(
+        (data) => {
+          sessionStorage.setItem('user', JSON.stringify(data));
+          console.table(data);
+          this.router.navigate(['']);
+        },
+        (err) => {
+          if (err.status == 401) {
+            console.log('Email ou senha incorretos');
+          }
+          console.log('', err);
         }
-        console.log('', err);
-      }
-    );
+      );
   }
 }

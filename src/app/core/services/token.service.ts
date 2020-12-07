@@ -7,8 +7,7 @@ export class TokenService {
   constructor() {}
 
   getToken() {
-    const user = JSON.parse(sessionStorage.getItem('user'));
-    const token = user.token;
+    const token = JSON.parse(sessionStorage.getItem('user')).token;
     return token;
   }
 }

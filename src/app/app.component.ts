@@ -1,3 +1,4 @@
+import { AuthGuard } from './core/guards/auth.guard';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,4 +8,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'GameAutoBem';
+
+  showHeader: boolean = false;
+
+  constructor(private auth: AuthGuard) {}
+
+  ngOnInit(): void {
+    this.auth.showHeader.subscribe((show) => (this.showHeader = show));
+  }
 }
