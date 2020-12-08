@@ -14,4 +14,11 @@ export class UserService {
       `http://hcs.dev4.com.br/api/Users/GetUsers/${this.token.getToken()}`
     );
   }
+
+  createUser(user: any): Observable<any> {
+    return this.http.post<any>(
+      `http://hcs.dev4.com.br/api/Users/AddUser/${this.token.getToken()}`,
+      user
+    );
+  }
 }

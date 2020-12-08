@@ -1,1 +1,26 @@
-<p>user-create works!</p>
+<div class="container border p-5">
+  <h1>Adicionar usuário</h1>
+  <form (ngSubmit)="create()" [formGroup]="form">
+    <div>
+      <label for="name">Nome</label>
+      <input class="form-control" type="text" formControlName="name">
+    </div>
+    <div>
+      <label for="email">E-mail</label>
+      <input class="form-control" type="email" formControlName="email">
+    </div>
+    <div>
+      <label for="password">Senha</label>
+      <input class="form-control" type="password" formControlName="password">
+    </div>
+    <label for="permission">Nível de Permissão</label>
+    <select class="form-select form-control" aria-label="permission" formControlName="permission">
+      <option selected value="0">Moderador</option>
+      <option value="1">Administrador</option>
+      <option value="2">Administrador Global</option>
+    </select>
+  </form>
+  <br>
+  <button type="submit" class="btn btn-primary">Adicionar</button>
+  <button class="btn" routerLink="/users">Cancelar</button>
+</div>
