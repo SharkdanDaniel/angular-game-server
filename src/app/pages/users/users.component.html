@@ -1,24 +1,24 @@
 <div class="container">
-  <table class="table table-striped">
-    <thead class="table-dark">
-      <tr>
-        <th scope="col">Nome</th>
-        <th scope="col">Email</th>
-        <th width="15%" scope="col">Permissão</th>
-        <th width="20%" scope="col">Ações</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let user of users">
-        <td>{{ user.name }}</td>
-        <td>{{ user.email }}</td>
-        <td>{{ user.permission }}</td>
-        <td>
-          <button routerLink="" class="btn btn-info">Editar</button>
-          <button routerLink="" class="btn btn-danger">Excluir</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <button routerLink="/users/create" class="btn btn-primary">Adicionar Usuário</button>
+    <table class="table table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">Email</th>
+                <th width="15%" scope="col">Permissão</th>
+                <th width="20%" scope="col">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users">
+                <td>{{ user.name }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.permission }}</td>
+                <td>
+                    <button routerLink="/users/update/{{ user.id }}" [state]="[{teste: 'teste'}]" class="btn btn-info">Editar</button>
+                    <button routerLink="/users/delete/{{ user.id }}" class="btn btn-danger">Excluir</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button routerLink="/users/create" class="btn btn-primary">Adicionar Usuário</button>
 </div>

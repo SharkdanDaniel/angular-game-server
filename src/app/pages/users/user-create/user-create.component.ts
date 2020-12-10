@@ -18,17 +18,17 @@ export class UserCreateComponent implements OnInit {
     private router: Router
   ) {
     this.form = this.formBuilder.group({
-      name: ['', [Validators.required]],
-      email: ['', [Validators.required]],
-      password: ['', [Validators.required]],
+      name: [''],
+      email: [''],
+      password: [''],
       permission: [0],
+      serverId: ['6435FB94-2328-4F34-B590-68441F8BD936']
     });
   }
 
   ngOnInit(): void {}
 
   create() {
-    // console.log(this.form.value);
     this.userService
       .createUser(this.form.value)
       .pipe(take(1))

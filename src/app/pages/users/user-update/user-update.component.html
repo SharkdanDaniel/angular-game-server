@@ -1,5 +1,5 @@
 <div class="container border p-5">
-  <h1>Adicionar usuário</h1>
+  <h1>Atualizar Usuário</h1>
   <form [formGroup]="form">
     <div>
       <label for="name">Nome</label>
@@ -21,6 +21,6 @@
     </select>
   </form>
   <br>
-  <button (click)="create()" type="submit" class="btn btn-primary">Adicionar</button>
+  <button (click)="update()" type="submit" class="btn btn-primary">Atualizar</button>
   <button class="btn" routerLink="/users">Cancelar</button>
 </div>
