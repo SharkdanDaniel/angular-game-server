@@ -1,0 +1,25 @@
+<div class="container">
+    <h1>Lista de Servidores</h1>
+    <table class="table table-striped">
+        <thead class="">
+            <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">Email</th>
+                <th width="15%" scope="col">Permissão</th>
+                <th width="20%" scope="col">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let server of servers">
+                <td>{{ server.name }}</td>
+                <td>{{ server.email }}</td>
+                <td>{{ server.permission }}</td>
+                <td>
+                    <button routerLink="/users/update/{{ server.id }}" [state]="[{teste: 'teste'}]" class="btn btn-info">Editar</button>
+                    <button routerLink="/users/delete/{{ server.id }}" class="btn btn-danger">Excluir</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button routerLink="/users/create" class="btn btn-primary">Adicionar Servidor</button>
+</div>
