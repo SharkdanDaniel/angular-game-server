@@ -4,10 +4,11 @@ import { CommonModule } from '@angular/common';
 
 import { ServersRoutingModule } from './servers-routing.module';
 import { ServersComponent } from './servers.component';
+import { ServerProfileComponent } from './server-profile/server-profile.component';
 
 
 @NgModule({
-  declarations: [ServersComponent],
+  declarations: [ServersComponent, ServerProfileComponent],
   imports: [
     CommonModule,
     ServersRoutingModule,

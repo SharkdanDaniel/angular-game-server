@@ -1,4 +1,7 @@
 <div class="container">
+    <div class="d-flex justify-content-center">
+        <h1>Lista de Usuários</h1>
+    </div>
     <table class="table table-striped">
         <thead class="">
             <tr>
@@ -14,7 +17,7 @@
                 <td>{{ user.email }}</td>
                 <td>{{ user.permission }}</td>
                 <td>
-                    <button routerLink="/users/update/{{ user.id }}" [state]="[{teste: 'teste'}]" class="btn btn-info">Editar</button>
+                    <button routerLink="/users/update/{{ user.id }}" class="btn btn-info">Editar</button>
                     <button routerLink="/users/delete/{{ user.id }}" class="btn btn-danger">Excluir</button>
                 </td>
             </tr>

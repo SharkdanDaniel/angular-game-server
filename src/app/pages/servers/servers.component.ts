@@ -17,7 +17,7 @@ export class ServersComponent implements OnInit {
       .pipe(take(1))
       .subscribe((data) =>{
         this.servers = data;
-        console.log(data);
+        console.log(this.servers);
       })
   }
 
