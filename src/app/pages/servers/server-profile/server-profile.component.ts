@@ -10,7 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ServerProfileComponent implements OnInit {
 
-  server: any;
+  public isCollapsed1 = true;
+  public isCollapsed2 = true;
+  public isCollapsed3 = true;
+
+  server: any = {};
 
   constructor(
     private route: ActivatedRoute,
@@ -23,7 +27,7 @@ export class ServerProfileComponent implements OnInit {
       .pipe(take(1))
       .subscribe((data) => {
         this.server = data;
-        console.log(this.server)
+        console.log('detalhes do servidor',this.server)
       })
   }
 
