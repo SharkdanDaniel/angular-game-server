@@ -1,9 +1,16 @@
 <nav class="navbar navbar-dark bg-secondary">
-    <a class="navbar-brand" href="/login">Login</a>
     <a class="navbar-brand" href="/users">Usuários</a>
-    <a class="navbar-brand" href="/servers">Servidores</a>
     <a class="navbar-brand" href="/#">itens</a>
     <a class="navbar-brand" href="/#">Máquina de experiência</a>
     <a class="navbar-brand" href="/#">Avatar</a>
-    <button class="btn btn-primary" (click)="logout()">Sair</button>
+
+    <div ngbDropdown>
+        <button class="navbar-brand btn" ngbDropdownToggle>Servidor selecionado: <strong>{{ server.name }}</strong> </button>
+        <div ngbDropdownMenu>
+            <button ngbDropdownItem (click)="edit()">Editar</button>
+            <button ngbDropdownItem (click)="switch()">Trocar</button>
+            <hr>
+            <button ngbDropdownItem (click)="logout()">Sair</button>
+        </div>
+    </div>
 </nav>

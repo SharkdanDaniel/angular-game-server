@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
         (data) => {
           sessionStorage.setItem('user', JSON.stringify(data));
           console.table(data);
-          this.router.navigate(['']);
+          this.router.navigate(['/servers']);
         },
         (err) => {
           if (err.status == 401) {

@@ -21,4 +21,8 @@ export class ServersComponent implements OnInit {
       })
   }
 
+  setServer(server: any) {
+    (sessionStorage.setItem('server', JSON.stringify(server)))
+  }
+
 }
