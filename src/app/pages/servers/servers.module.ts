@@ -6,10 +6,11 @@ import { ServersRoutingModule } from './servers-routing.module';
 import { ServersComponent } from './servers.component';
 import { ServerProfileComponent } from './server-profile/server-profile.component';
 import { ServerUpdateComponent } from './server-update/server-update.component';
+import { ServerCreateComponent } from './server-create/server-create.component';
 
 
 @NgModule({
-  declarations: [ServersComponent, ServerProfileComponent, ServerUpdateComponent],
+  declarations: [ServersComponent, ServerProfileComponent, ServerUpdateComponent, ServerCreateComponent],
   imports: [
     CommonModule,
     ServersRoutingModule,

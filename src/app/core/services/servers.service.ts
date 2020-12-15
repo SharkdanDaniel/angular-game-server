@@ -20,6 +20,10 @@ export class ServersService {
     return this.http.get<any>(`http://hcs.dev4.com.br/api/Servers/GetServer/${this.token.getToken()}/${id}`)
   }
 
+  createServer(server: any): Observable<any> {
+    return this.http.post<any>(`http://hcs.dev4.com.br/api/Servers/AddServers/${this.token.getToken()}`, server)
+  }
+
   updateServer(server: any): Observable<any> {
     return this.http.put<any>(`http://hcs.dev4.com.br/api/Servers/EditServer/${this.token.getToken()}/${server.id}`, server)
   }

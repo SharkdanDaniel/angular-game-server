@@ -1,3 +1,4 @@
+import { ServerCreateComponent } from './server-create/server-create.component';
 import { ServerUpdateComponent } from './server-update/server-update.component';
 import { AuthGuard } from './../../core/guards/auth.guard';
 import { ServerProfileComponent } from './server-profile/server-profile.component';
@@ -9,6 +10,10 @@ import { ServersComponent } from './servers.component';
 const routes: Routes = [
   { path: '',
     component: ServersComponent
+  },
+  { path: 'create',
+    component: ServerCreateComponent,
+    canActivate: [AuthGuard]
   },
   { path: 'profile/:id',
     component: ServerProfileComponent,

@@ -5,7 +5,7 @@
     <a class="navbar-brand" routerLink="">Avatar</a>
 
     <div ngbDropdown>
-        <button class="navbar-brand btn" ngbDropdownToggle>Servidor selecionado: <strong>{{ server.name }}</strong> </button>
+        <button class="navbar-brand btn" ngbDropdownToggle>Servidor: <strong>{{ server.name }}</strong> </button>
         <div ngbDropdownMenu>
             <button ngbDropdownItem routerLink="/servers/profile/{{ server.id }}">Detalhes</button>
             <button ngbDropdownItem routerLink="/servers">Trocar</button>
