@@ -24,7 +24,8 @@ export class ExpTableComponent implements OnInit {
       .subscribe((data) => {
         this.expTables = data.expTable;
         console.log(this.expTables);
-      })
+      }
+    );
   }
 
 }

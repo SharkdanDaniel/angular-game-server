@@ -12,7 +12,7 @@
             <p class="card-text">Pacotes: {{ server.parcels ? server.parcels.length : '0' }}</p>
             <p class="card-text btn btn-outline-info">Items disponíveis: {{ server.availableItems ? server.availableItems.length : '0' }}</p>
             <br>
-            <p routerLink="/servers/exptable/{{ server.id }}" class="card-text btn btn-outline-info">Tabelas de experiência: {{ server.expTable ? server.expTable.length : '0' }}</p>
+            <p routerLink="/servers/{{ server.id }}/exptable" class="card-text btn btn-outline-info">Tabelas de experiência: {{ server.expTable ? server.expTable.length : '0' }}</p>
             <br>
             <!-- <p>
                 <button type="button" class="btn btn-outline-primary" (click)="collapse1.toggle()" [attr.aria-expanded]="!isCollapsed1" aria-controls="collapseExample">
