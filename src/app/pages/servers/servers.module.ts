@@ -7,10 +7,11 @@ import { ServersComponent } from './servers.component';
 import { ServerProfileComponent } from './server-profile/server-profile.component';
 import { ServerUpdateComponent } from './server-update/server-update.component';
 import { ServerCreateComponent } from './server-create/server-create.component';
+import { ExpTableComponent } from './exp-table/exp-table.component';
 
 
 @NgModule({
-  declarations: [ServersComponent, ServerProfileComponent, ServerUpdateComponent, ServerCreateComponent],
+  declarations: [ServersComponent, ServerProfileComponent, ServerUpdateComponent, ServerCreateComponent, ExpTableComponent],
   imports: [
     CommonModule,
     ServersRoutingModule,

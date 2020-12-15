@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="d-flex justify-content-center">
+        <h1>Tabelas de experiência</h1>
+    </div>
+    <table class="table table-striped">
+        <thead class="">
+            <tr>
+                <th scope="col">Título</th>
+                <th scope="col">Experiência</th>
+                <th width="15%" scope="col">Level</th>
+                <th width="18%" scope="col">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let exp of expTables">
+                <td>{{ exp.title }}</td>
+                <td>{{ exp.exp }}</td>
+                <td>{{ exp.level }}</td>
+                <td>
+                    <button routerLink="/users/update/{{ exp.id }}" class="btn btn-info">Editar</button>
+                    <!-- <button routerLink="/users/delete/{{ exp.id }}" class="btn btn-danger">Excluir</button> -->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button routerLink="/servers/profile/{{ serverId }}" class="btn btn-primary">Voltar</button>
+</div>
