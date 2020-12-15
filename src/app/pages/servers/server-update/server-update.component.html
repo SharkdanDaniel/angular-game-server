@@ -1,0 +1,46 @@
+<div class="container border p-5">
+    <div class="d-flex justify-content-center">
+        <h1>Atualizar Servidor</h1>
+    </div>
+    <form [formGroup]="form">
+        <div>
+            <label for="name">Nome</label>
+            <input class="form-control" type="text" formControlName="name">
+        </div>
+        <div>
+            <label for="initialMoney">Dinheiro inicial</label>
+            <input class="form-control" type="number" formControlName="initialMoney">
+        </div>
+        <div>
+            <label for="initialStatsPoints">Pontos de status iniciais</label>
+            <input class="form-control" type="number" formControlName="initialStatsPoints">
+        </div>
+        <div>
+        </div>
+
+        <div class="mt-3">
+            <label class="mr-5" for="shared">Compartilhado</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" [value]="true" formControlName="shared">
+                <label class="form-check-label pr-5" for="shared">Sim</label>
+                <input class="form-check-input" type="radio" [value]="false" formControlName="shared">
+                <label class="form-check-label" for="shared">Não</label>
+            </div>
+        </div>
+        <div class="mt-3">
+            <label class="mr-5" for="hasDisease">Doença</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" [value]="true" formControlName="hasDisease">
+                <label class="form-check-label pr-5" for="shared">Sim</label>
+                <input class="form-check-input" type="radio" [value]="false" formControlName="hasDisease">
+                <label class="form-check-label" for="shared">Não</label>
+            </div>
+        </div>
+        <div class="mt-4">
+            <!-- <label for="parcels">Pacotes</label> -->
+        </div>
+    </form>
+    <br>
+    <button (click)="update()" type="submit" class="btn btn-primary">Atualizar</button>
+    <button class="btn" routerLink="/servers/profile/{{ serverId }}">Cancelar</button>
+</div>

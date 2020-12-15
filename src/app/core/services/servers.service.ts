@@ -1,15 +1,12 @@
-import { Observable, ObservedValueOf } from 'rxjs';
+import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { TokenService } from './token.service';
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServersService {
-
-  teste: any;
-
   constructor(
     private token: TokenService,
     private http: HttpClient
@@ -24,7 +21,7 @@ export class ServersService {
   }
 
   updateServer(server: any): Observable<any> {
-    return this.http.put<any>(`http://hcs.dev4.com.br/api/Servers/AddServers/${this.token.getToken()}/${server.id}`, server)
+    return this.http.put<any>(`http://hcs.dev4.com.br/api/Servers/EditServer/${this.token.getToken()}/${server.id}`, server)
   }
 
   updateExpTable(id: string, expTable: any): Observable<any> {

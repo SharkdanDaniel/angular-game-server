@@ -47,7 +47,8 @@ export class UserUpdateComponent implements OnInit {
         console.log(res);
         console.log('usuário criado');
         this.router.navigate(['/users']);
-      });
+      }
+    );
   }
 
 }
