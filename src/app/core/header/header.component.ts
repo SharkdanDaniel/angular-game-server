@@ -1,3 +1,4 @@
+import { ServersService } from './../services/servers.service';
 import { Router } from '@angular/router';
 import { AuthGuard } from './../guards/auth.guard';
 import { Component, OnInit } from '@angular/core';
@@ -10,12 +11,21 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
   constructor(
     private auth: AuthGuard,
-    private router: Router
+    private router: Router,
+    private serverService: ServersService
     ) {}
 
   server: any;
 
   ngOnInit(): void {
+    this.refreshServer();
+  }
+
+  ngDoCheck(): void {
+    this.refreshServer();
+  }
+
+  refreshServer(): void {
     this.server = JSON.parse(sessionStorage.getItem('server'))
   }
 
@@ -23,12 +33,4 @@ export class HeaderComponent implements OnInit {
     this.auth.logout();
   }
 
-  edit(): void {
-    const id = JSON.parse(sessionStorage.getItem('server')).id
-    this.router.navigate(['/servers/edit/', id])
-  }
-
-  switch(): void {
-    this.router.navigate(['/servers'])
-  }
 }

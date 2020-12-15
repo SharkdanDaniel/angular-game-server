@@ -1,12 +1,14 @@
-import { Observable } from 'rxjs';
+import { Observable, ObservedValueOf } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { TokenService } from './token.service';
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServersService {
+
+  teste: any;
 
   constructor(
     private token: TokenService,
@@ -32,4 +34,5 @@ export class ServersService {
   updateAvailableItems(id: string, AvailableItem: any): Observable<any> {
     return this.http.put<any>(`http://hcs.dev4.com.br/api/Servers/EditAvailableItems/${this.token.getToken()}/${id}`, AvailableItem)
   }
+
 }

@@ -26,7 +26,7 @@ export class AuthGuard implements CanActivate {
     | UrlTree {
     if (
       sessionStorage.getItem('user') &&
-      sessionStorage.getItem('user') != ''
+      sessionStorage.getItem('server')
     ) {
       this.showHeader.emit(true);
       return true;

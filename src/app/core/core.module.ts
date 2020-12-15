@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
@@ -6,7 +7,7 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [HeaderComponent],
-  imports: [CommonModule, HttpClientModule, NgbDropdownModule],
+  imports: [CommonModule, HttpClientModule, NgbDropdownModule, RouterModule],
   exports: [HttpClientModule, HeaderComponent, NgbDropdownModule],
 })
 export class CoreModule {}

@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { take } from 'rxjs/operators';
 import { ServersService } from './../../core/services/servers.service';
 import { Component, OnInit } from '@angular/core';
@@ -10,7 +11,10 @@ import { Component, OnInit } from '@angular/core';
 export class ServersComponent implements OnInit {
   servers: any[];
 
-  constructor(private serversService: ServersService) { }
+  constructor(
+    private serversService: ServersService,
+    private router: Router
+    ) { }
 
   ngOnInit(): void {
     this.serversService.getServers()
@@ -22,7 +26,8 @@ export class ServersComponent implements OnInit {
   }
 
   setServer(server: any) {
-    (sessionStorage.setItem('server', JSON.stringify(server)))
+    (sessionStorage.setItem('server', JSON.stringify(server)));
+    this.router.navigate(['']);
   }
 
 }
