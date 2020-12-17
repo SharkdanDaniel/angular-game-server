@@ -22,7 +22,7 @@ export class UserService {
 
   getUsersById(id: string): Observable<any[]> {
     return this.http.get<any[]>(
-      `http://hcs.dev4.com.br/api/Users/GetUsers/${this.token.getToken()}/${id}`
+      `http://hcs.dev4.com.br/api/Users/GetUser/${this.token.getToken()}/${id}`
     );
   }
 

@@ -1,5 +1,5 @@
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { map, take } from 'rxjs/operators';
+import { take } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { ServersService } from './../../../../core/services/servers.service';
 import { Component, OnInit } from '@angular/core';
@@ -13,6 +13,7 @@ export class ExpTableUpdateComponent implements OnInit {
   serverId: string;
   expId: string;
   form: FormGroup
+  expTables: any[];
 
   constructor(
     private serversService: ServersService,
@@ -28,23 +29,36 @@ export class ExpTableUpdateComponent implements OnInit {
     });
     this.serverId = this.route.snapshot.paramMap.get('id')
     this.expId = this.route.snapshot.paramMap.get('expid')
-      this.serversService.getServerById(this.serverId)
+    this.serversService.getServerById(this.serverId)
       .pipe(take(1))
-        .subscribe((data) => {
-          data.expTable.forEach(exp => {
-            if (exp.id === this.expId) {
-              this.form = this.formBuilder.group(exp);
-              console.log(this.form.value);
-            }
+      .subscribe((data) => {
+        this.expTables = data.expTable;
+        data.expTable.forEach(exp => {
+          if (exp.id === this.expId) {
+            this.form = this.formBuilder.group(exp);
+            console.log(this.form.value);
           }
-        );
+        });
       }
     )
   }
 
   update() {
-    // console.log(this.form.value)
-    this.serversService.updateExpTable(this.serverId, this.form.value)
+    const id = "00000000-0000-0000-0000-000000000000";
+    Object.assign(this.expTables[this.expTables.findIndex(el =>
+      el.id === this.form.value.id
+    )], this.form.value)
+
+    this.expTables.forEach((x, index) => {
+        x.id = id
+    });
+
+    // const index = this.expTables.findIndex(x => {
+    //   x.id == this.form.value.id
+    // });
+    // this.expTables[index] = this.form.value;
+    console.log(this.expTables);
+    this.serversService.updateExpTable(this.serverId, this.expTables)
       .pipe(take(1))
       .subscribe((res) => {
         console.log('expTable atualizado', res);
