@@ -9,10 +9,19 @@ import { ServerUpdateComponent } from './server-update/server-update.component';
 import { ServerCreateComponent } from './server-create/server-create.component';
 import { ExpTableComponent } from './exp-table/exp-table.component';
 import { ExpTableUpdateComponent } from './exp-table/exp-table-update/exp-table-update.component';
+import { ExpTableCreateComponent } from './exp-table/exp-table-create/exp-table-create.component';
 
 
 @NgModule({
-  declarations: [ServersComponent, ServerProfileComponent, ServerUpdateComponent, ServerCreateComponent, ExpTableComponent, ExpTableUpdateComponent],
+  declarations: [
+    ServersComponent,
+    ServerProfileComponent,
+    ServerUpdateComponent,
+    ServerCreateComponent,
+    ExpTableComponent,
+    ExpTableUpdateComponent,
+    ExpTableCreateComponent
+  ],
   imports: [
     CommonModule,
     ServersRoutingModule,

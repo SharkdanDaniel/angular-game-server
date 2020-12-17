@@ -1,3 +1,4 @@
+import { ExpTableCreateComponent } from './exp-table/exp-table-create/exp-table-create.component';
 import { ExpTableUpdateComponent } from './exp-table/exp-table-update/exp-table-update.component';
 import { ExpTableComponent } from './exp-table/exp-table.component';
 import { ServerCreateComponent } from './server-create/server-create.component';
@@ -27,6 +28,10 @@ const routes: Routes = [
   },
   { path: ':id/exptable',
     component: ExpTableComponent,
+    canActivate: [AuthGuard]
+  },
+  { path: ':id/exptable/create',
+    component: ExpTableCreateComponent,
     canActivate: [AuthGuard]
   },
   { path: ':id/exptable/edit/:expid',
