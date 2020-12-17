@@ -46,7 +46,7 @@ export class ExpTableCreateComponent implements OnInit {
     this.serversService.updateExpTable(this.serverId, this.expTables)
       .pipe(take(1))
       .subscribe((res) => {
-        console.log('expTable atualizado', res);
+        console.log('expTable criado', res);
         this.router.navigate(['/servers/', this.serverId, 'exptable'])
       }
     );

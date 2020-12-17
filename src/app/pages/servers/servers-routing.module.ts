@@ -1,3 +1,4 @@
+import { AvailableItemsComponent } from './available-items/available-items.component';
 import { ExpTableDeleteComponent } from './exp-table/exp-table-delete/exp-table-delete.component';
 import { ExpTableCreateComponent } from './exp-table/exp-table-create/exp-table-create.component';
 import { ExpTableUpdateComponent } from './exp-table/exp-table-update/exp-table-update.component';
@@ -41,6 +42,10 @@ const routes: Routes = [
   },
   { path: ':id/exptable/delete/:expid',
     component: ExpTableDeleteComponent,
+    canActivate: [AuthGuard]
+  },
+  { path: ':id/availableitem',
+    component: AvailableItemsComponent,
     canActivate: [AuthGuard]
   },
 ];
