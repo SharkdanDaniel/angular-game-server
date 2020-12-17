@@ -1,3 +1,4 @@
+import { ExpTableDeleteComponent } from './exp-table/exp-table-delete/exp-table-delete.component';
 import { ExpTableCreateComponent } from './exp-table/exp-table-create/exp-table-create.component';
 import { ExpTableUpdateComponent } from './exp-table/exp-table-update/exp-table-update.component';
 import { ExpTableComponent } from './exp-table/exp-table.component';
@@ -36,6 +37,10 @@ const routes: Routes = [
   },
   { path: ':id/exptable/edit/:expid',
     component: ExpTableUpdateComponent,
+    canActivate: [AuthGuard]
+  },
+  { path: ':id/exptable/delete/:expid',
+    component: ExpTableDeleteComponent,
     canActivate: [AuthGuard]
   },
 ];

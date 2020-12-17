@@ -10,6 +10,7 @@ import { ServerCreateComponent } from './server-create/server-create.component';
 import { ExpTableComponent } from './exp-table/exp-table.component';
 import { ExpTableUpdateComponent } from './exp-table/exp-table-update/exp-table-update.component';
 import { ExpTableCreateComponent } from './exp-table/exp-table-create/exp-table-create.component';
+import { ExpTableDeleteComponent } from './exp-table/exp-table-delete/exp-table-delete.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { ExpTableCreateComponent } from './exp-table/exp-table-create/exp-table-
     ServerCreateComponent,
     ExpTableComponent,
     ExpTableUpdateComponent,
-    ExpTableCreateComponent
+    ExpTableCreateComponent,
+    ExpTableDeleteComponent
   ],
   imports: [
     CommonModule,

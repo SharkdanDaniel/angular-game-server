@@ -22,7 +22,8 @@ export class ExpTableComponent implements OnInit {
     this.serversService.getServerById(this.serverId)
       .pipe(take(1))
       .subscribe((data) => {
-        this.expTables = data.expTable;
+        this.expTables = data.expTable
+          .sort((a, b) => (a.exp > b.exp) ? 1 : -1);
         console.log(this.expTables);
       }
     );
