@@ -12,6 +12,8 @@ import { Component, OnInit } from '@angular/core';
 export class AvailableItemsCreateComponent implements OnInit {
   serverId: string;
   itId: string;
+  false: boolean = false;
+  true: boolean = true;
   form: FormGroup;
   availableItems: any[];
 

@@ -13,6 +13,7 @@ export class ServerUpdateComponent implements OnInit {
   true: boolean = true;
   false: boolean = false;
   serverId: string;
+  server: any;
   form: FormGroup
 
   constructor(
@@ -24,20 +25,17 @@ export class ServerUpdateComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      name: [''],
-      shared: [false],
-      hasDisease: [false],
-      initialMoney: [0],
-      initialStatsPoints: [0],
-      parcels: [{
-        parcelName: '',
-        parcelDescription: ''
-      }]
+      name: [null],
+      shared: [null],
+      hasDisease: [null],
+      initialMoney: [null],
+      initialStatsPoints: [null],
     });
     this.serverId = this.route.snapshot.paramMap.get('id');
     this.serversService.getServerById(this.serverId)
       .pipe(take(1))
       .subscribe((server) => {
+        this.server = server;
         this.form = this.formBuilder.group(server);
         console.log(this.form);
       }
@@ -45,7 +43,8 @@ export class ServerUpdateComponent implements OnInit {
   }
 
   update() {
-    // console.log(this.form.value)
+    console.log(this.server)
+    this.server = this.form.value;
     this.serversService
       .updateServer(this.form.value)
       .pipe(take(1))

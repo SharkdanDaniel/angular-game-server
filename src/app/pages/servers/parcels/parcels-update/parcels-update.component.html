@@ -1,0 +1,18 @@
+<div class="container border p-5">
+    <div class="d-flex justify-content-center">
+        <h1>Atualizar Pacote</h1>
+    </div>
+    <form [formGroup]="form">
+        <div>
+            <label for="title">Nome</label>
+            <input class="form-control" type="text" formControlName="parcelName">
+        </div>
+        <div>
+            <label for="exp">Descrição</label>
+            <textarea class="form-control" rows="3" formControlName="parcelDescription"></textarea>
+        </div>
+    </form>
+    <br>
+    <button (click)="update()" type="submit" class="btn btn-primary">Atualizar</button>
+    <button class="btn" routerLink="/servers/{{ serverId }}/parcels">Cancelar</button>
+</div>

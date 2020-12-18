@@ -11,6 +11,7 @@ import { Component, OnInit } from '@angular/core';
 export class AvailableItemsComponent implements OnInit {
   serverId: string;
   availableItems: any[];
+  count: number;
 
   constructor(
     private serversService: ServersService,
@@ -23,6 +24,7 @@ export class AvailableItemsComponent implements OnInit {
       .pipe(take(1))
       .subscribe((data) => {
         this.availableItems = data.availableItems
+        this.count = this.availableItems.length
         console.log(this.availableItems);
       }
     );

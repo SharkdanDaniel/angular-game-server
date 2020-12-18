@@ -4,13 +4,13 @@ import { ServersService } from './../../../core/services/servers.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-exp-table',
-  templateUrl: './exp-table.component.html',
-  styleUrls: ['./exp-table.component.scss']
+  selector: 'app-parcels',
+  templateUrl: './parcels.component.html',
+  styleUrls: ['./parcels.component.scss']
 })
-export class ExpTableComponent implements OnInit {
+export class ParcelsComponent implements OnInit {
   serverId: string;
-  expTables: any[];
+  parcels: any[];
   count: number;
 
   constructor(
@@ -23,10 +23,10 @@ export class ExpTableComponent implements OnInit {
     this.serversService.getServerById(this.serverId)
       .pipe(take(1))
       .subscribe((data) => {
-        this.expTables = data.expTable
-          .sort((a, b) => (a.exp > b.exp) ? 1 : -1);
-        this.count = this.expTables.length
-        console.log(this.expTables);
+        this.parcels = data.parcels
+          // .sort((a, b) => (a.exp > b.exp) ? 1 : -1);
+        this.count = this.parcels.length
+        console.log(this.parcels);
       }
     );
   }

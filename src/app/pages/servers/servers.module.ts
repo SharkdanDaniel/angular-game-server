@@ -15,6 +15,10 @@ import { AvailableItemsComponent } from './available-items/available-items.compo
 import { AvailableItemsCreateComponent } from './available-items/available-items-create/available-items-create.component';
 import { AvailableItemsDeleteComponent } from './available-items/available-items-delete/available-items-delete.component';
 import { AvailableItemsUpdateComponent } from './available-items/available-items-update/available-items-update.component';
+import { ParcelsComponent } from './parcels/parcels.component';
+import { ParcelsCreateComponent } from './parcels/parcels-create/parcels-create.component';
+import { ParcelsDeleteComponent } from './parcels/parcels-delete/parcels-delete.component';
+import { ParcelsUpdateComponent } from './parcels/parcels-update/parcels-update.component';
 
 
 @NgModule({
@@ -30,7 +34,11 @@ import { AvailableItemsUpdateComponent } from './available-items/available-items
     AvailableItemsComponent,
     AvailableItemsCreateComponent,
     AvailableItemsDeleteComponent,
-    AvailableItemsUpdateComponent
+    AvailableItemsUpdateComponent,
+    ParcelsComponent,
+    ParcelsCreateComponent,
+    ParcelsDeleteComponent,
+    ParcelsUpdateComponent
   ],
   imports: [
     CommonModule,

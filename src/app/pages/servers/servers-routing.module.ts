@@ -1,3 +1,6 @@
+import { ParcelsUpdateComponent } from './parcels/parcels-update/parcels-update.component';
+import { ParcelsCreateComponent } from './parcels/parcels-create/parcels-create.component';
+import { ParcelsComponent } from './parcels/parcels.component';
 import { AvailableItemsUpdateComponent } from './available-items/available-items-update/available-items-update.component';
 import { AvailableItemsDeleteComponent } from './available-items/available-items-delete/available-items-delete.component';
 import { AvailableItemsCreateComponent } from './available-items/available-items-create/available-items-create.component';
@@ -14,6 +17,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ServersComponent } from './servers.component';
+import { ParcelsDeleteComponent } from './parcels/parcels-delete/parcels-delete.component';
 
 const routes: Routes = [
   { path: '',
@@ -61,6 +65,22 @@ const routes: Routes = [
   },
   { path: ':id/availableitems/edit/:itid',
     component: AvailableItemsUpdateComponent,
+    canActivate: [AuthGuard]
+  },
+  { path: ':id/parcels',
+    component: ParcelsComponent,
+    canActivate: [AuthGuard]
+  },
+  { path: ':id/parcels/create',
+    component: ParcelsCreateComponent,
+    canActivate: [AuthGuard]
+  },
+  { path: ':id/parcels/delete/:pid',
+    component: ParcelsDeleteComponent,
+    canActivate: [AuthGuard]
+  },
+  { path: ':id/parcels/edit/:pid',
+    component: ParcelsUpdateComponent,
     canActivate: [AuthGuard]
   },
 ];
