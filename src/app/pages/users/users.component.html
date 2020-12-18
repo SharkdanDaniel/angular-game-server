@@ -20,7 +20,7 @@
                 <td *ngIf="user.server == null">Nenhum servidor</td>
                 <td>{{ user.permission }}</td>
                 <td>
-                    <button routerLink="/users/update/{{ user.id }}" class="btn btn-info">Editar</button>
+                    <button routerLink="/users/update/{{ user.id }}" class="btn btn-info mr-2">Editar</button>
                     <button routerLink="/users/delete/{{ user.id }}" class="btn btn-danger">Excluir</button>
                 </td>
             </tr>

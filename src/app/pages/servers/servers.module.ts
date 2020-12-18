@@ -12,6 +12,9 @@ import { ExpTableUpdateComponent } from './exp-table/exp-table-update/exp-table-
 import { ExpTableCreateComponent } from './exp-table/exp-table-create/exp-table-create.component';
 import { ExpTableDeleteComponent } from './exp-table/exp-table-delete/exp-table-delete.component';
 import { AvailableItemsComponent } from './available-items/available-items.component';
+import { AvailableItemsCreateComponent } from './available-items/available-items-create/available-items-create.component';
+import { AvailableItemsDeleteComponent } from './available-items/available-items-delete/available-items-delete.component';
+import { AvailableItemsUpdateComponent } from './available-items/available-items-update/available-items-update.component';
 
 
 @NgModule({
@@ -24,7 +27,10 @@ import { AvailableItemsComponent } from './available-items/available-items.compo
     ExpTableUpdateComponent,
     ExpTableCreateComponent,
     ExpTableDeleteComponent,
-    AvailableItemsComponent
+    AvailableItemsComponent,
+    AvailableItemsCreateComponent,
+    AvailableItemsDeleteComponent,
+    AvailableItemsUpdateComponent
   ],
   imports: [
     CommonModule,

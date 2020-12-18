@@ -10,7 +10,7 @@
             <p class="card-text">Pontos de status iniciais: {{ server.initialStatsPoints }}</p>
             <p class="card-text">Compartilhado: {{ server.shared == true ? 'Sim' : 'Não' }}</p>
             <p class="card-text">Pacotes: {{ server.parcels ? server.parcels.length : '0' }}</p>
-            <p routerLink="/servers/{{ server.id }}/availableitem" class="card-text btn btn-outline-info">Items disponíveis: {{ server.availableItems ? server.availableItems.length : '0' }}</p>
+            <p routerLink="/servers/{{ server.id }}/availableitems" class="card-text btn btn-outline-info">Items disponíveis: {{ server.availableItems ? server.availableItems.length : '0' }}</p>
             <br>
             <p routerLink="/servers/{{ server.id }}/exptable" class="card-text btn btn-outline-info">Tabelas de experiência: {{ server.expTable ? server.expTable.length : '0' }}</p>
             <br>

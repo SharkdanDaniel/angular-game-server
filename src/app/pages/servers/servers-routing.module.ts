@@ -1,3 +1,6 @@
+import { AvailableItemsUpdateComponent } from './available-items/available-items-update/available-items-update.component';
+import { AvailableItemsDeleteComponent } from './available-items/available-items-delete/available-items-delete.component';
+import { AvailableItemsCreateComponent } from './available-items/available-items-create/available-items-create.component';
 import { AvailableItemsComponent } from './available-items/available-items.component';
 import { ExpTableDeleteComponent } from './exp-table/exp-table-delete/exp-table-delete.component';
 import { ExpTableCreateComponent } from './exp-table/exp-table-create/exp-table-create.component';
@@ -44,8 +47,20 @@ const routes: Routes = [
     component: ExpTableDeleteComponent,
     canActivate: [AuthGuard]
   },
-  { path: ':id/availableitem',
+  { path: ':id/availableitems',
     component: AvailableItemsComponent,
+    canActivate: [AuthGuard]
+  },
+  { path: ':id/availableitems/create',
+    component: AvailableItemsCreateComponent,
+    canActivate: [AuthGuard]
+  },
+  { path: ':id/availableitems/delete/:itid',
+    component: AvailableItemsDeleteComponent,
+    canActivate: [AuthGuard]
+  },
+  { path: ':id/availableitems/edit/:itid',
+    component: AvailableItemsUpdateComponent,
     canActivate: [AuthGuard]
   },
 ];

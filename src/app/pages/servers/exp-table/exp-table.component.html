@@ -7,7 +7,7 @@
             <div>Nenhuma tabela disponível</div>
         </div>
     </ng-template>
-    <table *ngIf="!expTables >= 1; else else1" class="table table-striped">
+    <table *ngIf="expTables.length >= 1; else else1" class="table table-striped">
         <thead class="">
             <tr>
                 <th scope="col">Título</th>
