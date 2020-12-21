@@ -9,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class JobsComponent implements OnInit {
   jobs: any[];
+  count: number;
 
   constructor(private jobsService: JobsService) { }
 
@@ -19,6 +20,7 @@ export class JobsComponent implements OnInit {
       .subscribe((res) => {
         console.log(res);
         this.jobs = res;
+        this.count = res.length;
       }
     );
   }

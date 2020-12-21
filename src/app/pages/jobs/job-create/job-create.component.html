@@ -1,5 +1,7 @@
 <div class="container border p-5">
-    <h1>Adicionar Job</h1>
+    <div class="d-flex justify-content-center">
+        <h1>Adicionar Job</h1>
+    </div>
     <form [formGroup]="form">
         <div>
             <label for="name">Nome</label>
@@ -10,7 +12,7 @@
             <input class="form-control" type="text" formControlName="color">
         </div>
         <div>
-            <label for="requirementXp">Requerimento de Xp</label>
+            <label for="requirementXp">XP requerido</label>
             <input class="form-control" type="number" formControlName="requirementXp">
         </div>
         <div class="mt-3">
