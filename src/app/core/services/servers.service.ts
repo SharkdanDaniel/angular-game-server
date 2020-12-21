@@ -36,4 +36,9 @@ export class ServersService {
     return this.http.put<any>(`http://hcs.dev4.com.br/api/Servers/EditAvailableItems/${this.token.getToken()}/${id}`, AvailableItem)
   }
 
+  getServerID() {
+    const serverId = JSON.parse(sessionStorage.getItem('server')).id;
+    return serverId;
+  }
+
 }

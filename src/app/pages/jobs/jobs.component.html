@@ -1,0 +1,39 @@
+<div class="d-flex justify-content-center">
+    <div class="w-75 m-auto">
+        <div class="d-flex justify-content-center">
+            <h1>Lista de Jobs</h1>
+        </div>
+        <table class="table table-striped">
+            <thead class="">
+                <tr>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Cor</th>
+                    <th scope="col">Pode curar</th>
+                    <th scope="col">Pode prender</th>
+                    <th scope="col">Pode casar</th>
+                    <th scope="col">Padrão</th>
+                    <th scope="col">Job público</th>
+                    <th width="10%" scope="col">Requerimento de XP</th>
+                    <th width="18%" scope="col">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let job of jobs">
+                    <td>{{ job.name ? job.name : 'Nenhum nome' }}</td>
+                    <td>{{ job.color ? job.color : 'Nenhuma cor' }}</td>
+                    <td>{{ job.canHeal ? 'Sim' : 'Não' }}</td>
+                    <td>{{ job.canArrest ? 'Sim' : 'Não' }}</td>
+                    <td>{{ job.canDoMarriage ? 'Sim' : 'Não' }}</td>
+                    <td>{{ job.isDefault ? 'Sim' : 'Não' }}</td>
+                    <td>{{ job.publicJob ? 'Sim' : 'Não' }}</td>
+                    <td>{{ job.requirementXp }}</td>
+                    <td>
+                        <button routerLink="/jobs/update/{{ job.id }}" class="btn btn-info mr-2">Editar</button>
+                        <button routerLink="/jobs/delete/{{ job.id }}" class="btn btn-danger">Excluir</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button routerLink="/jobs/create" class="btn btn-primary">Adicionar Job</button>
+    </div>
+</div>
