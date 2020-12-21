@@ -5,11 +5,11 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-job-delete',
-  templateUrl: './job-delete.component.html',
-  styleUrls: ['./job-delete.component.scss'],
+  selector: 'app-job-update',
+  templateUrl: './job-update.component.html',
+  styleUrls: ['./job-update.component.scss'],
 })
-export class JobDeleteComponent implements OnInit {
+export class JobUpdateComponent implements OnInit {
   id: string;
   form: FormGroup;
 
@@ -22,14 +22,14 @@ export class JobDeleteComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      name: [{ value: '', disabled: true }],
-      color: [{ value: '', disabled: true }],
-      canHeal: [{ value: false, disabled: true }],
-      canArrest: [{ value: false, disabled: true }],
-      canDoMarriage: [{ value: false, disabled: true }],
-      isDefault: [{ value: false, disabled: true }],
-      requirementXp: [{ value: 0, disabled: true }],
-      publicJob: [{ value: false, disabled: true }],
+      name: [{ value: '' }],
+      color: [{ value: '' }],
+      canHeal: [{ value: false }],
+      canArrest: [{ value: false }],
+      canDoMarriage: [{ value: false }],
+      isDefault: [{ value: false }],
+      requirementXp: [{ value: 0 }],
+      publicJob: [{ value: false }],
     });
     this.id = this.route.snapshot.paramMap.get('id');
     this.jobsService
@@ -45,13 +45,13 @@ export class JobDeleteComponent implements OnInit {
       });
   }
 
-  delete() {
+  update() {
     this.jobsService
-      .deleteJob(this.id)
+      .updateJob(this.form.value)
       .pipe(take(1))
       .subscribe((res) => {
         console.log(res);
-        console.log('Job deletado');
+        console.log('Job atualizado');
         this.router.navigate(['/jobs']);
       });
   }
