@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+    <div class="w-75">
+        <div class="d-flex justify-content-center">
+            <h1>Items disponíveis</h1>
+        </div>
+        <ng-template #else1>
+            <div class="d-flex justify-content-center my-5">
+                <div>Nenhum item disponível</div>
+            </div>
+        </ng-template>
+        <table *ngIf="count >=1; else else1" class="table table-striped">
+            <thead class="">
+                <tr>
+                    <!-- <th scope="col">Imagem</th> -->
+                    <th scope="col">Nome</th>
+                    <th scope="col">Vida</th>
+                    <th scope="col">Colete</th>
+                    <th scope="col">Experiência</th>
+                    <th scope="col">Fome</th>
+                    <th scope="col">Dinheiro</th>
+                    <th scope="col">Pontos de status</th>
+                    <th scope="col">Inicial</th>
+                    <th scope="col">Quantidade Inicial</th>
+                    <th width="10%" scope="col">Virtual</th>
+                    <th width="18%" scope="col">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of items">
+                    <!-- <td>{{ item.imageId }}</td> -->
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.health }}</td>
+                    <td>{{ item.vest }}</td>
+                    <td>{{ item.experience }}</td>
+                    <td>{{ item.hungry }}</td>
+                    <td>{{ item.money }}</td>
+                    <td>{{ item.statusPoint }}</td>
+                    <td>{{ item.isInitial }}</td>
+                    <td>{{ item.quantityInitial}}</td>
+                    <td>{{ item.isVirtual }}</td>
+                    <td>
+                        <button routerLink="/items/update/{{ item.id }}" class="btn btn-info mr-2">Editar</button>
+                        <button routerLink="/items/delete/{{ item.id }}" class="btn btn-danger">Excluir</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button routerLink="/items/create" class="btn btn-primary">Adicionar</button>
+    </div>
+</div>

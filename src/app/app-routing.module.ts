@@ -7,24 +7,30 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () =>
-    import('./pages/login/login.module').then((m) => m.LoginModule),
+      import('./pages/login/login.module').then((m) => m.LoginModule),
   },
   {
     path: 'users',
     loadChildren: () =>
-    import('./pages/users/users.module').then((m) => m.UsersModule),
+      import('./pages/users/users.module').then((m) => m.UsersModule),
     canActivate: [AuthGuard],
   },
   {
     path: 'servers',
     loadChildren: () =>
-    import('./pages/servers/servers.module').then((m) => m.ServersModule),
+      import('./pages/servers/servers.module').then((m) => m.ServersModule),
   },
   {
     path: 'jobs',
     loadChildren: () =>
-    import('./pages/jobs/jobs.module').then((m) => m.JobsModule),
+      import('./pages/jobs/jobs.module').then((m) => m.JobsModule),
     canActivate: [AuthGuard],
+  },
+  {
+    path: 'items',
+    loadChildren: () =>
+      import('./pages/items/items.module').then((m) => m.ItemsModule),
+      canActivate: [AuthGuard],
   },
   {
     path: '',

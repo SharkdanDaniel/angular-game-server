@@ -1,0 +1,60 @@
+<div class="container border p-5">
+    <div class="d-flex justify-content-center">
+        <h1>Adicionar Item</h1>
+    </div>
+    <form [formGroup]="form">
+        <div>
+            <label for="title">Nome</label>
+            <input class="form-control" type="text" formControlName="name">
+        </div>
+        <div>
+            <label for="exp">Vida</label>
+            <input class="form-control" type="text" formControlName="health">
+        </div>
+        <div>
+            <label for="level">Colete</label>
+            <input class="form-control" type="text" formControlName="vest">
+        </div>
+        <div>
+            <label for="level">Experiência</label>
+            <input class="form-control" type="text" formControlName="experience">
+        </div>
+        <div>
+            <label for="level">Fome</label>
+            <input class="form-control" type="text" formControlName="hungry">
+        </div>
+        <div>
+            <label for="level">Dinheiro</label>
+            <input class="form-control" type="text" formControlName="money">
+        </div>
+        <div>
+            <label for="level">Pontos de Status</label>
+            <input class="form-control" type="text" formControlName="statusPoint">
+        </div>
+        <div>
+            <label for="level">Quantidade Inicial</label>
+            <input class="form-control" type="text" formControlName="quantityInitial">
+        </div>
+        <div class="mt-3">
+            <label class="mr-5" for="hasDisease">Inicial</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" [value]="true" formControlName="isInitial">
+                <label class="form-check-label pr-5" for="shared">Sim</label>
+                <input class="form-check-input" type="radio" [value]="false" formControlName="isInitial">
+                <label class="form-check-label" for="shared">Não</label>
+            </div>
+        </div>
+        <div class="mt-3">
+            <label class="mr-5" for="hasDisease">Virtual</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" [value]="true" formControlName="isVirtual">
+                <label class="form-check-label pr-5" for="shared">Sim</label>
+                <input class="form-check-input" type="radio" [value]="false" formControlName="isVirtual">
+                <label class="form-check-label" for="shared">Não</label>
+            </div>
+        </div>
+    </form>
+    <br>
+    <button (click)="create()" type="submit" class="btn btn-primary">Adicionar</button>
+    <button class="btn" routerLink="/items">Cancelar</button>
+</div>
