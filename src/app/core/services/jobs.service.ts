@@ -37,8 +37,9 @@ export class JobsService {
   }
 
   deleteJob(id: string): Observable<any> {
-    return this.http.delete<any>(
-      `http://hcs.dev4.com.br/api/Jobs/DeleteJob/${this.token.getToken()}/${id}`
+    return this.http.put<any>(
+      `http://hcs.dev4.com.br/api/Jobs/DeleteJob/${this.token.getToken()}/${id}`,
+      true
     );
   }
 }
