@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-available-items-delete',
   templateUrl: './available-items-delete.component.html',
-  styleUrls: ['./available-items-delete.component.scss']
+  styleUrls: ['./available-items-delete.component.scss'],
 })
 export class AvailableItemsDeleteComponent implements OnInit {
   serverId: string;
@@ -22,7 +22,7 @@ export class AvailableItemsDeleteComponent implements OnInit {
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -54,25 +54,24 @@ export class AvailableItemsDeleteComponent implements OnInit {
   }
 
   delete() {
-    const id = "00000000-0000-0000-0000-000000000000";
-
-
+    const id = '00000000-0000-0000-0000-000000000000';
 
     this.availableItems.forEach((x, i) => {
       if (x.id == this.itId) {
-        this.availableItems.splice(this.availableItems.findIndex( a => a.id === this.itId), 1)
+        this.availableItems.splice(
+          this.availableItems.findIndex((a) => a.id === this.itId),
+          1
+        );
       }
-        x.id = id
+      x.id = id;
     });
     console.log(this.availableItems);
-    this.serversService.updateAvailableItems(this.serverId, this.availableItems)
+    this.serversService
+      .updateAvailableItems(this.serverId, this.availableItems)
       .pipe(take(1))
       .subscribe((res) => {
         console.log('Item excluído', res);
-        this.router.navigate(['/servers/', this.serverId, 'availableitems'])
-      }
-    );
-
+        this.router.navigate(['/servers/', this.serverId, 'availableitems']);
+      });
   }
-
 }
