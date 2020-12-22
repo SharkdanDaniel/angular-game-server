@@ -30,7 +30,14 @@ const routes: Routes = [
     path: 'items',
     loadChildren: () =>
       import('./pages/items/items.module').then((m) => m.ItemsModule),
-      canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'exp-machines',
+    loadChildren: () =>
+      import('./pages/exp-machines/exp-machines.module').then(
+        (m) => m.ExpMachinesModule
+      ),
   },
   {
     path: '',
