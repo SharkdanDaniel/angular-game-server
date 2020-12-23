@@ -47,6 +47,12 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
+    path: 'avatar',
+    loadChildren: () =>
+      import('./pages/avatar/avatar.module').then((m) => m.AvatarModule),
+    canActivate: [AuthGuard],
+  },
+  {
     path: '',
     loadChildren: () =>
       import('./pages/home/home.module').then((m) => m.HomeModule),

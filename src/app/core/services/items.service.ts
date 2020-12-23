@@ -14,8 +14,8 @@ export class ItemsService {
     private server: ServersService
   ) {}
 
-  getItems(): Observable<any[]> {
-    return this.http.get<any[]>(
+  getItems(): Observable<any> {
+    return this.http.get<any>(
       `http://hcs.dev4.com.br/api/Item/ListServerWithItems/${this.token.getToken()}/${this.server.getServerID()}`
     );
   }

@@ -15,8 +15,8 @@ export class DiseaseService {
     private server: ServersService
   ) { }
 
-  getDiseases(): Observable<any[]> {
-    return this.http.get<any[]>(
+  getDiseases(): Observable<any> {
+    return this.http.get<any>(
       `http://hcs.dev4.com.br/api/Disease/ListServerWithDiseases/${this.token.getToken()}/${this.server.getServerID()}`
     );
   }
