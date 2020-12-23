@@ -22,7 +22,7 @@ export class ExpMachinesService {
 
   updateExpMachine(expMachine: any): Observable<any> {
     return this.http.put<any>(
-      `http://hcs.dev4.com.br/api/ExpMachines/EditExpMachine/${this.token.getToken()}/${id}/${this.server.getServerID()}`,
+      `http://hcs.dev4.com.br/api/ExpMachines/EditExpMachine/${this.token.getToken()}/${expMachine.id}`,
       expMachine
     );
   }

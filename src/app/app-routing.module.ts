@@ -38,6 +38,7 @@ const routes: Routes = [
       import('./pages/exp-machines/exp-machines.module').then(
         (m) => m.ExpMachinesModule
       ),
+    canActivate: [AuthGuard],
   },
   {
     path: '',

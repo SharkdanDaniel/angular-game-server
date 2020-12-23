@@ -4,10 +4,11 @@ import { CommonModule } from '@angular/common';
 
 import { ExpMachinesRoutingModule } from './exp-machines-routing.module';
 import { ExpMachinesComponent } from './exp-machines.component';
+import { ExpMachineUpdateComponent } from './exp-machine-update/exp-machine-update.component';
 
 
 @NgModule({
-  declarations: [ExpMachinesComponent],
+  declarations: [ExpMachinesComponent, ExpMachineUpdateComponent],
   imports: [
     CommonModule,
     ExpMachinesRoutingModule,

@@ -35,9 +35,9 @@
                     <td>{{ item.hungry }}</td>
                     <td>{{ item.money }}</td>
                     <td>{{ item.statusPoint }}</td>
-                    <td>{{ item.isInitial }}</td>
+                    <td>{{ item.isInitial ? 'Sim' : 'Não' }}</td>
                     <td>{{ item.quantityInitial}}</td>
-                    <td>{{ item.isVirtual }}</td>
+                    <td>{{ item.isVirtual ? 'Sim' : 'Não' }}</td>
                     <td>
                         <button routerLink="/items/update/{{ item.id }}" class="btn btn-info mr-2">Editar</button>
                         <button routerLink="/items/delete/{{ item.id }}" class="btn btn-danger">Excluir</button>

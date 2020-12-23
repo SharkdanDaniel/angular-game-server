@@ -9,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExpMachinesComponent implements OnInit {
   expMachines: any[];
+  count: number;
 
   constructor(private expMachineService: ExpMachinesService) {}
 
@@ -18,6 +19,7 @@ export class ExpMachinesComponent implements OnInit {
       .pipe(take(1))
       .subscribe((data) => {
         this.expMachines = data;
+        this.count = data.length;
         console.log(this.expMachines);
       });
   }
