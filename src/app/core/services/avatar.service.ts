@@ -23,7 +23,7 @@ export class AvatarService {
   updateAvatar(avatar: any): Observable<any> {
     return this.http.put<any>(
       `http://hcs.dev4.com.br/api/Avatar/EditAvatar/${this.token.getToken()}/${
-        avatar.id
+        avatar.uuid
       }`,
       avatar
     );
@@ -31,14 +31,14 @@ export class AvatarService {
 
   banAvatar(avatar: any, reason: string): Observable<any> {
     return this.http.put<any>(
-      `http://hcs.dev4.com.br/api/Avatar/BanAvatar/${this.token.getToken()}/${avatar.id}/${reason}`,
+      `http://hcs.dev4.com.br/api/Avatar/BanAvatar/${this.token.getToken()}/${avatar.uuid}/${reason}`,
       avatar
     );
   }
 
   unbanAvatar(avatar: any): Observable<any> {
     return this.http.put<any>(
-      `http://hcs.dev4.com.br/api/Avatar/UnbanAvatar/${this.token.getToken()}/${avatar.id}`,
+      `http://hcs.dev4.com.br/api/Avatar/UnbanAvatar/${this.token.getToken()}/${avatar.uuid}`,
       avatar
     );
   }

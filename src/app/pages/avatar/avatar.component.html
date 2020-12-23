@@ -42,9 +42,9 @@
                     <td>{{ avatar.isLeader ? 'Sim' : 'Não' }}</td>
                     <td>{{ avatar.experience }}</td>
                     <td>{{ avatar.money }}</td>
-                    <td>{{ avatar.statusPoint }}</td>
-                    <td>{{ avatar.isBanned ? 'Banito' : 'Não' }}</td>
-                    <td>{{ avatar.bannedReason ? avatar.bannedReason : 'Nenhum' }}</td>
+                    <td>{{ avatar.statsPoints }}</td>
+                    <td [ngStyle]="setStyle(avatar)">{{ avatar.isBanned ? 'Sim' : 'Não' }}</td>
+                    <td [ngStyle]="setStyle(avatar)">{{ avatar.bannedReason ? avatar.bannedReason : 'Nenhum' }}</td>
                     <td>{{ avatar.isDead ? 'Sim' : 'Não' }}</td>
                     <td>{{ avatar.isAdmin ? 'Sim' : 'Não' }}</td>
                     <td>{{ avatar.strength }}</td>
@@ -52,9 +52,9 @@
                     <td>{{ avatar.agility }}</td>
                     <td>{{ avatar.accuracy }}</td>
                     <td>
-                        <button routerLink="/avatar/update/{{ avatar.id }}" class="btn btn-sm btn-info mr-1">Editar</button>
-                        <button routerLink="/avatar/ban/{{ avatar.id }}" class="btn btn-sm btn-danger mr-1">Banir</button>
-                        <button routerLink="/avatar/unban/{{ avatar.id }}" class="btn btn-sm btn-info">Desbanir</button>
+                        <button routerLink="/avatar/update/{{ avatar.uuid }}" class="btn btn-sm btn-info mr-1">Editar</button>
+                        <button (click)="ban(avatar)" class="btn btn-sm btn-danger mr-1">Banir</button>
+                        <button (click)="unBan(avatar)" class="btn btn-sm btn-info">Desbanir</button>
                     </td>
                 </tr>
             </tbody>
