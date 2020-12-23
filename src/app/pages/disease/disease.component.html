@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="d-flex justify-content-center">
+        <h1>Lista de Doenças</h1>
+    </div>
+    <ng-template #else1>
+        <div class="d-flex justify-content-center my-5">
+            <div>Nenhuma doença disponível</div>
+        </div>
+    </ng-template>
+
+    <table *ngIf="count >= 1; else else1" class="table table-striped">
+        <thead class="">
+            <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">Dano a cada 10 minutos</th>
+                <th scope="col">Duração em minutos</th>
+                <th scope="col">Contagioso</th>
+                <th width="10%" scope="col">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let disease of diseases">
+                <td>{{ disease.name }}</td>
+                <td>{{ disease.damageEachTenMinutes }}</td>
+                <td>{{ disease.durationInMinutes }}</td>
+                <td>{{ disease.contagious ? 'Sim' : 'Não' }}</td>
+                <td>
+                    <button routerLink="/disease/update/{{ disease.id }}" class="btn btn-info mr-2">Editar</button>
+                    <button routerLink="/disease/delete/{{ disease.id }}" class="btn btn-danger">Excluir</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button routerLink="/disease/create" class="btn btn-primary">Adicionar</button>
+</div>
