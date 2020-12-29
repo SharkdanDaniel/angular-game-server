@@ -18,9 +18,9 @@ export class DiseaseComponent implements OnInit {
       .getDiseases()
       .pipe(take(1))
       .subscribe((data) => {
-        // this.diseases = data.availableDisease;
-        // this.count = this.diseases.length;
-        console.log(data);
+        this.diseases = data.availableDisease;
+        this.count = this.diseases.length;
+        console.log(this.diseases);
       });
   }
 }
