@@ -1,3 +1,4 @@
+import { ServerGuard } from './../../core/guards/server.guard';
 import { ParcelsUpdateComponent } from './parcels/parcels-update/parcels-update.component';
 import { ParcelsCreateComponent } from './parcels/parcels-create/parcels-create.component';
 import { ParcelsComponent } from './parcels/parcels.component';
@@ -21,7 +22,8 @@ import { ParcelsDeleteComponent } from './parcels/parcels-delete/parcels-delete.
 
 const routes: Routes = [
   { path: '',
-    component: ServersComponent
+    component: ServersComponent,
+    canActivate: [ServerGuard],
   },
   { path: 'create',
     component: ServerCreateComponent,

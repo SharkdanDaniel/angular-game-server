@@ -1,0 +1,14 @@
+<div class="container border p-5">
+    <div class="d-flex justify-content-center">
+        <h1>Desbanir avatar</h1>
+    </div>
+    <form [formGroup]="form">
+        <div>
+            <label for="bannedReason">Motivo do ban</label>
+            <textarea class="form-control" rows="3" formControlName="bannedReason"></textarea>
+        </div>
+    </form>
+    <br>
+    <button (click)="unBan()" type="submit" class="btn btn-info">Desbanir</button>
+    <button class="btn" routerLink="/avatar">Cancelar</button>
+</div>

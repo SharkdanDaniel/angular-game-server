@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -11,5 +12,10 @@ export class LoginService {
 
   postLogin(login) {
     return this.http.post(`${this.apiURL}`, login);
+  }
+
+  getUser() {
+    const user = JSON.parse(sessionStorage.getItem('user'));
+    return user;
   }
 }

@@ -10,8 +10,8 @@
         <button class="navbar-brand btn" ngbDropdownToggle>Servidor: <strong>{{ server.name }}</strong> </button>
         <div ngbDropdownMenu>
             <button ngbDropdownItem routerLink="/servers/profile/{{ server.id }}">Detalhes</button>
-            <button ngbDropdownItem routerLink="/servers">Trocar</button>
-            <button ngbDropdownItem routerLink="/servers/create">Adicionar</button>
+            <button *ngIf="user.permission > 1" ngbDropdownItem routerLink="/servers">Trocar</button>
+            <button *ngIf="user.permission > 1" ngbDropdownItem routerLink="/servers/create">Adicionar</button>
             <hr>
             <button ngbDropdownItem (click)="logout()">Sair</button>
         </div>

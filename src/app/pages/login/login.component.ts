@@ -1,3 +1,4 @@
+import { UserService } from './../../core/services/user.service';
 import { LoginService } from '../../core/services/login.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private login: LoginService,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
@@ -33,7 +35,14 @@ export class LoginComponent implements OnInit {
         (data) => {
           sessionStorage.setItem('user', JSON.stringify(data));
           console.table(data);
-          this.router.navigate(['/servers']);
+          if (data.permission < 2) {
+            this.userService.getUsersById(data.id).subscribe(res => {
+              sessionStorage.setItem('server', JSON.stringify(res.server))
+              this.router.navigate([''])
+            })
+          } else {
+            this.router.navigate(['/servers']);
+          }
         },
         (err) => {
           if (err.status == 401) {

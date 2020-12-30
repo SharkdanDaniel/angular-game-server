@@ -10,6 +10,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-create.component.scss'],
 })
 export class UserCreateComponent implements OnInit {
+  user: any;
   form: FormGroup;
 
   constructor(
@@ -17,16 +18,19 @@ export class UserCreateComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router
   ) {
+
+  }
+
+  ngOnInit(): void {
     this.form = this.formBuilder.group({
       name: [''],
       email: [''],
       password: [''],
       permission: [0],
-      serverId: ['6435FB94-2328-4F34-B590-68441F8BD936']
+      serverId: [JSON.parse(sessionStorage.getItem('server')).id]
     });
+    this.user = JSON.parse(sessionStorage.getItem('user'))
   }
-
-  ngOnInit(): void {}
 
   create() {
     this.userService

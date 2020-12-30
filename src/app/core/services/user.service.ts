@@ -20,8 +20,8 @@ export class UserService {
     );
   }
 
-  getUsersById(id: string): Observable<any[]> {
-    return this.http.get<any[]>(
+  getUsersById(id: string): Observable<any> {
+    return this.http.get<any>(
       `http://hcs.dev4.com.br/api/Users/GetUser/${this.token.getToken()}/${id}`
     );
   }

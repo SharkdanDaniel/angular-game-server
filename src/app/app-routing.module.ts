@@ -1,3 +1,5 @@
+import { ServerGuard } from './core/guards/server.guard';
+import { AccessGuard } from './core/guards/access.guard';
 import { AuthGuard } from './core/guards/auth.guard';
 import { AppComponent } from './app.component';
 import { NgModule } from '@angular/core';
@@ -8,6 +10,7 @@ const routes: Routes = [
     path: 'login',
     loadChildren: () =>
       import('./pages/login/login.module').then((m) => m.LoginModule),
+    canActivate: [AccessGuard],
   },
   {
     path: 'users',

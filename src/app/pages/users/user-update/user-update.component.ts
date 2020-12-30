@@ -3,14 +3,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from './../../../core/services/user.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-
 @Component({
   selector: 'app-user-update',
   templateUrl: './user-update.component.html',
-  styleUrls: ['./user-update.component.scss']
+  styleUrls: ['./user-update.component.scss'],
 })
 export class UserUpdateComponent implements OnInit {
+  user: any;
   form: FormGroup;
 
   constructor(
@@ -18,7 +17,7 @@ export class UserUpdateComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private route: ActivatedRoute
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -26,17 +25,17 @@ export class UserUpdateComponent implements OnInit {
       email: [''],
       password: [''],
       permission: [0],
-      serverId: ['']
+      serverId: [''],
     });
-    const id = this.route.snapshot.paramMap.get('id')
-    this.userService.getUsersById(id)
+    this.user = JSON.parse(sessionStorage.getItem('user'));
+    const id = this.route.snapshot.paramMap.get('id');
+    this.userService
+      .getUsersById(id)
       .pipe(take(1))
       .subscribe((user) => {
         this.form = this.formBuilder.group(user);
-        console.log(this.form.value)
-      }
-    )
-
+        console.log(this.form.value);
+      });
   }
 
   update() {
@@ -47,8 +46,6 @@ export class UserUpdateComponent implements OnInit {
         console.log(res);
         console.log('usuário criado');
         this.router.navigate(['/users']);
-      }
-    );
+      });
   }
-
 }
