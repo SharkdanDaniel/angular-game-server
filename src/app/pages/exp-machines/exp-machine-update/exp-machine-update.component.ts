@@ -1,6 +1,7 @@
 import { take } from 'rxjs/operators';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ExpMachinesService } from './../../../core/services/exp-machines.service';
+import { SnackbarService } from './../../../core/services/snackbar.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
@@ -18,7 +19,8 @@ export class ExpMachineUpdateComponent implements OnInit {
     private expMachineService: ExpMachinesService,
     private router: Router,
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private snackBar: SnackbarService
   ) {}
 
   ngOnInit(): void {
@@ -48,6 +50,7 @@ export class ExpMachineUpdateComponent implements OnInit {
     this.expMachineService.updateExpMachine(this.form.value)
     .pipe(take(1))
     .subscribe((res) => {
+      this.snackBar.showMessage('Atualizado com sucesso!')
       console.log('ExpMachine atualizado', res);
       this.router.navigate(['exp-machines'])
     })
