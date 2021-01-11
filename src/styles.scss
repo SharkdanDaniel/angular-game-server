@@ -23,3 +23,8 @@ body {
     background-color: #e35e6b;
     color: white;
 }
+
+.mat-progress-spinner circle,
+.mat-spinner circle {
+    stroke: #4b89f3!important;
+}
