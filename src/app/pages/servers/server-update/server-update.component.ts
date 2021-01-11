@@ -1,6 +1,6 @@
 import { take } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormGroup, FormBuilder } from '@angular/forms';
+// import { FormGroup, FormBuilder } from '@angular/forms';
 import { ServersService } from './../../../core/services/servers.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -35,7 +35,7 @@ export class ServerUpdateComponent implements OnInit {
     this.serverId = this.route.snapshot.paramMap.get('id');
     this.serversService.getServerById(this.serverId)
       .pipe(take(1))
-      .subscribe((server) => {
+      .subscribe((server: any) => {
         this.parcels = server.parcels;
         this.server = server;
         // this.form = this.formBuilder.group(server);

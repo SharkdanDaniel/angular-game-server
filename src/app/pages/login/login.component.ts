@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
       .postLogin(this.form.value)
       .pipe(take(1))
       .subscribe(
-        (data) => {
+        (data: any) => {
           sessionStorage.setItem('user', JSON.stringify(data));
           console.table(data);
           if (data.permission < 2) {
