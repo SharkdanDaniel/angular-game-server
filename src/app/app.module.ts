@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,8 +18,9 @@ import { CoreModule } from './core/core.module';
     BrowserAnimationsModule,
     CoreModule,
     RouterModule,
+    NgxSpinnerModule,
   ],
-  providers: [CoreModule],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

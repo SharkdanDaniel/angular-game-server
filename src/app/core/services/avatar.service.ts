@@ -16,13 +16,13 @@ export class AvatarService {
 
   getAvatars(): Observable<any[]> {
     return this.http.get<any[]>(
-      `http://hcs.dev4.com.br/api/Avatar/ListAvatars/${this.token.getToken()}/${this.server.getServerID()}`
+      `https://hcs.dev4.com.br/api/Avatar/ListAvatars/${this.token.getToken()}/${this.server.getServerID()}`
     );
   }
 
   updateAvatar(avatar: any): Observable<any> {
     return this.http.put<any>(
-      `http://hcs.dev4.com.br/api/Avatar/EditAvatar/${this.token.getToken()}/${
+      `https://hcs.dev4.com.br/api/Avatar/EditAvatar/${this.token.getToken()}/${
         avatar.uuid
       }`,
       avatar
@@ -31,14 +31,14 @@ export class AvatarService {
 
   banAvatar(avatar: any, reason: string): Observable<any> {
     return this.http.put<any>(
-      `http://hcs.dev4.com.br/api/Avatar/BanAvatar/${this.token.getToken()}/${avatar.uuid}/${reason}`,
+      `https://hcs.dev4.com.br/api/Avatar/BanAvatar/${this.token.getToken()}/${avatar.uuid}/${reason}`,
       avatar
     );
   }
 
   unbanAvatar(avatar: any): Observable<any> {
     return this.http.put<any>(
-      `http://hcs.dev4.com.br/api/Avatar/UnbanAvatar/${this.token.getToken()}/${avatar.uuid}`,
+      `https://hcs.dev4.com.br/api/Avatar/UnbanAvatar/${this.token.getToken()}/${avatar.uuid}`,
       avatar
     );
   }

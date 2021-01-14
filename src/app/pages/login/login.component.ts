@@ -6,6 +6,7 @@ import { take } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { SnackbarService } from 'src/app/core/services/snackbar.service';
 import { SpinnerService } from 'src/app/core/services/spinner.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-login',
@@ -21,15 +22,18 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private userService: UserService,
     private snackBar: SnackbarService,
-    private spinner: SpinnerService
+    private spinner: SpinnerService,
+    private ngxSpinner: NgxSpinnerService
   ) {}
 
   ngOnInit(): void {
+    // this.ngxSpinner.show()
     this.form = this.formBuilder.group({
       email: [null],
       password: [null],
     });
   }
+
   onSubmit() {
     this.spinner.set(true);
     this.login

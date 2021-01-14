@@ -17,27 +17,27 @@ export class DiseaseService {
 
   getDiseases(): Observable<any> {
     return this.http.get<any>(
-      `http://hcs.dev4.com.br/api/Disease/ListServerWithDiseases/${this.token.getToken()}/${this.server.getServerID()}`
+      `https://hcs.dev4.com.br/api/Disease/ListServerWithDiseases/${this.token.getToken()}/${this.server.getServerID()}`
     );
   }
 
   createDisease(disease: any): Observable<any> {
     return this.http.post<any>(
-      `http://hcs.dev4.com.br/api/Disease/AddDiseaseToServer/${this.token.getToken()}/${this.server.getServerID()}`,
+      `https://hcs.dev4.com.br/api/Disease/AddDiseaseToServer/${this.token.getToken()}/${this.server.getServerID()}`,
       disease
     );
   }
 
   updateDisease(disease: any): Observable<any> {
     return this.http.put<any>(
-      `http://hcs.dev4.com.br/api/Disease/EditDiseaseFromServer/${this.token.getToken()}/${disease.id}`,
+      `https://hcs.dev4.com.br/api/Disease/EditDiseaseFromServer/${this.token.getToken()}/${disease.id}`,
       disease
     );
   }
 
   deleteDisease(id: string): Observable<any> {
     return this.http.delete<any>(
-      `http://hcs.dev4.com.br/api/Disease/RemoveDiseaseFromServer/${this.token.getToken()}/${this.server.getServerID()}/${id}`
+      `https://hcs.dev4.com.br/api/Disease/RemoveDiseaseFromServer/${this.token.getToken()}/${this.server.getServerID()}/${id}`
     );
   }
 }

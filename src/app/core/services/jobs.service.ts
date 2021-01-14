@@ -16,20 +16,20 @@ export class JobsService {
 
   getJobs(): Observable<any[]> {
     return this.http.get<any[]>(
-      `http://hcs.dev4.com.br/api/Jobs/GetJobs/${this.token.getToken()}/${this.server.getServerID()}`
+      `https://hcs.dev4.com.br/api/Jobs/GetJobs/${this.token.getToken()}/${this.server.getServerID()}`
     );
   }
 
   createJob(job: any): Observable<any> {
     return this.http.post<any>(
-      `http://hcs.dev4.com.br/api/Jobs/AddJob/${this.token.getToken()}/${this.server.getServerID()}`,
+      `https://hcs.dev4.com.br/api/Jobs/AddJob/${this.token.getToken()}/${this.server.getServerID()}`,
       job
     );
   }
 
   updateJob(job: any): Observable<any> {
     return this.http.put<any>(
-      `http://hcs.dev4.com.br/api/Jobs/EditJob/${this.token.getToken()}/${
+      `https://hcs.dev4.com.br/api/Jobs/EditJob/${this.token.getToken()}/${
         job.id
       }`,
       job
@@ -38,7 +38,7 @@ export class JobsService {
 
   deleteJob(id: string): Observable<any> {
     return this.http.put<any>(
-      `http://hcs.dev4.com.br/api/Jobs/DeleteJob/${this.token.getToken()}/${id}`,
+      `https://hcs.dev4.com.br/api/Jobs/DeleteJob/${this.token.getToken()}/${id}`,
       true
     );
   }

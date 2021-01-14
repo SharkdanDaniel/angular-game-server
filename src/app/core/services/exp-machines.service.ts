@@ -16,13 +16,13 @@ export class ExpMachinesService {
 
   getExpMachines(): Observable<any[]> {
     return this.http.get<any[]>(
-      `http://hcs.dev4.com.br/api/ExpMachines/GetExpMachines/${this.token.getToken()}/${this.server.getServerID()}`
+      `https://hcs.dev4.com.br/api/ExpMachines/GetExpMachines/${this.token.getToken()}/${this.server.getServerID()}`
     );
   }
 
   updateExpMachine(expMachine: any): Observable<any> {
     return this.http.put<any>(
-      `http://hcs.dev4.com.br/api/ExpMachines/EditExpMachine/${this.token.getToken()}/${expMachine.id}`,
+      `https://hcs.dev4.com.br/api/ExpMachines/EditExpMachine/${this.token.getToken()}/${expMachine.id}`,
       expMachine
     );
   }

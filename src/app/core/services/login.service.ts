@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class LoginService {
-  readonly apiURL = 'http://hcs.dev4.com.br/api/login/login';
+  readonly apiURL = 'https://hcs.dev4.com.br/api/login/login';
 
   constructor(private http: HttpClient) {}
 
