@@ -1,7 +1,7 @@
 import { UserService } from './../../core/services/user.service';
 import { LoginService } from '../../core/services/login.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { take } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { SnackbarService } from 'src/app/core/services/snackbar.service';
@@ -29,13 +29,14 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     // this.ngxSpinner.show()
     this.form = this.formBuilder.group({
-      email: [null],
-      password: [null],
+      email: [null, [Validators.required, Validators.email]],
+      password: [null, [Validators.required]],
+      remidme: [false],
     });
   }
 
   onSubmit() {
-    this.spinner.set(true);
+    this.ngxSpinner.show();
     this.login
       .postLogin(this.form.value)
       .pipe(take(1))
@@ -50,7 +51,7 @@ export class LoginComponent implements OnInit {
               this.router.navigate([''])
             })
           } else {
-            this.spinner.set(false);
+            this.ngxSpinner.hide()
             this.router.navigate(['/servers']);
           }
         },
@@ -58,11 +59,11 @@ export class LoginComponent implements OnInit {
           if (err.status == 401) {
             this.snackBar.showMessage('Email ou senha inválido', true)
             console.log('Email ou senha incorretos');
-            this.spinner.set(false);
+            this.ngxSpinner.hide();
           } else {
             console.log('', err);
             this.snackBar.showMessage('Erro ao tentar conectar', true)
-            this.spinner.set(false);
+            this.ngxSpinner.hide();
           }
         }
       );
