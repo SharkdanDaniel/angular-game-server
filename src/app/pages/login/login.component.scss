@@ -17,6 +17,10 @@
     padding: 65px 65px 100px;
 }
 
+.bg-sword {
+    margin-bottom: 15px;
+}
+
 .sword {
     width: 116.25px;
     height: 113.44px;
@@ -26,21 +30,53 @@
     border-radius: 6px;
 }
 
+.class-input {
+    margin-bottom: 25px;
+}
+
+.class-checkinput {
+    margin-bottom: 20px;
+}
+
 label {
     font-size: 14px;
     font-weight: 16px;
-    color: #707A84;
+    color: #707a84;
 }
 
 .btn {
     color: white;
-    background-color: #5CB85C;
+    background-color: #5cb85c;
     border-radius: 6px;
 }
 
 @media (max-width: 1440px) {
     .background {
         background-repeat: none;
+    }
+}
+
+@media (max-height: 800px) {
+    .background {
+        display: flex;
+        // justify-content: center;
+        align-items: center;
+    }
+    .login {
+        // left: auto;
+        top: auto;
+        width: 500px;
+        height: 547px;
+    }
+    .class-input {
+        margin-bottom: 8px;
+    }
+    .class-checkinput {
+        margin-bottom: 0;
+    }
+    .sword {
+        width: 100.25px;
+        height: 80.44px;
     }
 }
 
@@ -53,23 +89,23 @@ label {
     .login {
         left: auto;
         top: auto;
+        width: 500px;
+        height: 547px;
     }
-}
-
-@media (max-height: 900px) {
-    .background {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    .class-input {
+        margin-bottom: 8px;
     }
-    .login {
-        left: auto;
-        top: auto;
+    .class-checkinput {
+        margin-bottom: 0;
+    }
+    .sword {
+        width: 100.25px;
+        height: 80.44px;
     }
 }
 
 @media (max-width: 520px) {
     .login {
-        padding: 50px 35px;
+        padding: 50px 30px;
     }
 }

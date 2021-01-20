@@ -24,7 +24,9 @@ export class AccessGuard implements CanActivate {
     | UrlTree {
       if (
         sessionStorage.getItem('user') &&
-        sessionStorage.getItem('server')
+        sessionStorage.getItem('server') ||
+        localStorage.getItem('user') &&
+        localStorage.getItem('server')
       ) {
         this.router.navigate(['']);
         return false;

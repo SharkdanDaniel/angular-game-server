@@ -36,18 +36,29 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
+    const remidme = this.form.get('remidme').value
     this.ngxSpinner.show();
     this.login
       .postLogin(this.form.value)
       .pipe(take(1))
       .subscribe(
         (data: any) => {
-          sessionStorage.setItem('user', JSON.stringify(data));
+          if (remidme) {
+            localStorage.setItem('user', JSON.stringify(data));
+          } else {
+            sessionStorage.setItem('user', JSON.stringify(data));
+          }
           console.table(data);
           if (data.permission < 2) {
-            this.spinner.set(false);
             this.userService.getUsersById(data.id).subscribe(res => {
-              sessionStorage.setItem('server', JSON.stringify(res.server))
+              if (remidme) {
+                localStorage.setItem('user', JSON.stringify(data));
+                localStorage.setItem('server', JSON.stringify(res.server))
+              } else {
+                sessionStorage.setItem('user', JSON.stringify(data));
+                sessionStorage.setItem('server', JSON.stringify(res.server))
+              }
+              this.ngxSpinner.hide();
               this.router.navigate([''])
             })
           } else {

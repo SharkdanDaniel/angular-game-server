@@ -1,21 +1,21 @@
 <div class="background">
     <div class="login">
-        <div class="d-flex justify-content-center bg-sword mb-4">
+        <div class="d-flex justify-content-center bg-sword">
             <img src="/assets/icons/sword2.svg" alt="sword2" class="sword">
         </div>
         <form class="" [formGroup]="form" (ngSubmit)="onSubmit()">
-            <div class="mb-4">
+            <div class="class-input">
                 <label for="email">E-mail</label>
                 <input class="form-control" formControlName="email" type="text" required>
                 <div class="invalid-feedback">
                     Please provide a valid city.
                 </div>
             </div>
-            <div class="mb-4">
+            <div class="class-input">
                 <label for="password">Senha</label>
                 <input class="form-control" formControlName="password" type="password" required>
             </div>
-            <div class="form-check mb-2">
+            <div class="form-check class-checkinput">
                 <input type="checkbox" class="form-check-input" formControlName="remidme">
                 <label for="remind-me" class="form-check-label">Lembrar-me</label>
             </div>

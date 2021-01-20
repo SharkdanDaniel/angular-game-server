@@ -30,11 +30,19 @@ export class HeaderComponent implements OnInit {
   }
 
   refreshUser() {
-    this.user = JSON.parse(sessionStorage.getItem('user'));
+    if (localStorage.getItem('user')) {
+      this.user = JSON.parse(localStorage.getItem('user'));
+    } else {
+      this.user = JSON.parse(sessionStorage.getItem('user'));
+    }
   }
 
   refreshServer(): void {
-    this.server = JSON.parse(sessionStorage.getItem('server'));
+    if (localStorage.getItem('server')) {
+      this.user = JSON.parse(localStorage.getItem('server'));
+    } else {
+      this.user = JSON.parse(sessionStorage.getItem('server'));
+    }
   }
 
   logout(): void {

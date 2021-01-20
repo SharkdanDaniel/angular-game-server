@@ -21,12 +21,17 @@ export class ServerGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-      if (
-        JSON.parse(sessionStorage.getItem('user')).permission < 2
-      ) {
+    if (sessionStorage.getItem('user')) {
+      if (JSON.parse(sessionStorage.getItem('user')).permission < 2) {
         this.router.navigate(['']);
         return false;
       }
+    } else if (localStorage.getItem('user')) {
+      if (JSON.parse(localStorage.getItem('user')).permission < 2) {
+        this.router.navigate(['']);
+        return false;
+      }
+    }
     return true;
   }
 }

@@ -37,7 +37,12 @@ export class ServersService {
   }
 
   getServerID() {
-    const serverId = JSON.parse(sessionStorage.getItem('server')).id;
+    let serverId;
+    if (localStorage.getItem('server')) {
+      serverId = JSON.parse(localStorage.getItem('server')).id;
+    } else {
+      serverId = JSON.parse(sessionStorage.getItem('server')).id;
+    }
     return serverId;
   }
 

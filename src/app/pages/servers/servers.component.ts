@@ -26,7 +26,11 @@ export class ServersComponent implements OnInit {
   }
 
   setServer(server: any) {
-    (sessionStorage.setItem('server', JSON.stringify(server)));
+    if (localStorage.getItem('server')) {
+      (localStorage.setItem('server', JSON.stringify(server)));
+    } else {
+      (sessionStorage.setItem('server', JSON.stringify(server)));
+    }
     this.router.navigate(['']);
   }
 

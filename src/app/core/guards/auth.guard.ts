@@ -26,7 +26,9 @@ export class AuthGuard implements CanActivate {
     | UrlTree {
     if (
       sessionStorage.getItem('user') &&
-      sessionStorage.getItem('server')
+      sessionStorage.getItem('server') ||
+      localStorage.getItem('user') &&
+      localStorage.getItem('server')
     ) {
       this.showHeader.emit(true);
       return true;
@@ -37,8 +39,18 @@ export class AuthGuard implements CanActivate {
   }
 
   logout(): void {
-    sessionStorage.removeItem('user');
-    sessionStorage.removeItem('server');
+    if (localStorage.getItem('user')) {
+      localStorage.removeItem('user');
+    } else {
+      sessionStorage.removeItem('user');
+    }
+
+    if (sessionStorage.getItem('user')) {
+      localStorage.removeItem('server');
+    } else {
+      sessionStorage.removeItem('server');
+    }
+
     this.showHeader.emit(false);
     this.router.navigate(['/login']);
   }

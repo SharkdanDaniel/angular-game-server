@@ -15,7 +15,12 @@ export class LoginService {
   }
 
   getUser() {
-    const user = JSON.parse(sessionStorage.getItem('user'));
+    let user;
+    if (localStorage.getItem('user')) {
+      user = JSON.parse(sessionStorage.getItem('user'));
+    } else {
+      user = JSON.parse(sessionStorage.getItem('user'));
+    }
     return user;
   }
 }

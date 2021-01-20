@@ -7,7 +7,12 @@ export class TokenService {
   constructor() {}
 
   getToken() {
-    const token = JSON.parse(sessionStorage.getItem('user')).token;
+    let token;
+    if (localStorage.getItem('user')) {
+      token = JSON.parse(localStorage.getItem('user')).token;
+    } else {
+      token = JSON.parse(sessionStorage.getItem('user')).token;
+    }
     return token;
   }
 }
