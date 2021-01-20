@@ -46,4 +46,14 @@ export class ServersService {
     return serverId;
   }
 
+  getServer() {
+    let server;
+    if (localStorage.getItem('server')) {
+      server = JSON.parse(localStorage.getItem('server'));
+    } else {
+      server = JSON.parse(sessionStorage.getItem('server'));
+    }
+    return server;
+  }
+
 }

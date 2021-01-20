@@ -8,9 +8,9 @@
 .login {
     position: relative;
     width: 100%;
-    max-width: 600px;
+    max-width: 530px;
     height: 100%;
-    max-height: 650px;
+    max-height: 600px;
     left: 200px;
     top: 144px;
     background: #ffffff;
@@ -36,6 +36,12 @@
 
 .class-checkinput {
     margin-bottom: 20px;
+}
+
+.form-check-input {
+    width: 15px;
+    height: 15px;
+    padding-right: 7px;
 }
 
 label {

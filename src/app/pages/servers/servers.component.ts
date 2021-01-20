@@ -26,7 +26,7 @@ export class ServersComponent implements OnInit {
   }
 
   setServer(server: any) {
-    if (localStorage.getItem('server')) {
+    if (localStorage.getItem('user')) {
       (localStorage.setItem('server', JSON.stringify(server)));
     } else {
       (sessionStorage.setItem('server', JSON.stringify(server)));

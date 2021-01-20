@@ -45,7 +45,7 @@ export class AuthGuard implements CanActivate {
       sessionStorage.removeItem('user');
     }
 
-    if (sessionStorage.getItem('user')) {
+    if (localStorage.getItem('server')) {
       localStorage.removeItem('server');
     } else {
       sessionStorage.removeItem('server');
