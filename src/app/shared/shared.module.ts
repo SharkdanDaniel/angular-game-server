@@ -4,9 +4,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerComponent } from './components/ngx-spinner/ngx-spinner.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { ErrorMsgComponent } from './components/error-msg/error-msg.component';
+import { InputFieldComponent } from './components/input-field/input-field.component';
 
 @NgModule({
-  declarations: [NgxSpinnerComponent],
+  declarations: [NgxSpinnerComponent, ErrorMsgComponent, InputFieldComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -20,7 +22,9 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     ReactiveFormsModule,
     NgbCollapseModule,
     NgxSpinnerComponent,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    ErrorMsgComponent,
+    InputFieldComponent
   ],
 })
-export class SharedModule {}
+export class SharedModule { }
