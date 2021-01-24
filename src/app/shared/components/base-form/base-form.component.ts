@@ -1,12 +1,16 @@
-import { OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 
-export abstract class BaseForm implements OnInit {
+@Component({
+  selector: 'app-base-form',
+  template: '<div></div>',
+})
+export abstract class BaseFormComponent implements OnInit {
   form: FormGroup;
 
-  constructor() {}
-
-  ngOnInit(): void {}
+  constructor() { }
+  ngOnInit(): void {
+  }
 
   abstract submit();
 
@@ -38,7 +42,8 @@ export abstract class BaseForm implements OnInit {
 
   applyErrCss(field: string) {
     return {
-      'invalid-feedback': this.checkValidTouched(field),
+      'is-invalid': this.checkValidTouched(field),
     };
   }
+
 }

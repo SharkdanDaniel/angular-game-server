@@ -1,57 +1,57 @@
-<div class="background">
+<div class="background d-flex justify-content-center align-items-center">
   <div class="login">
     <div class="d-flex justify-content-center bg-sword">
-      <img src="/assets/icons/sword2.svg" alt="sword2" class="sword" />
+      <!-- <img src="/assets/icons/sword2.svg" alt="sword2" class="sword" /> -->
+      <span>Login</span>
     </div>
-    <form class="" [formGroup]="form" (ngSubmit)="submit()">
+    <form class="" [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="class-input">
         <label for="email">E-mail</label>
         <input
-          [ngClass]="{ 'is-invalid': submitted && hasError('email') }"
+          [ngClass]="applyErrCss('email')"
           class="form-control"
           formControlName="email"
           type="text"
         />
-        <div
-          class="invalid-feedback"
-          *ngIf="hasError('email') && hasError('password')['required']"
-        >
-         Email é obrigatório.
-        </div>
-        <div
-          class="invalid-feedback"
-          *ngIf="hasError('email') && hasError('email')['email']"
-        >
-          Email inválido.
-        </div>
-        <!-- <app-error-msg [control]="form.get('email')"></app-error-msg> -->
+        <app-error-msg
+          [label]="'Email'"
+          [control]="form.get('email')"
+        ></app-error-msg>
       </div>
       <div class="class-input">
+        <!-- <app-input-field
+          [cssClass]="applyErrCss('password')"
+          [control]="form.get('password')"
+          label="Senha"
+          type="password"
+          formControlName="password"
+        ></app-input-field> -->
         <label for="password">Senha</label>
         <input
           class="form-control"
           formControlName="password"
           type="password"
-          [ngClass]="{ 'is-invalid': submitted && hasError('password') }"
+          [ngClass]="applyErrCss('password')"
         />
-        <div
-          class="invalid-feedback"
-          *ngIf="hasError('password') && hasError('password')['required']"
-        >
-         Senha é obrigatório.
+        <app-error-msg
+          [label]="'Senha'"
+          [control]="form.get('password')"
+        ></app-error-msg>
+        <div class="d-block invalid-feedback" *ngIf="passwordInvalid">
+          E-mail ou senha inválida.
         </div>
       </div>
 
       <div class="form-check class-checkinput">
         <input
           type="checkbox"
-          class="form-check-input"
+          class="form-check-input check-input"
           formControlName="remidme"
         />
         <label for="remind-me" class="form-check-label">Lembrar-me</label>
       </div>
       <br />
-      <button type="submit" class="btn w-100">Entrar</button>
+      <button type="submit" class="btn btn-purple w-100">Entrar</button>
     </form>
   </div>
 </div>

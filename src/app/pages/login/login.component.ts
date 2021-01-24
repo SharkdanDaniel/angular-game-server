@@ -5,18 +5,18 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { take } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { SnackbarService } from 'src/app/core/services/snackbar.service';
-import { SpinnerService } from 'src/app/core/services/spinner.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { BaseForm } from 'src/app/shared/class/base-form';
+import { BaseFormComponent } from 'src/app/shared/components/base-form/base-form.component';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent extends BaseForm implements OnInit {
+export class LoginComponent extends BaseFormComponent implements OnInit {
   form: FormGroup;
   submitted = false;
+  passwordInvalid = false;
 
   constructor(
     private login: LoginService,
@@ -24,14 +24,13 @@ export class LoginComponent extends BaseForm implements OnInit {
     private router: Router,
     private userService: UserService,
     private snackBar: SnackbarService,
-    private spinner: SpinnerService,
     private ngxSpinner: NgxSpinnerService
   ) {
-    super()
+    super();
   }
 
   ngOnInit(): void {
-    // this.ngxSpinner.show()
+    this.passwordInvalid = false;
     this.form = this.formBuilder.group({
       email: [null, [Validators.required, Validators.email]],
       password: [null, [Validators.required]],
@@ -39,8 +38,10 @@ export class LoginComponent extends BaseForm implements OnInit {
     });
   }
 
-  submit() {
-    this.submitted = true;
+  submit() {}
+
+  onSubmit() {
+    this.form.markAllAsTouched();
     if (this.form.valid) {
       const remidme = this.form.get('remidme').value;
       this.ngxSpinner.show();
@@ -74,7 +75,8 @@ export class LoginComponent extends BaseForm implements OnInit {
           },
           (err) => {
             if (err.status == 401) {
-              this.snackBar.showMessage('Email ou senha inválido', true);
+              // this.snackBar.showMessage('Email ou senha inválido', true);
+              this.passwordInvalid = true;
               console.log('Email ou senha incorretos');
               this.ngxSpinner.hide();
             } else {
@@ -87,9 +89,11 @@ export class LoginComponent extends BaseForm implements OnInit {
     }
   }
 
-  onSubmit() {}
-
-  hasError(field: string) {
-    return this.form.get(field).errors;
-  }
+  // erroCss(field: string) {
+  //   console.log('teste');
+  //   return {
+  //     'is-invalid':
+  //       this.form.get(field).errors && this.form.get(field).touched,
+  //   };
+  // }
 }

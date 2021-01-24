@@ -1,1 +1,10 @@
-<p>input-field works!</p>
+<label [attr.for]="id" class="form-label label-input">{{ label }}</label>
+<input
+  [ngClass]="cssClass"
+  [type]="type"
+  [id]="id"
+  class="form-control input-field"
+  [readOnly]="!!isReadOnly"
+  [(ngModel)]="value"
+/>
+<app-error-msg [control]="control" [label]="label"></app-error-msg>

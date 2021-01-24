@@ -6,9 +6,12 @@ import { NgxSpinnerComponent } from './components/ngx-spinner/ngx-spinner.compon
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ErrorMsgComponent } from './components/error-msg/error-msg.component';
 import { InputFieldComponent } from './components/input-field/input-field.component';
-
 @NgModule({
-  declarations: [NgxSpinnerComponent, ErrorMsgComponent, InputFieldComponent],
+  declarations: [
+    NgxSpinnerComponent,
+    ErrorMsgComponent,
+    InputFieldComponent,
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -24,7 +27,7 @@ import { InputFieldComponent } from './components/input-field/input-field.compon
     NgxSpinnerComponent,
     NgxSpinnerModule,
     ErrorMsgComponent,
-    InputFieldComponent
+    InputFieldComponent,
   ],
 })
-export class SharedModule { }
+export class SharedModule {}
