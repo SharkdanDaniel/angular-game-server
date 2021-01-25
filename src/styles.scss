@@ -2,8 +2,8 @@
 
 /* Importing Bootstrap SCSS file. */
 
-@import "../node_modules/bootstrap/scss/bootstrap";
 @import "customize-bootstrap.scss";
+@import "../node_modules/bootstrap/scss/bootstrap";
 
 html,
 body {
@@ -68,9 +68,9 @@ button .btn-primary {
   color: #7749F8;
 }
 
-$theme-colors: (
-  "primary" : #7749F8
-)
+ .form-check-input input:active {
+  background-color: #7749f8 !important;
+}
 
 
 
