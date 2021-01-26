@@ -1,37 +1,86 @@
+import { NgxSpinnerService } from 'ngx-spinner';
+import {
+  TableColumn,
+  TableAction,
+} from './../../shared/modules/table/table-models.model';
 import { Router } from '@angular/router';
 import { take } from 'rxjs/operators';
 import { ServersService } from './../../core/services/servers.service';
 import { Component, OnInit } from '@angular/core';
+import { EMPTY } from 'rxjs';
 
 @Component({
   selector: 'app-servers',
   templateUrl: './servers.component.html',
-  styleUrls: ['./servers.component.scss']
+  styleUrls: ['./servers.component.scss'],
 })
 export class ServersComponent implements OnInit {
-  servers: any[];
+  servers: any[] = [];
 
-  constructor(
-    private serversService: ServersService,
-    private router: Router
-    ) { }
+  page = 1;
+  pageSize = 4;
+  collectionSize = 0;
+
+  // dataSource: any[];
+  // columns: TableColumn[] = [
+  //   {
+  //     columnName: 'name',
+  //     displayName: 'Nome',
+  //   },
+  //   {
+  //     columnName: 'shared',
+  //     displayName: 'Compartilhado',
+  //   },
+  //   {
+  //     columnName: 'hasDisease',
+  //     displayName: 'Debuffs',
+  //   },
+  //   {
+  //     columnName: 'initialMoney',
+  //     displayName: 'Dinheiro Inicial',
+  //   },
+  // ];
+
+  // actions: TableAction[] = [
+  //   {
+  //     eventName: 'edit',
+  //     iconClass: 'fas fa-pen',
+  //   },
+  // ];
+
+  // pageSize = 4;
+  // index = 0;
+
+  constructor(private serversService: ServersService, private router: Router,  private ngxSpinner: NgxSpinnerService) {}
 
   ngOnInit(): void {
-    this.serversService.getServers()
-      .pipe(take(1))
-      .subscribe((data) =>{
-        this.servers = data;
-        console.log(this.servers);
+    this.refreshServers();
+  }
+
+  refreshServers() {
+    this.serversService
+      .getAll()
+      .subscribe((data) => {
+        console.log(data);
+        this.collectionSize = data.length;
+        this.servers = data
+        .slice((this.page - 1) * this.pageSize, (this.page -1) * this.pageSize + this.pageSize);
+        this.ngxSpinner.hide();
       })
   }
 
   setServer(server: any) {
     if (localStorage.getItem('user')) {
-      (localStorage.setItem('server', JSON.stringify(server)));
+      localStorage.setItem('server', JSON.stringify(server));
     } else {
-      (sessionStorage.setItem('server', JSON.stringify(server)));
+      sessionStorage.setItem('server', JSON.stringify(server));
     }
     this.router.navigate(['']);
   }
 
+  // setPage(event) {
+  //   this.dataSource = null;
+  //   this.dataSource = this.servers.slice(this.pageSize * event, this.pageSize * (event + 1));
+  //   console.log(this.dataSource);
+  // }
 }

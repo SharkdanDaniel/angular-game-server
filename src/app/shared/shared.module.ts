@@ -2,7 +2,7 @@ import { AtbTableModule } from './modules/table/table.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCollapseModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerComponent } from './components/ngx-spinner/ngx-spinner.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ErrorMsgComponent } from './components/error-msg/error-msg.component';
@@ -19,7 +19,8 @@ import { InputFieldComponent } from './components/input-field/input-field.compon
     ReactiveFormsModule,
     NgbCollapseModule,
     NgxSpinnerModule,
-    AtbTableModule
+    AtbTableModule,
+    NgbPaginationModule
   ],
   exports: [
     CommonModule,
@@ -30,7 +31,8 @@ import { InputFieldComponent } from './components/input-field/input-field.compon
     NgxSpinnerModule,
     ErrorMsgComponent,
     InputFieldComponent,
-    AtbTableModule
+    AtbTableModule,
+    NgbPaginationModule
   ],
 })
 export class SharedModule {}

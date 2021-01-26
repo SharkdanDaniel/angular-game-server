@@ -1,20 +1,29 @@
+import { NgxSpinnerService } from 'ngx-spinner';
+import { SnackbarService } from './snackbar.service';
+import { CrudService } from './../../shared/classes/crud-service';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { TokenService } from './token.service';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ServersService {
+export class ServersService extends CrudService<any> {
+  getAll_URL = `Servers/ListServers/${this.token.getToken()}`;
   constructor(
     private token: TokenService,
-    private http: HttpClient
-  ) { }
-
-  getServers(): Observable<any[]> {
-    return this.http.get<any[]>(`https://hcs.dev4.com.br/api/Servers/ListServers/${this.token.getToken()}`)
+    protected http: HttpClient,
+    protected snackBar: SnackbarService,
+    protected ngxSpinner: NgxSpinnerService
+  ) { 
+    super(http, environment.API, snackBar, ngxSpinner)
   }
+
+  // getServers(): Observable<any[]> {
+  //   return this.http.get<any[]>(`https://hcs.dev4.com.br/api/Servers/ListServers/${this.token.getToken()}`)
+  // }
 
   getServerById(id: string): Observable<any> {
     return this.http.get<any>(`https://hcs.dev4.com.br/api/Servers/GetServer/${this.token.getToken()}/${id}`)

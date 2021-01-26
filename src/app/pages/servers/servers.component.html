@@ -1,19 +1,100 @@
-<div class="container">
-    <div class="d-flex justify-content-center">
-        <h1>Selecione um servidor</h1>
+<div class="background d-flex justify-content-center align-items-center align-items-center">
+  <div class="card">
+    <div class="card-header px-5 pt-4">
+      <h2 class="card-title">Servidores</h2>
     </div>
 
-    <table class="table table-striped">
-        <thead class="">
+    <div class="card-body mt-4 mx-3">
+      <div *ngIf="servers.length < 1"  class="d-flex justify-content-center align-items-center">
+        <span>Nenhum servidor disponível</span>
+      </div>
+      <table *ngIf="servers.length > 0" class="table table-striped text-center just">
+        <thead>
+          <tr>
+            <th class="pl-3 pr-5" scope="col">#</th>
+            <th class="text-justify" scope="col">Nome</th>
+            <th scope="col">Compartilhado</th>
+            <th scope="col">Debuffs</th>
+            <th scope="col">Dinheiro Inicial</th>
+            <th scope="col">Entrar</th>
+          </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let server of servers">
-                <div class="d-flex justify-content-center">
-                    <a routerLink="" (click)="setServer(server)">
-                        <td>{{ server.name }}</td>
-                    </a>
-                </div>
-            </tr>
+          <tr *ngFor="let server of servers; index as i">
+            <td class="pl-3 pr-5"><strong>{{ i + 1 }}</strong></td>
+            <td class="text-justify">{{ server.name | titlecase }}</td>
+            <td class="">
+              <img
+                *ngIf="server.shared"
+                src="/assets/icons/checked.svg"
+                alt=""
+              />
+              <img
+                *ngIf="!server.shared"
+                src="/assets/icons/cancel.svg"
+                alt=""
+              />
+            </td>
+            <td>
+              <img
+                *ngIf="server.hasDisease"
+                src="/assets/icons/checked.svg"
+                alt=""
+              />
+              <img
+                *ngIf="!server.hasDisease"
+                src="/assets/icons/cancel.svg"
+                alt=""
+              />
+            </td>
+            <td>{{ server.initialMoney }}</td>
+            <td>
+              <button (click)="setServer(server)" class="btn btn-sm">
+                <img src="/assets/icons/enter.svg" alt="" />
+              </button>
+            </td>
+          </tr>
         </tbody>
-    </table>
+      </table>
+
+      <div *ngIf="servers.length > 0"  class="d-flex justify-content-between p-2">
+        <div>
+          <strong class="mr-2">Resultados por página: </strong>
+          <select
+            class="form-control d-inline"
+            style="width: auto"
+            [(ngModel)]="pageSize"
+            (ngModelChange)="refreshServers()"
+          >
+            <option [ngValue]="2">2</option>
+            <option [ngValue]="4">4</option>
+            <option [ngValue]="6">6</option>
+            <option [ngValue]="10">10</option>
+          </select>
+        </div>
+
+        <ngb-pagination
+        *ngIf="servers.length > 0" 
+          [collectionSize]="collectionSize"
+          [(page)]="page"
+          [pageSize]="pageSize"
+          [maxSize]="3"
+          [rotate]="true"
+          (pageChange)="refreshServers()"
+        >
+          <ng-template ngbPaginationPrevious>Anterior</ng-template>
+          <ng-template ngbPaginationNext>Próximo</ng-template>
+        </ngb-pagination>
+      </div>
+    </div>
+  </div>
 </div>
+
+<!-- <atb-table
+  [dataSource]="dataSource"
+  [columns]="columns"
+  [actions]="actions"
+  [totalItems]="servers?.length"
+  (page)="setPage($event)"
+>
+</atb-table> -->
