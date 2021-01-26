@@ -1,4 +1,4 @@
-import { FormValidation } from './../../class/form.validation';
+import { FormValidation } from '../../classes/form.validation';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 

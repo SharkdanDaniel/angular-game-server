@@ -1,3 +1,4 @@
+import { take } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -11,7 +12,7 @@ export class LoginService {
   constructor(private http: HttpClient) {}
 
   postLogin(login) {
-    return this.http.post(`${this.apiURL}`, login);
+    return this.http.post(`${this.apiURL}`, login).pipe(take(1));
   }
 
   getUser() {

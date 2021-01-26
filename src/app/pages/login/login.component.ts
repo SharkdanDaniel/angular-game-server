@@ -47,7 +47,7 @@ export class LoginComponent extends BaseFormComponent implements OnInit {
       this.ngxSpinner.show();
       this.login
         .postLogin(this.form.value)
-        .pipe(take(1))
+        // .pipe(take(1))
         .subscribe(
           (data: any) => {
             if (remidme) {

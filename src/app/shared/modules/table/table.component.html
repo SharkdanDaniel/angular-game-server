@@ -1,0 +1,94 @@
+<mat-table
+  [dataSource]="dataSource"
+  [ngStyle]="{ 'border-bottom': dataSource?.length == pageSize ? 'none' : '1px solid rgba(0, 0, 0, 0.1)' }"
+>
+  <ng-container *ngFor="let column of columns">
+    <ng-container matColumnDef="{{ column.columnName }}">
+      <mat-header-cell *matHeaderCellDef [ngClass]="column.className">
+        {{ column.displayName | firstLetterCapital }}
+      </mat-header-cell>
+
+      <mat-cell *matCellDef="let element" [ngClass]="column.className">
+        {{
+          column.dataType === "date"
+            ? (element[column.columnName] | date: "dd/MM/yyyy")
+            : column.dataType === "currency"
+            ? (element[column.columnName] | currency: "BRL":true)
+            : element[column.columnName]
+        }}
+      </mat-cell>
+    </ng-container>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <mat-header-cell *matHeaderCellDef [ngClass]="'action-column'"></mat-header-cell>
+    <mat-cell *matCellDef="let element" [ngClass]="'action-column'">
+      <button class="action-btn btn" *ngFor="let action of actions; let i = index" (click)="onAction(action, element)">
+        <ng-container *ngIf="!action.isMenu; else tableActionMenu">
+          <i ngClass="table-action" *ngIf="action" [attr.class]="action.iconClass"></i>
+        </ng-container>
+        <ng-template #tableActionMenu>
+          <div class="dropdown dropdown-menu-table dropleft">
+            <button
+              class="btn dropdown-toggle action-btn"
+              type="button"
+              id="dropdownMenuButton"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <i class="table-action fas fa-ellipsis-v"></i>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a
+                class="dropdown-item text-gray-400 regular-txt subtitle-sm"
+                (click)="onAction(item, element)"
+                *ngFor="let item of action.children"
+                >{{ item.displayName }}</a
+              >
+            </div>
+          </div>
+        </ng-template>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="_columns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: _columns"></mat-row>
+</mat-table>
+
+<ul class="custom-paginator-container nav nav-pills">
+  <div class="custom-paginator-page-info">
+    {{ currentPage * pageSize + 1 }}-{{
+      totalItems < pageSize * (currentPage + 1) ? totalItems : pageSize * (currentPage + 1)
+    }}
+    de {{ totalItems }} items
+  </div>
+  <div class="custom-paginator d-flex">
+    <img
+      src="../../../../assets/icons/paginator-left.svg"
+      class="mr-2 chevron"
+      (click)="previousPage()"
+      alt="Página anterior"
+    />
+    <li
+      class="nav-item"
+      *ngFor="let p of pages; let i = index"
+      [ngClass]="{ 'ml-2': i > 0, selected: p.index == currentPage + 1 }"
+      [hidden]="p.index < currentPage - 2"
+    >
+      <a
+        class="nav-link"
+        (click)="setPage(p.index)"
+        [ngClass]="{ active: p.index === currentPage + 1, disabled: p.index * pageSize - totalItems > pageSize }"
+        >{{ p.index }}</a
+      >
+    </li>
+    <img
+      src="../../../../assets/icons/paginator-right.svg"
+      class="ml-2 chevron"
+      (click)="nextPage()"
+      alt="Página seguinte"
+    />
+  </div>
+</ul>

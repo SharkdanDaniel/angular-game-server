@@ -1,0 +1,157 @@
+mat-table {
+  overflow: auto;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  min-height: 541px;
+}
+mat-header-row {
+  min-height: 48px;
+}
+.custom-paginator-container {
+  background: #fff;
+  border-top: 0px;
+  padding: 12px 8px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.custom-paginator-page-info {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 12px;
+}
+
+.nav-item,
+.nav-link {
+  height: 32px;
+  width: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.dropdown-item:active {
+  background-color: rgba(6, 131, 249, 0.05);
+}
+
+.disabled {
+  color: rgb(0 0 0 / 20%) !important;
+}
+
+.chevron {
+  cursor: pointer;
+}
+
+.nav-item {
+  color: rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+  border: 1px solid rgba(6, 131, 249, 0.05);
+  cursor: pointer;
+}
+
+.nav-item:not(.selected) {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.nav-pills .nav-link {
+  color: rgba(0, 0, 0, 0.65);
+  &:hover {
+    background-color: #fafafab7;
+  }
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  background-color: rgba(6, 131, 249, 0.05) !important;
+  color: #0683f9;
+}
+
+.mat-cell,
+.mat-footer-cell {
+  font-size: 13px;
+}
+
+::ng-deep .mat-sort-header-content,
+.mat-header-cell {
+  color: #0683f9 !important;
+  font-size: 14px !important;
+  font-weight: 500;
+}
+
+mat-row:hover {
+  background-color: rgba(6, 131, 249, 0.05);
+
+  .table-action {
+    color: #959da6;
+  }
+}
+.action-btn {
+  background: transparent;
+  height: 24px;
+  width: 24px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background: #dbeefd;
+  }
+}
+
+.table-action {
+  color: #d8dbdf;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.action-column {
+  flex: 0 86px;
+}
+
+.flex-5 {
+  flex: 0 0 5%;
+}
+
+.flex-10 {
+  flex: 0 0 10%;
+}
+
+.flex-25 {
+  flex: 0 0 25%;
+}
+
+.flex-50 {
+  flex: 0 0 50%;
+}
+
+.flex-75 {
+  flex: 0 0 75%;
+}
+
+::ng-deep .dropdown-menu.show {
+  width: 90.3%;
+}
+
+.dropdown-menu-table {
+  position: absolute;
+}
+.dropdown-menu-table .dropdown-toggle::after {
+  display: none;
+}
+.dropleft .dropdown-toggle::before {
+  display: none;
+}
+
+@media screen and (max-height: 800px) {
+  mat-row,
+  mat-footer-row {
+    min-height: 38px;
+  }
+  mat-header-row {
+    min-height: 38px;
+  }
+  mat-table {
+    min-height: 430px;
+  }
+}

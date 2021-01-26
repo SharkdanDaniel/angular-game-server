@@ -1,17 +1,12 @@
 .background {
   margin: 0;
-  height: 100%;
-  background-image: linear-gradient(
-    180deg,
-    #7749f8 0%,
-    rgba(119, 73, 248, 0.64) 100%
-  );
+  height: 95%;
 }
 
 .login {
   width: 410px;
   height: 420px;
-  background: #F8F9FA;
+  background: #f8f9fa;
   padding: 24px 27px 44px;
   border-radius: 5px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -24,21 +19,12 @@ app-error-msg {
 
 .bg-title {
   margin-bottom: 23px;
-}
 
-.bg-title span {
-  font-size: 32px;
-  font-weight: 600;
-  line-height: 39px;
-}
-
-// .sword {
-//   width: 116.25px;
-//   height: 113.44px;
-// }
-
-.form-control {
-  // border-radius: 4px;
+  span {
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 39px;
+  }
 }
 
 .class-input {
@@ -47,48 +33,37 @@ app-error-msg {
 
 .class-checkinput {
   margin-bottom: 20px;
+
+  .form-check-input {
+    width: 16px;
+    height: 16px;
+    vertical-align: center;
+
+  }
+
+  .form-check-label {
+    margin-left: 2px;
+    font-size: 12px;
+    line-height: 12px;
+  }
 }
 
-input[type='checkbox']:checked {
-  color: #7749f8;
-}
+form {
+  label {
+    font-size: 16px;
+    font-weight: 400;
+    color: #68717a;
+    margin-bottom: 8px;
+  }
 
-.form-check-input {
-  margin-top: 0.4em;
-}
-
-.form-check-label {
-  margin-left: 2px;
-  font-size: 12px;
-  line-height: 12px;
-}
-
-// .check-input {
-//   width: 15px;
-//   height: 15px;
-//   padding-right: 7px;
-// }
-
-label {
-  font-size: 16px;
-  font-weight: 400;
-  color: #68717A;
-  margin-bottom: 8px;
-}
-
-// .label-input {
-//   font-size: 14px;
-//   font-weight: 16px;
-//   color: #68717A;
-// }
-
-.btn {
-  border-radius: 4px;
-  height: 50px;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 19px;
-  letter-spacing: 1px;
+  .btn {
+    border-radius: 4px;
+    height: 50px;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19px;
+    letter-spacing: 1px;
+  }
 }
 
 // @media (max-width: 1440px) {

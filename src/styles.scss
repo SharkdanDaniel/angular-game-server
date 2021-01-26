@@ -13,17 +13,21 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  background-color: #e5e5e5;
+  background-image: linear-gradient(
+    180deg,
+    #7749f8 0%,
+    rgba(119, 73, 248, 0.64) 100%
+  );
 }
 
 .msg-success {
-  background-color: #28a745;
-  color: white;
+  background-color: #28a745 !important;
+  color: white !important;
 }
 
 .msg-error {
-  background-color: #e35e6b;
-  color: white;
+  background-color: #e35e6b !important;
+  color: white !important;
 }
 
 .mat-progress-spinner circle,

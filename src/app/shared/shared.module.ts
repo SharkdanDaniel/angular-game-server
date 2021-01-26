@@ -1,3 +1,4 @@
+import { AtbTableModule } from './modules/table/table.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -18,6 +19,7 @@ import { InputFieldComponent } from './components/input-field/input-field.compon
     ReactiveFormsModule,
     NgbCollapseModule,
     NgxSpinnerModule,
+    AtbTableModule
   ],
   exports: [
     CommonModule,
@@ -28,6 +30,7 @@ import { InputFieldComponent } from './components/input-field/input-field.compon
     NgxSpinnerModule,
     ErrorMsgComponent,
     InputFieldComponent,
+    AtbTableModule
   ],
 })
 export class SharedModule {}
