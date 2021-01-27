@@ -1,3 +1,4 @@
+import { AuthGuard } from './../../core/guards/auth.guard';
 import { UserService } from './../../core/services/user.service';
 import { LoginService } from '../../core/services/login.service';
 import { Component, OnInit } from '@angular/core';
@@ -24,7 +25,8 @@ export class LoginComponent extends BaseFormComponent implements OnInit {
     private router: Router,
     private userService: UserService,
     private snackBar: SnackbarService,
-    private ngxSpinner: NgxSpinnerService
+    private ngxSpinner: NgxSpinnerService,
+    private auth: AuthGuard
   ) {
     super();
   }
@@ -41,6 +43,7 @@ export class LoginComponent extends BaseFormComponent implements OnInit {
   submit() {}
 
   onSubmit() {
+    this.auth.logout();
     this.form.markAllAsTouched();
     if (this.form.valid) {
       const remidme = this.form.get('remidme').value;

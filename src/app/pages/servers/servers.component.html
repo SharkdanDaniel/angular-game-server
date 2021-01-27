@@ -1,63 +1,83 @@
-<div class="background d-flex justify-content-center align-items-center align-items-center">
+<div
+  class="background d-flex justify-content-center align-items-center align-items-center"
+>
   <div class="card">
     <div class="card-header px-5 pt-4">
       <h2 class="card-title">Servidores</h2>
     </div>
 
     <div class="card-body mt-4 mx-3">
-      <div *ngIf="servers.length < 1"  class="d-flex justify-content-center align-items-center">
-        <span>Nenhum servidor disponível</span>
+      <ngx-spinner
+        [name]="'table'"
+        [fullScreen]="false"
+        [type]="'ball-clip-rotate-multiple'"
+      ></ngx-spinner>
+      <div>
+        <div
+          *ngIf="servers.length < 1"
+          class="d-flex justify-content-center align-items-center"
+        >
+          <span class="m-5 p-5">Nenhum servidor disponível</span>
+        </div>
+        <table
+          *ngIf="servers.length > 0"
+          class="table table-striped text-center just"
+        >
+          <thead>
+            <tr>
+              <th class="pl-3 pr-5" scope="col">#</th>
+              <th class="text-justify" scope="col">Nome</th>
+              <th scope="col">Compartilhado</th>
+              <th scope="col">Debuffs</th>
+              <th scope="col">Dinheiro Inicial</th>
+              <th scope="col">Entrar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let server of servers; index as i">
+              <td class="pl-3 pr-5">
+                <strong>{{ i + ((this.page - 1) * this.pageSize) + 1 }}</strong>
+              </td>
+              <td class="text-justify">{{ server.name | titlecase }}</td>
+              <td class="">
+                <img
+                  *ngIf="server.shared"
+                  src="/assets/icons/checked.svg"
+                  alt=""
+                />
+                <img
+                  *ngIf="!server.shared"
+                  src="/assets/icons/cancel.svg"
+                  alt=""
+                />
+              </td>
+              <td>
+                <img
+                  *ngIf="server.hasDisease"
+                  src="/assets/icons/checked.svg"
+                  alt=""
+                />
+                <img
+                  *ngIf="!server.hasDisease"
+                  src="/assets/icons/cancel.svg"
+                  alt=""
+                />
+              </td>
+              <td>{{ server.initialMoney }}</td>
+              <td>
+                <button (click)="setServer(server)" class="btn btn-sm">
+                  <img src="/assets/icons/enter.svg" alt="" />
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-      <table *ngIf="servers.length > 0" class="table table-striped text-center just">
-        <thead>
-          <tr>
-            <th class="pl-3 pr-5" scope="col">#</th>
-            <th class="text-justify" scope="col">Nome</th>
-            <th scope="col">Compartilhado</th>
-            <th scope="col">Debuffs</th>
-            <th scope="col">Dinheiro Inicial</th>
-            <th scope="col">Entrar</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let server of servers; index as i">
-            <td class="pl-3 pr-5"><strong>{{ i + 1 }}</strong></td>
-            <td class="text-justify">{{ server.name | titlecase }}</td>
-            <td class="">
-              <img
-                *ngIf="server.shared"
-                src="/assets/icons/checked.svg"
-                alt=""
-              />
-              <img
-                *ngIf="!server.shared"
-                src="/assets/icons/cancel.svg"
-                alt=""
-              />
-            </td>
-            <td>
-              <img
-                *ngIf="server.hasDisease"
-                src="/assets/icons/checked.svg"
-                alt=""
-              />
-              <img
-                *ngIf="!server.hasDisease"
-                src="/assets/icons/cancel.svg"
-                alt=""
-              />
-            </td>
-            <td>{{ server.initialMoney }}</td>
-            <td>
-              <button (click)="setServer(server)" class="btn btn-sm">
-                <img src="/assets/icons/enter.svg" alt="" />
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
 
-      <div *ngIf="servers.length > 0"  class="d-flex justify-content-between p-2">
+      <div
+        *ngIf="servers.length > 0"
+        class="d-flex justify-content-between p-2"
+      >
         <div>
           <strong class="mr-2">Resultados por página: </strong>
           <select
@@ -74,7 +94,7 @@
         </div>
 
         <ngb-pagination
-        *ngIf="servers.length > 0" 
+          *ngIf="servers.length > 0"
           [collectionSize]="collectionSize"
           [(page)]="page"
           [pageSize]="pageSize"

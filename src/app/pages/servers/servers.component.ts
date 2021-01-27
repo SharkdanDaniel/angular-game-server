@@ -8,7 +8,6 @@ import { take } from 'rxjs/operators';
 import { ServersService } from './../../core/services/servers.service';
 import { Component, OnInit } from '@angular/core';
 import { EMPTY } from 'rxjs';
-
 @Component({
   selector: 'app-servers',
   templateUrl: './servers.component.html',
@@ -16,7 +15,9 @@ import { EMPTY } from 'rxjs';
 })
 export class ServersComponent implements OnInit {
   servers: any[] = [];
+  serversBkp: any[] = [];
 
+  showBody = true;
   page = 1;
   pageSize = 4;
   collectionSize = 0;
@@ -51,22 +52,41 @@ export class ServersComponent implements OnInit {
   // pageSize = 4;
   // index = 0;
 
-  constructor(private serversService: ServersService, private router: Router,  private ngxSpinner: NgxSpinnerService) {}
+  constructor(
+    private serversService: ServersService,
+    private router: Router,
+    private ngxSpinner: NgxSpinnerService
+  ) {}
 
   ngOnInit(): void {
-    this.refreshServers();
+    this.getAll();
+  }
+
+  getAll() {
+    this.serversService.getAll().subscribe((data) => {
+      console.log(data);
+      this.collectionSize = data.length;
+      this.serversBkp = data;
+      this.servers = data.slice(
+        (this.page - 1) * this.pageSize,
+        (this.page - 1) * this.pageSize + this.pageSize
+      );
+      this.ngxSpinner.hide();
+    });
   }
 
   refreshServers() {
-    this.serversService
-      .getAll()
-      .subscribe((data) => {
-        console.log(data);
-        this.collectionSize = data.length;
-        this.servers = data
-        .slice((this.page - 1) * this.pageSize, (this.page -1) * this.pageSize + this.pageSize);
-        this.ngxSpinner.hide();
-      })
+    this.ngxSpinner.show('table')
+    this.showBody = false;
+    setTimeout(() => {
+      this.servers = this.serversBkp.slice(
+        (this.page - 1) * this.pageSize,
+        (this.page - 1) * this.pageSize + this.pageSize
+      );
+      this.showBody = true;
+      this.ngxSpinner.hide('table')
+    }, 200);
+    
   }
 
   setServer(server: any) {
