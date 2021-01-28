@@ -30,7 +30,6 @@ export class NavbarGuard implements CanActivate {
       } else {
         this.navbar.showHeaderTrue(true);
       }
-      console.log(this.navbar.ShowHeaderValue)
     return true;
   }
 }

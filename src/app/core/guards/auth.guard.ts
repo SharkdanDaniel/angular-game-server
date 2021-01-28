@@ -1,3 +1,4 @@
+import { NgxSpinnerService } from 'ngx-spinner';
 import { EventEmitter, Injectable } from '@angular/core';
 import {
   CanActivate,
@@ -18,7 +19,7 @@ export class AuthGuard implements CanActivate {
     return this.showHeader.asObservable();
   }
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private loading: NgxSpinnerService) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -29,10 +30,8 @@ export class AuthGuard implements CanActivate {
     | boolean
     | UrlTree {
     if (
-      sessionStorage.getItem('user') &&
-      sessionStorage.getItem('server') ||
-      localStorage.getItem('user') &&
-      localStorage.getItem('server')
+      (sessionStorage.getItem('user') && sessionStorage.getItem('server')) ||
+      (localStorage.getItem('user') && localStorage.getItem('server'))
     ) {
       this.showHeader.next(true);
       return true;
@@ -43,19 +42,21 @@ export class AuthGuard implements CanActivate {
   }
 
   logout(): void {
-    if (localStorage.getItem('user')) {
-      localStorage.removeItem('user');
-    } else {
-      sessionStorage.removeItem('user');
-    }
+    this.loading.show();
+    setTimeout(() => {
+      if (localStorage.getItem('user')) {
+        localStorage.removeItem('user');
+      } else {
+        sessionStorage.removeItem('user');
+      }
 
-    if (localStorage.getItem('server')) {
-      localStorage.removeItem('server');
-    } else {
-      sessionStorage.removeItem('server');
-    }
-
-    this.showHeader.next(false);
-    this.router.navigate(['/login']);
+      if (localStorage.getItem('server')) {
+        localStorage.removeItem('server');
+      } else {
+        sessionStorage.removeItem('server');
+      }
+      this.loading.hide();
+      this.router.navigate(['/login']);
+    }, 400);
   }
 }

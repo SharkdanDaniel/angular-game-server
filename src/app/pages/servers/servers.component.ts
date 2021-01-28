@@ -56,7 +56,9 @@ export class ServersComponent implements OnInit {
     private serversService: ServersService,
     private router: Router,
     private ngxSpinner: NgxSpinnerService
-  ) {}
+  ) {
+    this.ngxSpinner.show();
+  }
 
   ngOnInit(): void {
     this.getAll();
@@ -90,12 +92,16 @@ export class ServersComponent implements OnInit {
   }
 
   setServer(server: any) {
+    this.ngxSpinner.show();
     if (localStorage.getItem('user')) {
       localStorage.setItem('server', JSON.stringify(server));
     } else {
       sessionStorage.setItem('server', JSON.stringify(server));
     }
-    this.router.navigate(['']);
+    setTimeout(() => {
+      this.router.navigate(['']);      
+    }, 400);
+    
   }
 
   // setPage(event) {

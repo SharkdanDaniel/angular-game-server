@@ -17,11 +17,17 @@ export class HomeComponent implements OnInit {
     private serverService: ServersService,
     private login: LoginService,
     private spinner: NgxSpinnerService
-  ) {}
+  ) {
+    this.spinner.show('content');
+  }
 
   ngOnInit(): void {
-    this.spinner.show('content');
-    this.refresh();
+    this.refresh();      
+    setTimeout(() => {
+      this.spinner.hide('content');
+      this.spinner.hide();
+    }, 300);
+
   }
 
   refresh() {
@@ -50,6 +56,6 @@ export class HomeComponent implements OnInit {
     } else {
       this.server = JSON.parse(sessionStorage.getItem('server'));
     }
-    this.spinner.hide('content');
+    
   }
 }

@@ -12,7 +12,7 @@ export class SnackbarService {
     this.snackBar.open(msg, "X", {
       duration: 2000,
       horizontalPosition: "center",
-      verticalPosition: "bottom",
+      verticalPosition: "top",
       panelClass: isError ? ["msg-error"] : ["msg-success"],
     });
   }
