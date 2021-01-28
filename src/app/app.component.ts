@@ -1,5 +1,7 @@
+import { Observable } from 'rxjs';
+import { NavbarService } from './core/services/navbar.service';
 import { AuthGuard } from './core/guards/auth.guard';
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,25 +9,28 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.isCollapsed = window.innerWidth < 989 ? true : false;
+  }
+
   title = 'GameAutoBem';
   server: any;
   user: any;
 
   isCollapsed = false;
+  showHeader$: Observable<boolean>;
 
-  showHeader: boolean = false;
-
-  constructor(private auth: AuthGuard) {}
+  constructor(private auth: AuthGuard, private navbar: NavbarService) {}
 
   ngOnInit(): void {
-    this.auth.showHeader.subscribe((show) => (this.showHeader = show));
+    this.showHeader$ = this.navbar.isShowHeader;
     this.refreshUser();
     this.refreshServer();
   }
 
-  ngDoCheck(): void {
+  ngDoCheck(): void {  
     this.refreshServer();
-    this.auth.showHeader.subscribe((show) => (this.showHeader = show));
   }
 
   refreshUser() {

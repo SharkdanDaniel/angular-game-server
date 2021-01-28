@@ -84,8 +84,8 @@ export class ServersComponent implements OnInit {
         (this.page - 1) * this.pageSize + this.pageSize
       );
       this.showBody = true;
-      this.ngxSpinner.hide('table')
-    }, 200);
+      this.ngxSpinner.hide('table');
+    }, 300);
     
   }
 

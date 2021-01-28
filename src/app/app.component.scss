@@ -15,14 +15,12 @@
 }
 
 .sidebar {
-  position: absolute;
   width: 245px;
   height: 100%;
   background: #fff;
   border: 1px solid #dee2e6;
   border-radius: 5px 0px 0px 5px;
   z-index: 100;
-  transition: all 0.3s;
   font-size: 20px;
 
   span {
@@ -64,12 +62,8 @@
   background: #f4f4f4;
 }
 
-.container-main {
-  margin-left: 245px;
-}
-
-@media (max-width: 989px) {
-  .container-main {
-    margin-left: 0;
-  }
-}
+// @media (max-width: 989px) {
+//   .container-main {
+//     margin-left: 0;
+//   }
+// }

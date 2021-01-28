@@ -1,3 +1,4 @@
+import { NgxSpinnerService } from 'ngx-spinner';
 import { take } from 'rxjs/operators';
 import { LoginService } from './../../core/services/login.service';
 import { ServersService } from './../../core/services/servers.service';
@@ -14,10 +15,12 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private serverService: ServersService,
-    private login: LoginService
+    private login: LoginService,
+    private spinner: NgxSpinnerService
   ) {}
 
   ngOnInit(): void {
+    this.spinner.show('content');
     this.refresh();
   }
 
@@ -47,9 +50,6 @@ export class HomeComponent implements OnInit {
     } else {
       this.server = JSON.parse(sessionStorage.getItem('server'));
     }
-  }
-
-  ngDoCheck(): void {
-    this.refresh();
+    this.spinner.hide('content');
   }
 }

@@ -5,16 +5,26 @@
 ></ngx-spinner>
 
 <div
-  *ngIf="showHeader"
+*ngIf="showHeader$ | async; else elseTemplate" 
   class="wrapper d-flex justify-content-center align-items-center"
 >
-  <div class="d-flex card layout-card">
-    <div
-      class="sidebar d-none d-lg-block"
-      [ngClass]="{ 'd-block ': isCollapsed }"
+  <mat-sidenav-container class="d-flex card layout-card">
+    <ngx-spinner
+          [bdColor]="'rgba(51,51,51,0.8)'"
+          [name]="'content'"
+          [fullScreen]="false"
+          [type]="'ball-clip-rotate-multiple'"
+          [zIndex]="0"
+        >
+      </ngx-spinner>
+    <mat-sidenav
+      #drawer
+      class="sidebar"
+      [opened]="!isCollapsed"
+      [mode]="isCollapsed ? 'over' : 'side' "
     >
       <nav
-        class="pl-4 ml-2 d-flex flex-column justify-content-between align-items-start navbar-light"
+        class="pl-4 ml-2 justify-content-between align-items-start navbar-light"
       >
         <span class="navbar-brand mb-4">Game AutoBem</span>
         <div class="pl-0 navbar-nav">
@@ -58,15 +68,16 @@
           </a>
         </div>
       </nav>
-    </div>
+    </mat-sidenav>
     <div class="d-flex flex-column container-main">
-      <nav class="navbar d-flex justify-content-between pr-0">
-        <div class="nav-item">
+      <nav class="navbar d-flex justify-content-between pr-0 pl-2">
+        <div class="nav-item pb-2">
           <button
-            class="d-block d-lg-none navbar-toggler btn-outline-dark"
-            (click)="isCollapsed = !isCollapsed"
+            mat-icon-button
+            class=""
+            (click)="drawer.toggle()"
           >
-            <span class="navbar-toggler-icon"></span>
+          <mat-icon>menu</mat-icon>
           </button>
         </div>
         <ul class="">
@@ -104,11 +115,14 @@
           </div>
         </ul>
       </nav>
-      <div class="content">
+      <div class="content">        
         <router-outlet></router-outlet>
       </div>
     </div>
-  </div>
+  </mat-sidenav-container>
 </div>
 
-<!-- <router-outlet *ngIf="!showHeader"></router-outlet> -->
+<ng-template #elseTemplate>
+  <router-outlet></router-outlet>    
+</ng-template>
+

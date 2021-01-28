@@ -10,6 +10,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSidenavModule} from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule} from '@angular/material/list';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
 @NgModule({
   declarations: [HeaderComponent, SpinnerComponent],
   imports: [
@@ -23,7 +25,9 @@ import { MatListModule} from '@angular/material/list';
     NgbCollapseModule,
     MatSidenavModule,
     MatToolbarModule,
-    MatListModule
+    MatListModule,
+    MatIconModule,
+    MatButtonModule
   ],
   exports: [
     HttpClientModule,
@@ -36,7 +40,9 @@ import { MatListModule} from '@angular/material/list';
     NgbCollapseModule,
     MatSidenavModule,
     MatToolbarModule,
-    MatListModule
+    MatListModule,
+    MatIconModule,
+    MatButtonModule
   ],
 })
 export class CoreModule {}

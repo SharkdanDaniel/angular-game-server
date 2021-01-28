@@ -1,3 +1,4 @@
+import { NavbarGuard } from './core/guards/navbar.guard';
 import { ServerGuard } from './core/guards/server.guard';
 import { AccessGuard } from './core/guards/access.guard';
 import { AuthGuard } from './core/guards/auth.guard';
@@ -10,30 +11,31 @@ const routes: Routes = [
     path: 'login',
     loadChildren: () =>
       import('./pages/login/login.module').then((m) => m.LoginModule),
-    canActivate: [AccessGuard],
+    canActivate: [AccessGuard, NavbarGuard],
   },
   {
     path: 'users',
     loadChildren: () =>
       import('./pages/users/users.module').then((m) => m.UsersModule),
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, NavbarGuard],
   },
   {
     path: 'servers',
     loadChildren: () =>
       import('./pages/servers/servers.module').then((m) => m.ServersModule),
+      canActivate: [NavbarGuard]
   },
   {
     path: 'jobs',
     loadChildren: () =>
       import('./pages/jobs/jobs.module').then((m) => m.JobsModule),
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, NavbarGuard],
   },
   {
     path: 'items',
     loadChildren: () =>
       import('./pages/items/items.module').then((m) => m.ItemsModule),
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, NavbarGuard],
   },
   {
     path: 'exp-machines',
@@ -41,25 +43,25 @@ const routes: Routes = [
       import('./pages/exp-machines/exp-machines.module').then(
         (m) => m.ExpMachinesModule
       ),
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, NavbarGuard],
   },
   {
     path: 'disease',
     loadChildren: () =>
       import('./pages/disease/disease.module').then((m) => m.DiseaseModule),
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, NavbarGuard],
   },
   {
     path: 'avatar',
     loadChildren: () =>
       import('./pages/avatar/avatar.module').then((m) => m.AvatarModule),
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, NavbarGuard],
   },
   {
     path: 'home',
     loadChildren: () =>
       import('./pages/home/home.module').then((m) => m.HomeModule),
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, NavbarGuard],
   },
   {
     path: "**",

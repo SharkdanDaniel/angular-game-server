@@ -6,13 +6,17 @@ import {
   UrlTree,
   Router,
 } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  showHeader = new EventEmitter<boolean>();
+  showHeader = new BehaviorSubject<boolean>(false);
+
+  get isShowHeader() {
+    return this.showHeader.asObservable();
+  }
 
   constructor(private router: Router) {}
 
@@ -30,10 +34,10 @@ export class AuthGuard implements CanActivate {
       localStorage.getItem('user') &&
       localStorage.getItem('server')
     ) {
-      this.showHeader.emit(true);
+      this.showHeader.next(true);
       return true;
     }
-    this.showHeader.emit(false);
+    this.showHeader.next(false);
     this.router.navigate(['/login']);
     return false;
   }
@@ -51,7 +55,7 @@ export class AuthGuard implements CanActivate {
       sessionStorage.removeItem('server');
     }
 
-    this.showHeader.emit(false);
+    this.showHeader.next(false);
     this.router.navigate(['/login']);
   }
 }
