@@ -1,3 +1,114 @@
-<app-header *ngIf="showHeader"></app-header>
-<ngx-spinner type="ball-triangle-path" fullScreen="true" z-index="1"></ngx-spinner>
-<router-outlet></router-outlet>
+<ngx-spinner
+  type="ball-triangle-path"
+  fullScreen="true"
+  z-index="1"
+></ngx-spinner>
+
+<div
+  *ngIf="showHeader"
+  class="wrapper d-flex justify-content-center align-items-center"
+>
+  <div class="d-flex card layout-card">
+    <div
+      class="sidebar d-none d-lg-block"
+      [ngClass]="{ 'd-block ': isCollapsed }"
+    >
+      <nav
+        class="pl-4 ml-2 d-flex flex-column justify-content-between align-items-start navbar-light"
+      >
+        <span class="navbar-brand mb-4">Game AutoBem</span>
+        <div class="pl-0 navbar-nav">
+          <a class="nav-link" routerLink="/home" routerLinkActive="active">
+            <i class="fas fa-home"></i>
+            Home
+          </a>
+          <a class="nav-link" routerLink="/users" routerLinkActive="active">
+            <i class="fas fa-user"></i>
+            Usuários
+          </a>
+          <a class="nav-link" routerLink="/items" routerLinkActive="active">
+            <i class="fas fa-shield-alt"></i>
+            Itens
+          </a>
+          <a class="nav-link" routerLink="/jobs" routerLinkActive="active">
+            <i class="fas fa-tools"></i>
+            Profissões
+          </a>
+          <a class="nav-link" routerLink="/avatar" routerLinkActive="active">
+            <i class="fas fa-users"></i>
+            Avatares
+          </a>
+          <a
+            class="nav-link"
+            routerLink="/exp-machines"
+            routerLinkActive="active"
+          >
+            <i class="fas fa-cash-register"></i>
+            Máquina de XP
+          </a>
+          <a class="nav-link" routerLink="/disease" routerLinkActive="active">
+            <i class="fas fa-skull-crossbones"></i>
+            Debuffs
+          </a>
+        </div>
+        <div class="pl-0 navbar-nav">
+          <a class="nav-link" routerLink="/config" routerLinkActive="active">
+            <i class="fas fa-cog"></i>
+            Configurações
+          </a>
+        </div>
+      </nav>
+    </div>
+    <div class="d-flex flex-column container-main">
+      <nav class="navbar d-flex justify-content-between pr-0">
+        <div class="nav-item">
+          <button
+            class="d-block d-lg-none navbar-toggler btn-outline-dark"
+            (click)="isCollapsed = !isCollapsed"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+        <ul class="">
+          <div class="nav-item">
+            <div ngbDropdown>
+              <button class="navbar-brand btn" ngbDropdownToggle>
+                <img src="/assets/icons/profile.svg" alt="" />
+                <span class="mx-3">{{ user.name }}</span>
+              </button>
+              <div class="text-center" ngbDropdownMenu>
+                <button
+                  ngbDropdownItem
+                  routerLink="/servers/profile/{{ server.id }}"
+                >
+                  Detalhes
+                </button>
+                <button
+                  *ngIf="user.permission > 1"
+                  ngbDropdownItem
+                  routerLink="/servers"
+                >
+                  Trocar de Servidor
+                </button>
+                <button
+                  *ngIf="user.permission > 1"
+                  ngbDropdownItem
+                  routerLink="/servers/create"
+                >
+                  Adicionar
+                </button>
+                <hr />
+                <button ngbDropdownItem (click)="logout()">Sair</button>
+              </div>
+            </div>
+          </div>
+        </ul>
+      </nav>
+      <div class="content">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <router-outlet *ngIf="!showHeader"></router-outlet> -->

@@ -13,6 +13,9 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
   server: any;
   user: any;
+
+  isMenuCollapsed = true;
+
   constructor(
     private auth: AuthGuard,
     private router: Router,
