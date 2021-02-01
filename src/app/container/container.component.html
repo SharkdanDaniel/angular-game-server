@@ -1,0 +1,118 @@
+
+<div
+  class="wrapper d-flex justify-content-center align-items-center"
+>
+  <mat-sidenav-container class="d-flex card layout-card">
+    <ngx-spinner
+          [bdColor]="'rgba(51,51,51,0.9)'"
+          [name]="'content'"
+          [fullScreen]="false"
+          [type]="'ball-clip-rotate-multiple'"
+          [zIndex]="99"
+        >
+      </ngx-spinner>
+    <mat-sidenav
+      #drawer
+      class="sidebar"
+      [opened]="!isCollapsed"
+      [mode]="isCollapsed ? 'over' : 'side' "
+    >
+      <nav
+        class="pl-4 ml-2 justify-content-between align-items-start navbar-light"
+      >
+        <span class="navbar-brand mb-4">Game AutoBem</span>
+        <div class="pl-0 navbar-nav">
+          <a class="nav-link" routerLink="/home" routerLinkActive="active">
+            <i class="fas fa-home"></i>
+            Home
+          </a>
+          <a class="nav-link" routerLink="/users" routerLinkActive="active">
+            <i class="fas fa-user"></i>
+            Usuários
+          </a>
+          <a class="nav-link" routerLink="/items" routerLinkActive="active">
+            <i class="fas fa-shield-alt"></i>
+            Itens
+          </a>
+          <a class="nav-link" routerLink="/jobs" routerLinkActive="active">
+            <i class="fas fa-tools"></i>
+            Profissões
+          </a>
+          <a class="nav-link" routerLink="/avatar" routerLinkActive="active">
+            <i class="fas fa-users"></i>
+            Avatares
+          </a>
+          <a
+            class="nav-link"
+            routerLink="/exp-machines"
+            routerLinkActive="active"
+          >
+            <i class="fas fa-cash-register"></i>
+            Máquina de XP
+          </a>
+          <a class="nav-link" routerLink="/disease" routerLinkActive="active">
+            <i class="fas fa-skull-crossbones"></i>
+            Debuffs
+          </a>
+        </div>
+        <div class="pl-0 navbar-nav">
+          <a class="nav-link" routerLink="/config" routerLinkActive="active">
+            <i class="fas fa-cog"></i>
+            Configurações
+          </a>
+        </div>
+      </nav>
+    </mat-sidenav>
+    <div class="d-flex flex-column container-main">
+      <nav class="navbar d-flex justify-content-between pr-0 pl-2">
+        <div class="nav-item pb-2">
+          <button
+            mat-icon-button
+            class=""
+            (click)="drawer.toggle()"
+          >
+          <mat-icon>menu</mat-icon>
+          </button>
+        </div>
+        <ul class="">
+          <div class="nav-item">
+            <div ngbDropdown>
+              <button class="navbar-brand btn" ngbDropdownToggle>
+                <img src="/assets/icons/profile.svg" alt="" />
+                <span class="mx-3">{{ user.name }}</span>
+              </button>
+              <div class="text-center" ngbDropdownMenu>
+                <button
+                  ngbDropdownItem
+                  routerLink="/servers/profile/{{ server.id }}"
+                >
+                  Detalhes
+                </button>
+                <button
+                  *ngIf="user.permission > 1"
+                  ngbDropdownItem
+                  routerLink="/servers"
+                >
+                  Trocar de Servidor
+                </button>
+                <button
+                  *ngIf="user.permission > 1"
+                  ngbDropdownItem
+                  routerLink="/servers/create"
+                >
+                  Adicionar
+                </button>
+                <hr />
+                <button ngbDropdownItem (click)="logout()">Sair</button>
+              </div>
+            </div>
+          </div>
+        </ul>
+      </nav>
+      <div class="content">        
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </mat-sidenav-container>
+</div>
+

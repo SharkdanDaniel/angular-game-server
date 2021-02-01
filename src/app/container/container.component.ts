@@ -1,18 +1,17 @@
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { LoadingService } from './core/services/loading.service';
+import { NavbarService } from './../core/services/navbar.service';
+import { AuthGuard } from './../core/guards/auth.guard';
 import { Observable } from 'rxjs';
-import { NavbarService } from './core/services/navbar.service';
-import { AuthGuard } from './core/guards/auth.guard';
-import { Component, HostListener } from '@angular/core';
-import { delay } from 'rxjs/operators';
+import { Component, OnInit, HostListener } from '@angular/core';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  selector: 'app-container',
+  templateUrl: './container.component.html',
+  styleUrls: ['./container.component.scss']
 })
-export class AppComponent {
+export class ContainerComponent implements OnInit {
+
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     this.isCollapsed = window.innerWidth < 989 ? true : false;
@@ -33,7 +32,6 @@ export class AppComponent {
   ) {}
 
   ngOnInit(): void {
-    this.spinner.hide();
     this.showHeader$ = this.navbar.isShowHeader;
     this.refreshUser();
     this.refreshServer();
@@ -69,4 +67,5 @@ export class AppComponent {
   logout(): void {
     this.auth.logout();
   }
+
 }

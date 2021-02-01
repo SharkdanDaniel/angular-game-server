@@ -1,3 +1,4 @@
+import { ContainerModule } from './container/container.module';
 import { HttpRequestInterceptor } from './core/interceptors/http-request.interceptor';
 import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
@@ -21,6 +22,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
     CoreModule,
     RouterModule,
     NgxSpinnerModule,
+    ContainerModule
   ],
   providers: [
     {

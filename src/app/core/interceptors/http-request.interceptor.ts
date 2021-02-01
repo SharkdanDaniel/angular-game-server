@@ -25,8 +25,8 @@ export class HttpRequestInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     this._loading.setLoading(true, request.url);
-    this.spinner.show('content');
-    // this.spinner.show();
+    // this.spinner.show('content');
+    this.spinner.show();
     return next
       .handle(request)
       .pipe(
