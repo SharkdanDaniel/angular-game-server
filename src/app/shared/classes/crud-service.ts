@@ -22,26 +22,26 @@ export class CrudService<T> {
   getAll() {
     return this.http.get<T[]>(`${this.API_URL}${this.getAll_URL}`).pipe(
       take(1),
-      // catchError((err) => {
-      //   console.log(err);
-      //   this.handleError();
-      //   this.nxgSpinner.hide();
-      //   this.nxgSpinner.hide('content');
-      //   return EMPTY;
-      // })
+      catchError((err) => {
+        console.log(err);
+        this.handleError();
+        this.nxgSpinner.hide();
+        this.nxgSpinner.hide('content');
+        return EMPTY;
+      })
     );
   }
 
   getById(id) {
     return this.http.get(`${this.API_URL}${this.getById_URL}/${id}`).pipe(
       take(1),
-      // catchError((err) => {
-      //   console.log(err);
-      //   this.handleError();
-      //   this.nxgSpinner.hide();
-      //   this.nxgSpinner.hide('content');
-      //   return EMPTY;
-      // })
+      catchError((err) => {
+        console.log(err);
+        this.handleError();
+        this.nxgSpinner.hide();
+        this.nxgSpinner.hide('content');
+        return EMPTY;
+      })
     );
   }
 

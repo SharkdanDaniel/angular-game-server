@@ -32,6 +32,7 @@ export class LoginComponent extends BaseFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
     this.passwordInvalid = false;
     this.form = this.formBuilder.group({
       email: [null, [Validators.required, Validators.email]],
@@ -43,8 +44,8 @@ export class LoginComponent extends BaseFormComponent implements OnInit {
   submit() {}
 
   onSubmit() {
-    this.auth.logout();
     this.form.markAllAsTouched();
+    this.auth.logout();
     if (this.form.valid) {
       const remidme = this.form.get('remidme').value;
       this.ngxSpinner.show();
@@ -68,11 +69,11 @@ export class LoginComponent extends BaseFormComponent implements OnInit {
                   sessionStorage.setItem('user', JSON.stringify(data));
                   sessionStorage.setItem('server', JSON.stringify(res.server));
                 }
-                this.ngxSpinner.hide();
+                // this.ngxSpinner.hide();
                 this.router.navigate(['']);
               });
             } else {
-              this.ngxSpinner.hide();
+              // this.ngxSpinner.hide();
               this.router.navigate(['/servers']);
             }
           },

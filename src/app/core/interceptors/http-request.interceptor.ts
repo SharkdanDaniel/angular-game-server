@@ -30,13 +30,13 @@ export class HttpRequestInterceptor implements HttpInterceptor {
     return next
       .handle(request)
       .pipe(
-        catchError((err) => {
-          this._loading.setLoading(false, request.url);
-          this.spinner.hide('content');
-          this.spinner.hide();
-          this.snackBar.showMessage('Erro ao conectar com o servidor', true)
-          return err;
-        })
+        // catchError((err) => {
+        //   this._loading.setLoading(false, request.url);
+        //   this.spinner.hide('content');
+        //   this.spinner.hide();
+        //   this.snackBar.showMessage('Erro ao conectar com o servidor', true)
+        //   return err;
+        // })
       )
       .pipe(
         map<HttpEvent<any>, any>((evt: HttpEvent<any>) => {
