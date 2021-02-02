@@ -9,9 +9,9 @@
     <div ngbDropdown>
         <button class="navbar-brand btn" ngbDropdownToggle>Servidor: <strong>{{ server.name }}</strong> </button>
         <div ngbDropdownMenu>
-            <button ngbDropdownItem routerLink="/servers/profile/{{ server.id }}">Detalhes</button>
-            <button *ngIf="user.permission > 1" ngbDropdownItem routerLink="/servers">Trocar</button>
-            <button *ngIf="user.permission > 1" ngbDropdownItem routerLink="/servers/create">Adicionar</button>
+            <button ngbDropdownItem routerLink="/server/profile/{{ server.id }}">Detalhes</button>
+            <button *ngIf="user.permission > 1" ngbDropdownItem routerLink="/server">Trocar</button>
+            <button *ngIf="user.permission > 1" ngbDropdownItem routerLink="/server/create">Adicionar</button>
             <hr>
             <button ngbDropdownItem (click)="logout()">Sair</button>
         </div>

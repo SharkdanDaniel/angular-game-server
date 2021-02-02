@@ -84,7 +84,7 @@
               <div class="text-center" ngbDropdownMenu>
                 <button
                   ngbDropdownItem
-                  routerLink="/servers/profile/{{ server.id }}"
+                  routerLink="/server/profile/{{ server.id }}"
                 >
                   Detalhes
                 </button>
@@ -98,7 +98,7 @@
                 <button
                   *ngIf="user.permission > 1"
                   ngbDropdownItem
-                  routerLink="/servers/create"
+                  routerLink="/server/create"
                 >
                   Adicionar
                 </button>

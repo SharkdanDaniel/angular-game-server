@@ -4,9 +4,5 @@
   z-index="98"
 ></ngx-spinner>
 
-<app-container *ngIf="showHeader$ | async; else elseTemplate"></app-container>
-
-<ng-template #elseTemplate>
-  <router-outlet></router-outlet>   
-</ng-template>
+<router-outlet></router-outlet>
 
