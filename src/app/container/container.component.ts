@@ -14,7 +14,7 @@ export class ContainerComponent implements OnInit {
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
-    this.isCollapsed = window.innerWidth < 989 ? true : false;
+    this.isCollapsed = window.innerWidth < 1220 ? true : false;
   }
 
   title = 'GameAutoBem';

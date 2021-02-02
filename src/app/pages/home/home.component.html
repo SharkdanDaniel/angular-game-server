@@ -1,14 +1,54 @@
-<div class="d-flex justify-content-center align-items-center h-50">
-    <div>
-        <div class="d-flex justify-content-center">
-            <p>Bem vindo, <span>{{ user.name }}</span>.</p>
+<div class="wrapper d-flex justify-content-center align-items-center">
+  <div>
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-2 mb-md-4">
+      <div class="card group-title mb-2 mb-md-0 mr-md-4">
+        <i class="fas fa-ellipsis-h"></i>
+        <div class="d-flex align-items-center h-100">
+          <img src="./assets/icons/user.svg" alt="" />
+          <div>
+            <span class="">{{ users.length }}</span>
+            <p class="card-text">Usuários</p>
+          </div>
         </div>
-        <div class="d-flex justify-content-center">
-            <p>Você está conectado no servidor: <span> {{ server.name }}</span>.</p>
+      </div>
+      <div class="card group-title mb-2 mb-md-0 mr-md-4">
+        <i class="fas fa-ellipsis-h"></i>
+        <div class="d-flex align-items-center h-100">
+          <img src="./assets/icons/swordIcon.svg" alt="" />
+          <div>
+            <span class="">{{ server.availableItems.length }}</span>
+            <p class="card-text">Items disponíveis</p>
+          </div>
         </div>
-        <div class="d-flex justify-content-center">
-            <p>Selecione uma das opções acima!</p>
+      </div>
+      <div class="card group-title mb-2 mb-md-0 mr-md-4">
+        <i class="fas fa-ellipsis-h"></i>
+        <div class="d-flex align-items-center h-100">
+          <img src="./assets/icons/hammer.svg" alt="" />
+          <div>
+            <span class="">{{ jobs.length }}</span>
+            <p class="card-text">Profissões</p>
+          </div>
         </div>
+      </div>
+      <div class="card group-title">
+        <i class="fas fa-ellipsis-h"></i>
+        <div class="d-flex align-items-center h-100">
+          <img src="./assets/icons/skull.svg" alt="" />
+          <div>
+            <span class="">{{ diseases.availableDisease.length }}</span>
+            <p class="card-text">Debuffs</p>
+          </div>
+        </div>
+      </div>
     </div>
-
+    <div class="d-flex flex-wrap flex-md-nowrap justify-content-center align-items-center mb-2 mb-md-4">
+      <div class="card avatar-body mb-2 mb-md-0 mr-md-4"></div>
+      <div class="card exp-machine"></div>
+    </div>
+    <div class="d-flex flex-wrap flex-md-nowrap justify-content-center align-items-center">
+      <div class="card options mb-2 mb-md-0 mr-md-4"></div>
+      <div class="card ranking"></div>
+    </div>
+  </div>
 </div>

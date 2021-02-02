@@ -20,9 +20,14 @@ import { ParcelsDeleteComponent } from './parcels/parcels-delete/parcels-delete.
 import { ParcelsUpdateComponent } from './parcels/parcels-update/parcels-update.component';
 
 const routes: Routes = [
-  { 
-    path: '', component: ServerComponent 
+  {
+    path: '',
+    redirectTo: 'create',
+    pathMatch: 'full',
   },
+  // { 
+  //   path: '', component: ServerComponent 
+  // },
   { path: 'create',
     component: ServerCreateComponent,
     canActivate: [AuthGuard]
