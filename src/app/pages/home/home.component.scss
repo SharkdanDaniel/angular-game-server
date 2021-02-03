@@ -4,19 +4,19 @@
 }
 
 .group-title {
-  // width: 100%;
-  // min-width: 223px;
-  width: 260px;
-  // height: 100%;
-  // min-height: 120px;
-  height: 150px;
+  width: 100%;
+  min-width: 260px;
+  max-width: 260px;
+  height: 100%;
+  min-height: 120px;
+  max-height: 150px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
   padding: 35px 0px 35px 24px;
   img {
     width: 50px;
     height: 50px;
-    margin-right: 24px;
+    margin-right: 40px;
   }
 
   span {
@@ -45,57 +45,141 @@
 }
 
 .avatar-body {
-  // width: 100%;
-  // min-width: 720px;
-  width: 840px;
-  // height: 100%;
-  // min-height: 298px;
-  height: 340px;
+  width: 100%;
+  min-width: 840x;
+  max-width: 840px;
+  height: 100%;
+  min-height: 340px;
+  max-height: 340px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
 }
 
 .exp-machine {
-  // width: 100%;
-  // min-width: 223px;
-  width: 260px;
-  // height: 100%;
-  // min-height: 298px;
-  height: 340px;
+  width: 100%;
+  min-width: 260px;
+  max-width: 260px;
+  height: 100%;
+  min-height: 340px;
+  max-height: 340px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
 }
 
 .options {
-  // width: 100%;
-  // min-width: 467px;
-  width: 550px;
-  // height: 100%;
-  // min-height: 211px;
-  height: 240px;
+  width: 100%;
+  min-width: 550px;
+  max-width: 550px;
+  height: 100%;
+  min-height: 240px;
+  max-height: 240px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
+  .card-header {
+    color: #152536;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 29px;
+  }
+
+  td {
+    padding-left: 16px;
+    padding-bottom: 0px;
+    padding-top: 5px;
+  }
+
+  span {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 21px;
+    color: #152536;
+  }
+
+  img {
+    width: 24px;
+    height: 24px;
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 19px;
+    color: #68717a;
+  }
 }
 
 .ranking {
-  // width: 100%;
-  // min-width: 467px;
-  width: 550px;
-  // height: 100%;
-  // min-height: 211px;
-  height: 240px;
+  width: 100%;
+  min-width: 550px;
+  max-width: 550px;
+  height: 100%;
+  min-height: 240px;
+  max-height: 240px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
+  .card-title {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 29px;
+    color: #152536;
+  }
+
+  td {
+    padding-left: 16px;
+    padding-bottom: 4px;
+  }
+
+  img {
+    width: 30px;
+    height: 30px;
+  }
+  span {      
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 21px;
+    color: #152536;
+  }
 }
 
-
-@media(max-width: 768px) {
-  .group-title, .ranking, .options, .exp-machine, .avatar-body {
+@media (max-width: 768px) {
+  .group-title,
+  .ranking,
+  .options,
+  .exp-machine,
+  .avatar-body {
     width: 100%;
     min-width: 211px;
     max-width: 710px;
     height: 100%;
     min-height: 240px;
     max-height: 270px;
+  }
+}
+
+@media (max-width: 1372px) {
+  .avatar-body {
+    min-width: 720px;
+    min-height: 298px;
+  }
+
+  .exp-machine {
+    min-width: 223px;
+    min-height: 298px;
+  }
+
+  .options {
+    min-width: 471.5px;
+    min-height: 211px;
+  }
+
+  .ranking {
+    min-width: 471.5px;
+    min-height: 211px;
+  }
+  .group-title {
+    min-width: 223px;
+    min-height: 120px;
+    img {
+      margin-right: 24px;
+    }
   }
 }
