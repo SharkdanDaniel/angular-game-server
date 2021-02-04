@@ -1,4 +1,3 @@
-import { ItemsService } from './../../core/services/items.service';
 import { ExpMachinesService } from './../../core/services/exp-machines.service';
 import { JobsService } from './../../core/services/jobs.service';
 import { DiseaseService } from './../../core/services/disease.service';
@@ -34,15 +33,15 @@ export class HomeComponent implements OnInit {
     private jobService: JobsService,
     private expMachineService: ExpMachinesService,
   ) {
-    this.spinner.show('content');
   }
-
+  
   ngOnInit(): void {
+    // this.spinner.show();
     this.getAll();
     // this.refresh();
     // setTimeout(() => {
-    this.spinner.hide('content');
-    this.spinner.hide();
+    // this.spinner.hide();
+    // this.spinner.hide();
     // }, 300);
   }
 
@@ -64,7 +63,6 @@ export class HomeComponent implements OnInit {
       .getDiseases()
       .pipe(take(1))
       .subscribe((diseases: any) => {
-        console.log('debuffs', diseases);
         this.diseases = diseases;
       });
     this.jobService

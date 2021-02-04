@@ -16,8 +16,7 @@ export class ContainerComponent implements OnInit {
   onResize(event) {
     this.isCollapsed = window.innerWidth < 1220 ? true : false;
   }
-
-  title = 'GameAutoBem';
+  
   server: any;
   user: any;
 

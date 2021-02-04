@@ -168,12 +168,25 @@
 
   .options {
     min-width: 471.5px;
+    // max-width: 471.5px;
     min-height: 211px;
+    max-height: 211px;
+    td {
+      padding-left: 16px;
+      padding-bottom: 0px;
+      padding-top: 0px;
+    }
   }
 
   .ranking {
     min-width: 471.5px;
+    // max-width: 471.5px;
     min-height: 211px;
+    max-height: 211px;
+    td {
+      padding-left: 16px;
+      padding-bottom: 0px;
+    }
   }
   .group-title {
     min-width: 223px;

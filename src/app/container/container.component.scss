@@ -45,15 +45,15 @@
   }
 
   i {
-      margin-right: 2px;
-      width: 30px;
-      height: 30px;
-    }
+    margin-right: 2px;
+    width: 30px;
+    height: 30px;
+  }
 }
 
 .text-center button:hover {
   color: #fff;
-  background-color: #784af8 !important;;
+  background-color: #784af8 !important;
 }
 
 .navbar {
@@ -63,13 +63,17 @@
   z-index: 999;
 }
 
+.ngbDropdown {
+  margin-top: 45px;
+}
+
 // @media (max-width: 989px) {
 //   .container-main {
 //     margin-left: 0;
 //   }
 // }
 
-@media(max-width: 768px) {
+@media (max-width: 768px) {
   .header-navbar {
     position: fixed;
   }
