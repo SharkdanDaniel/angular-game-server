@@ -9,6 +9,7 @@ import { LoginService } from './../../core/services/login.service';
 import { ServersService } from './../../core/services/servers.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { EChartsOption } from 'echarts';
 
 @Component({
   selector: 'app-home',
@@ -23,6 +24,26 @@ export class HomeComponent implements OnInit {
   jobs: any[];
   expMachines: any[];
 
+  chartOption: EChartsOption = {
+    color: ['#CDCDCD'],
+    xAxis: {
+      type: 'category',
+      data: ['Set 2020', 'Out 2020', 'Nov 2020', 'Dez 2020', 'Jan 2021'],
+    },
+    yAxis: {
+      type: 'value',
+
+    },
+    series: [
+      {
+        data: [50, 700, 100, 1000, 150, 500, 800, 700, 150],
+        type: 'bar',
+        color: 'rgb(120, 74, 248)',
+        barWidth: '8px',
+      },
+    ],
+  };
+
   constructor(
     private serverService: ServersService,
     private login: LoginService,
@@ -31,10 +52,9 @@ export class HomeComponent implements OnInit {
     private avatarService: AvatarService,
     private diseaseService: DiseaseService,
     private jobService: JobsService,
-    private expMachineService: ExpMachinesService,
-  ) {
-  }
-  
+    private expMachineService: ExpMachinesService
+  ) {}
+
   ngOnInit(): void {
     // this.spinner.show();
     this.getAll();

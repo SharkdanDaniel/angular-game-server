@@ -1,3 +1,5 @@
+import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxEchartsModule } from 'ngx-echarts';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -9,7 +11,11 @@ import { HomeComponent } from './home.component';
   declarations: [HomeComponent],
   imports: [
     CommonModule,
-    HomeRoutingModule
+    NgbDropdownModule,
+    HomeRoutingModule,
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts'),
+    })
   ]
 })
 export class HomeModule { }
