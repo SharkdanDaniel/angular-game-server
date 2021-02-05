@@ -49,7 +49,7 @@
     >
       <div class="card avatar-body mb-2 mb-md-0 mr-md-4">
         <div class="bg-white card-header d-flex justify-content-between">
-          <h3>Avatares</h3>
+          <span>Avatares</span>
           <div ngbDropdown class="ngbDropdown">
             <button class="btn" ngbDropdownToggle>
               Mostrar:
@@ -62,9 +62,12 @@
             </div>
           </div>
         </div>
-        <div class="cs" echarts [options]="chartOption"></div>
+          <div class="" echarts [options]="chartOptionAvatar" [autoResize]="true"></div>
       </div>
-      <div class="card exp-machine"></div>
+      <div class="card exp-machine">
+        <span class="card-header bg-white text-center">Máquinas de XP</span>
+        <div class="" echarts [options]="chartOptionXp" [autoResize]="true"></div>
+      </div>
     </div>
     <div
       class="d-flex flex-wrap flex-md-nowrap justify-content-center align-items-center"

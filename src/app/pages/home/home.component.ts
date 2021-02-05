@@ -19,27 +19,104 @@ import { EChartsOption } from 'echarts';
 export class HomeComponent implements OnInit {
   server: any;
   users: any[];
-  avatars: any[];
+  avatars: any[] = [];
   diseases: any;
   jobs: any[];
   expMachines: any[];
 
-  chartOption: EChartsOption = {
-    color: ['#CDCDCD'],
+  chartOptionXp: EChartsOption = {
+    tooltip: {
+      trigger: 'item',
+    },
+    legend: {
+      bottom: '15%',
+    },
+    series: [
+      {
+        color: ['#6241EA', '#F48C51'],
+        name: 'quantidade',
+        type: 'pie',
+        radius: ['50%', '40%'],
+        center: ['50%', '40%'],
+        avoidLabelOverlap: false,
+        label: {
+          show: false,
+          position: 'center',
+        },
+        emphasis: {
+          label: {
+            show: true,
+            fontSize: '40',
+            fontWeight: 'bold',
+          },
+        },
+        labelLine: {
+          show: false,
+        },
+        data: [
+          { value: 5, name: 'Ativadas' },
+          { value: 4, name: 'Desativadas' },
+        ],
+      },
+    ]
+  }
+
+  chartOptionAvatar: EChartsOption = {
     xAxis: {
       type: 'category',
       data: ['Set 2020', 'Out 2020', 'Nov 2020', 'Dez 2020', 'Jan 2021'],
     },
     yAxis: {
       type: 'value',
-
     },
+    tooltip: {
+      trigger: 'item',
+    },
+    legend: {
+      bottom: '15%',
+      right: '1%',
+    },
+    grid: [
+      {
+        top: '18%',
+        width: '67%',
+        bottom: '15%',
+        left: '3%',
+        containLabel: true
+      }
+    ],
     series: [
       {
         data: [50, 700, 100, 1000, 150, 500, 800, 700, 150],
         type: 'bar',
         color: 'rgb(120, 74, 248)',
         barWidth: '8px',
+      },
+      {
+        color: ['#6241EA', '#F48C51'],
+        name: 'quantidade',
+        type: 'pie',
+        radius: ['50%', '40%'],
+        center: ['87%', '40%'],
+        avoidLabelOverlap: false,
+        label: {
+          show: false,
+          position: 'center',
+        },
+        emphasis: {
+          label: {
+            show: true,
+            fontSize: '40',
+            fontWeight: 'bold',
+          },
+        },
+        labelLine: {
+          show: false,
+        },
+        data: [
+          { value: 10, name: 'Disponíveis' },
+          { value: 2, name: 'Banidos' },
+        ],
       },
     ],
   };
