@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class ServersService extends CrudService<any> {
-  getAll_URL = `Servers/ListServers/${this.token.getToken()}`;
+
   constructor(
     private token: TokenService,
     protected http: HttpClient,
@@ -19,6 +19,7 @@ export class ServersService extends CrudService<any> {
     protected ngxSpinner: NgxSpinnerService
   ) { 
     super(http, environment.API, snackBar, ngxSpinner)
+    this.setAll = `Servers/ListServers/${this.token.getToken()}`;
   }
 
   // getServers(): Observable<any[]> {

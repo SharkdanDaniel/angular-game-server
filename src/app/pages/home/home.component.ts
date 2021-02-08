@@ -17,12 +17,12 @@ import { EChartsOption } from 'echarts';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  server: any;
-  users: any[];
+  server: any = {}
+  users: any[] = [];
   avatars: any[] = [];
-  diseases: any;
-  jobs: any[];
-  expMachines: any[];
+  diseases: any = {}
+  jobs: any[] = [];
+  expMachines: any[] = [];
 
   chartOptionXp: EChartsOption = {
     tooltip: {
@@ -145,8 +145,7 @@ export class HomeComponent implements OnInit {
   getAll() {
     this.server = this.serverService.getServer();
     this.userService
-      .getUsers()
-      .pipe(take(1))
+      .getAll()
       .subscribe((users: any) => {
         this.users = users;
       });

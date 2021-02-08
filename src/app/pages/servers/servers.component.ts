@@ -57,7 +57,7 @@ export class ServersComponent implements OnInit {
     private router: Router,
     private ngxSpinner: NgxSpinnerService
   ) {
-    this.ngxSpinner.show();
+    // this.ngxSpinner.show();
   }
 
   ngOnInit(): void {
@@ -73,7 +73,7 @@ export class ServersComponent implements OnInit {
         (this.page - 1) * this.pageSize,
         (this.page - 1) * this.pageSize + this.pageSize
       );
-      this.ngxSpinner.hide();
+      // this.ngxSpinner.hide();
     });
   }
 
