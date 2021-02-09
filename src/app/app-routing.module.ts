@@ -2,7 +2,6 @@ import { NavbarGuard } from './core/guards/navbar.guard';
 import { ServerGuard } from './core/guards/server.guard';
 import { AccessGuard } from './core/guards/access.guard';
 import { AuthGuard } from './core/guards/auth.guard';
-import { AppComponent } from './app.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -23,6 +22,7 @@ const routes: Routes = [
     path: '',
     loadChildren: () =>
       import('./container/container.module').then((m) => m.ContainerModule),
+      canActivate: [AuthGuard],
   },
   
 ];

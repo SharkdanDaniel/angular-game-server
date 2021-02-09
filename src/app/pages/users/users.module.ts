@@ -9,7 +9,12 @@ import { UserUpdateComponent } from './user-update/user-update.component';
 import { UserDeleteComponent } from './user-delete/user-delete.component';
 
 @NgModule({
-  declarations: [UsersComponent, UserCreateComponent, UserUpdateComponent, UserDeleteComponent],
+  declarations: [
+    UsersComponent,
+    UserCreateComponent,
+    UserUpdateComponent,
+    UserDeleteComponent,
+  ],
   imports: [CommonModule, UsersRoutingModule, SharedModule],
 })
 export class UsersModule {}

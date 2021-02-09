@@ -8,7 +8,6 @@ import { take } from 'rxjs/operators';
 import { LoginService } from './../../core/services/login.service';
 import { ServersService } from './../../core/services/servers.service';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { EChartsOption } from 'echarts';
 
 @Component({
@@ -17,12 +16,12 @@ import { EChartsOption } from 'echarts';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  server: any;
-  users: any[];
+  server: any = {};
+  users: any[] = [];
   avatars: any[] = [];
-  diseases: any;
-  jobs: any[];
-  expMachines: any[];
+  diseases: any[] = [];
+  jobs: any[] = [];
+  expMachines: any[] = [];
 
   chartOptionXp: EChartsOption = {
     tooltip: {
@@ -58,8 +57,8 @@ export class HomeComponent implements OnInit {
           { value: 4, name: 'Desativadas' },
         ],
       },
-    ]
-  }
+    ],
+  };
 
   chartOptionAvatar: EChartsOption = {
     xAxis: {
@@ -82,8 +81,8 @@ export class HomeComponent implements OnInit {
         width: '67%',
         bottom: '15%',
         left: '3%',
-        containLabel: true
-      }
+        containLabel: true,
+      },
     ],
     series: [
       {
@@ -160,7 +159,7 @@ export class HomeComponent implements OnInit {
       .getDiseases()
       .pipe(take(1))
       .subscribe((diseases: any) => {
-        this.diseases = diseases;
+        this.diseases = diseases.availableDisease;
       });
     this.jobService
       .getJobs()

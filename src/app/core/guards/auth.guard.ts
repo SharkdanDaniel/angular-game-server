@@ -56,7 +56,8 @@ export class AuthGuard implements CanActivate {
         sessionStorage.removeItem('server');
       }
       this.loading.hide();
-      this.router.navigate(['/login']);
+      // this.router.navigate(['/login']);
+      window.location.reload();
     }, 400);
   }
 }
