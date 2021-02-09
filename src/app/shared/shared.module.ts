@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { AtbTableModule } from './modules/table/table.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -7,11 +8,13 @@ import { NgxSpinnerComponent } from './components/ngx-spinner/ngx-spinner.compon
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ErrorMsgComponent } from './components/error-msg/error-msg.component';
 import { InputFieldComponent } from './components/input-field/input-field.component';
+import { NavbarRouteComponent } from './components/navbar-route/navbar-route.component';
 @NgModule({
   declarations: [
     NgxSpinnerComponent,
     ErrorMsgComponent,
     InputFieldComponent,
+    NavbarRouteComponent,
   ],
   imports: [
     CommonModule,
@@ -20,7 +23,8 @@ import { InputFieldComponent } from './components/input-field/input-field.compon
     NgbCollapseModule,
     NgxSpinnerModule,
     AtbTableModule,
-    NgbPaginationModule
+    NgbPaginationModule,
+    RouterModule
   ],
   exports: [
     CommonModule,
@@ -32,7 +36,8 @@ import { InputFieldComponent } from './components/input-field/input-field.compon
     ErrorMsgComponent,
     InputFieldComponent,
     AtbTableModule,
-    NgbPaginationModule
+    NgbPaginationModule,
+    NavbarRouteComponent
   ],
 })
 export class SharedModule {}

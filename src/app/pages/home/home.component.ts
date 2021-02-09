@@ -132,20 +132,13 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.spinner.show();
     this.getAll();
-    // this.refresh();
-    // setTimeout(() => {
-    // this.spinner.hide();
-    // this.spinner.hide();
-    // }, 300);
   }
 
   getAll() {
     this.server = this.serverService.getServer();
     this.userService
       .getUsers()
-      .pipe(take(1))
       .subscribe((users: any) => {
         this.users = users;
       });

@@ -4,12 +4,12 @@ import { SnackbarService } from 'src/app/core/services/snackbar.service';
 import { HttpClient } from '@angular/common/http';
 import { EMPTY } from 'rxjs';
 
-export class CrudService<T> {
-  protected getAll_URL: string;
-  protected getById_URL: string;
-  protected update_URL: string;
-  protected create_URL: string;
-  protected delete_URL: string;
+export abstract class CrudService<T> {
+  private getAll_URL: string;
+  private getById_URL: string;
+  private update_URL: string;
+  private create_URL: string;
+  private delete_URL: string;
 
 
   constructor(
@@ -85,6 +85,26 @@ export class CrudService<T> {
       //   return EMPTY;
       // })
     );
+  }
+
+  set setGetAll(data: string) {
+    this.getAll_URL = data;
+  }
+
+  set setGetById(data: string) {
+    this.getById_URL = data;
+  }
+
+  set setUpdate(data: string) {
+    this.update_URL = data;
+  }
+
+  set setCreate(data: string) {
+    this.create_URL = data;
+  }
+
+  set setDelete(data: string) {
+    this.delete_URL = data;
   }
 
   handleError() {

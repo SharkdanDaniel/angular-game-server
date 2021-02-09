@@ -1,0 +1,40 @@
+.navbar {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  height: 52px;
+  a {
+    padding-right: 0px;
+    padding-left: 5px;
+  }
+  .active {
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 19px;
+    color: #784AF8;
+    cursor: pointer;
+    
+  }
+  .disabled {
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 19px;
+  }
+
+  i {
+    font-size: 22px;
+    color: #68717A;
+    cursor: pointer;
+  }
+}
+
+.active:hover {
+  color: #9a77fd !important;
+  // font-size: 17px !important; 
+}
+
+i:hover {
+  color: #95989b !important;
+  // font-size: 17px !important; 
+}
+
+

@@ -1,9 +1,11 @@
+import { LoginService } from './../core/services/login.service';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { NavbarService } from './../core/services/navbar.service';
 import { AuthGuard } from './../core/guards/auth.guard';
 import { Observable } from 'rxjs';
 import { Component, OnInit, HostListener } from '@angular/core';
+import { ServersService } from '../core/services/servers.service';
 
 @Component({
   selector: 'app-container',
@@ -17,8 +19,8 @@ export class ContainerComponent implements OnInit {
     this.isCollapsed = window.innerWidth < 1220 ? true : false;
   }
   
-  server: any;
-  user: any;
+  server: any = {}
+  user: any = {}
 
   isCollapsed = false;
   showHeader$: Observable<boolean>;
@@ -27,7 +29,9 @@ export class ContainerComponent implements OnInit {
     private auth: AuthGuard,
     private navbar: NavbarService,
     private spinner: NgxSpinnerService,
-    private router: Router
+    private router: Router,
+    private login: LoginService,
+    private serverService: ServersService
   ) {}
 
   ngOnInit(): void {

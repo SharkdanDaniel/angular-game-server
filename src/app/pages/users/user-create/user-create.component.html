@@ -1,4 +1,45 @@
-<div class="container border p-5">
+<div class="wrapper d-flex justify-content-center align-items-center">
+  <div class="main-container">
+    <app-navbar-route
+      router="/users"
+      first="Usuário"
+      current="Adicionar usuário"
+    ></app-navbar-route>
+    <div class="card">
+      <span class="card-header bg-white">Dados do usuário</span>
+      <form class="">
+        <div class="d-flex flex-column flex-md-row">
+          <div class="col-12 col-md-8">
+            <label for="">Nome</label>
+            <input class="form-control" type="text" />
+          </div>
+          <div class="col-12 col-md-4">
+            <label for="">Senha</label>
+            <input class="form-control" type="password" />
+          </div>
+        </div>
+        <div class="mt-5 d-flex flex-column flex-md-row">
+          <div class="col-12 col-md-4">
+            <label for="">E-mail</label>
+            <input class="form-control" type="email" />
+          </div>
+          <div class="col-12 col-md-4">
+            <label for="">Nível de permissão</label>
+            <input class="form-control" type="select" />
+          </div>
+        </div>
+      </form>
+      <div class="bg-white card-footer d-flex justify-content-end align-items-center">
+        <div class="">
+          <button routerLink="/users" class="btn btn-light">Voltar</button>
+          <button class="btn btn-primary">Adicionar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="container border p-5">
     <h1>Adicionar usuário</h1>
     <form [formGroup]="form">
         <div>
@@ -25,4 +66,4 @@
     <br>
     <button (click)="create()" type="submit" class="btn btn-primary">Adicionar</button>
     <button class="btn" routerLink="/users">Cancelar</button>
-</div>
+</div> -->
