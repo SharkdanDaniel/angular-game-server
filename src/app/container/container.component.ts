@@ -41,7 +41,7 @@ export class ContainerComponent implements OnInit {
   }
 
   ngDoCheck(): void {
-    this.refreshServer();
+    // this.refreshServer();
   }
 
   refreshUser() {

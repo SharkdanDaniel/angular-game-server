@@ -8,7 +8,7 @@
         <div class="d-flex align-items-center h-100">
           <img src="./assets/icons/user.svg" alt="" />
           <div>
-            <span class="">{{ users.length }}</span>
+            <span *ngIf="(users$ | async) as users"  class="">{{ users.length }}</span>
             <p class="card-text">Usuários</p>
           </div>
         </div>
@@ -28,7 +28,7 @@
         <div class="d-flex align-items-center h-100">
           <img src="./assets/icons/hammer.svg" alt="" />
           <div>
-            <span class="">{{ jobs.length }}</span>
+            <span *ngIf="(jobs$ | async) as jobs"  class="">{{ jobs.length }}</span>
             <p class="card-text">Profissões</p>
           </div>
         </div>
@@ -38,7 +38,7 @@
         <div class="d-flex align-items-center h-100">
           <img src="./assets/icons/skull.svg" alt="" />
           <div>
-            <span class="">{{ diseases.length }}</span>
+            <span *ngIf="(diseases$ | async) as diseases" class="">{{ diseases.length }}</span>
             <p class="card-text">Debuffs</p>
           </div>
         </div>

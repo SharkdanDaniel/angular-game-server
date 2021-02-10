@@ -45,7 +45,6 @@ export class LoginComponent extends BaseFormComponent implements OnInit {
 
   onSubmit() {
     this.form.markAllAsTouched();
-    // this.auth.logout();
     if (this.form.valid) {
       const remidme = this.form.get('remidme').value;
       this.ngxSpinner.show();

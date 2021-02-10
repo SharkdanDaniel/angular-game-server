@@ -1,8 +1,11 @@
+import { SnackbarService } from 'src/app/core/services/snackbar.service';
+import { ModalConfirmComponent } from './../../shared/components/modal-confirm/modal-confirm.component';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { take } from 'rxjs/operators';
 import { UserService } from './../../core/services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { SpinnerService } from 'src/app/core/services/spinner.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-users',
@@ -20,7 +23,9 @@ export class UsersComponent implements OnInit {
 
   constructor(
     private ngxSpinner: NgxSpinnerService,
-    private userService: UserService
+    private userService: UserService,
+    private modalService: NgbModal,
+    private snackBar: SnackbarService
   ) {}
 
   ngOnInit(): void {
@@ -73,7 +78,45 @@ export class UsersComponent implements OnInit {
     }
   }
 
-  getUsers() {
-    return this.users;
+  openModal(id: string) {
+    const modalRef = this.modalService.open(ModalConfirmComponent, {
+      centered: true,
+      windowClass: 'h-75',
+    });
+    modalRef.componentInstance.title = 'Excluir Usuário';
+    modalRef.componentInstance.body =
+      'Tem certeza que deseja excluir este usuário?';
+    modalRef.componentInstance.button = 'danger';
+    modalRef.componentInstance.action = 'Excluir';
+    modalRef.result.then((res) => {
+      if (res) {
+        this.delete(id);
+      }
+    });
+  }
+
+  delete(id: string) {
+    this.userService.deleteUser(id).subscribe((res) => {
+      this.users.forEach((val, index, arr) => {
+        if (val.id === id) {
+          this.users.splice(
+            this.users.findIndex((a) => a.id === id),
+            1
+          );
+          if (Object.is(arr.length - 1, index)) {
+            this.getAll();
+          }
+        }
+      });
+      console.log('Usuário deletado', res);
+      this.snackBar.showMessage('Usuário excluído com sucesso!');
+    }),
+      (err) => {
+        console.log(err);
+        this.snackBar.showMessage(
+          'Não foi possível excluir este usuário',
+          true
+        );
+      };
   }
 }

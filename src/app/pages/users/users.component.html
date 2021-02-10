@@ -71,7 +71,7 @@
                 <a class="mr-3 action" routerLink="/users/update/{{ user.id }}">
                   <img src="./assets/icons/edit.svg" alt="" />
                 </a>
-                <a class="action" routerLink="/users/delete/{{ user.id }}">
+                <a (click)="openModal(user.id)"  class="action">
                   <img src="./assets/icons/delete.svg" alt="" />
                 </a>
               </td>

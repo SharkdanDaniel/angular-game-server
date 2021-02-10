@@ -8,13 +8,14 @@ import { Component, OnInit } from '@angular/core';
 export abstract class BaseFormComponent implements OnInit {
   form: FormGroup;
 
-  constructor() { }
-  ngOnInit(): void {
-  }
+  constructor() {}
+  ngOnInit(): void {}
 
   abstract submit();
 
   onSubmit() {
+    this.form.markAllAsTouched();
+    console.log(this.form);
     if (this.form.valid) {
       this.submit();
     } else {
@@ -22,28 +23,37 @@ export abstract class BaseFormComponent implements OnInit {
     }
   }
 
-  checkValidTouched(field: string) {
+  checkInvalidTouched(field: string) {
     return !this.form.get(field).valid && this.form.get(field).touched;
   }
 
-  checkRequired(field: string) {
-    return (
-      this.form.get(field).hasError('required') &&
-      (this.form.get(field).touched || this.form.get(field).dirty)
-    );
+  checkValid(field: string) {
+    return this.form.get(field).valid && this.form.get(field).touched;
   }
 
-  checkInvalidEmail() {
-    let emailField = this.form.get('email');
-    if (emailField.errors) {
-      return emailField.errors['email'] && emailField.touched;
-    }
-  }
+  // checkRequired(field: string) {
+  //   return (
+  //     this.form.get(field).hasError('required') &&
+  //     (this.form.get(field).touched || this.form.get(field).dirty)
+  //   );
+  // }
+
+  // checkInvalidEmail() {
+  //   let emailField = this.form.get('email');
+  //   if (emailField.errors) {
+  //     return emailField.errors['email'] && emailField.touched;
+  //   }
+  // }
 
   applyErrCss(field: string) {
-    return {
-      'is-invalid': this.checkValidTouched(field),
-    };
+    if (this.checkInvalidTouched(field)) {
+      return {
+        'is-invalid': this.checkInvalidTouched(field),
+      };
+    } else {
+      return {
+        'is-valid': this.checkValid(field)
+      }
+    }
   }
-
 }

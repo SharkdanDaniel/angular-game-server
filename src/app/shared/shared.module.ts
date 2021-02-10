@@ -9,12 +9,14 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { ErrorMsgComponent } from './components/error-msg/error-msg.component';
 import { InputFieldComponent } from './components/input-field/input-field.component';
 import { NavbarRouteComponent } from './components/navbar-route/navbar-route.component';
+import { ModalConfirmComponent } from './components/modal-confirm/modal-confirm.component';
 @NgModule({
   declarations: [
     NgxSpinnerComponent,
     ErrorMsgComponent,
     InputFieldComponent,
     NavbarRouteComponent,
+    ModalConfirmComponent,
   ],
   imports: [
     CommonModule,

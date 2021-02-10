@@ -4,11 +4,12 @@ import { DiseaseService } from './../../core/services/disease.service';
 import { AvatarService } from './../../core/services/avatar.service';
 import { UserService } from './../../core/services/user.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { take } from 'rxjs/operators';
+import { take, map } from 'rxjs/operators';
 import { LoginService } from './../../core/services/login.service';
 import { ServersService } from './../../core/services/servers.service';
 import { Component, OnInit } from '@angular/core';
 import { EChartsOption } from 'echarts';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -17,11 +18,14 @@ import { EChartsOption } from 'echarts';
 })
 export class HomeComponent implements OnInit {
   server: any = {};
-  users: any[] = [];
-  avatars: any[] = [];
-  diseases: any[] = [];
-  jobs: any[] = [];
-  expMachines: any[] = [];
+  avatars$: Observable<any[]>;
+  diseases$: Observable<any[]>;
+  jobs$: Observable<any[]>;
+  expMachines$: Observable<any[]>;
+  users$: Observable<any[]>;
+
+  avatarBanned = 0;
+  avatarAvailable = 0;
 
   chartOptionXp: EChartsOption = {
     tooltip: {
@@ -113,8 +117,8 @@ export class HomeComponent implements OnInit {
           show: false,
         },
         data: [
-          { value: 10, name: 'Disponíveis' },
-          { value: 2, name: 'Banidos' },
+          { value: this.avatarAvailable, name: 'Disponíveis' },
+          { value: this.avatarBanned, name: 'Banidos' },
         ],
       },
     ],
@@ -129,7 +133,9 @@ export class HomeComponent implements OnInit {
     private diseaseService: DiseaseService,
     private jobService: JobsService,
     private expMachineService: ExpMachinesService
-  ) {}
+  ) {
+    this.avatars();
+  }
 
   ngOnInit(): void {
     this.getAll();
@@ -137,35 +143,26 @@ export class HomeComponent implements OnInit {
 
   getAll() {
     this.server = this.serverService.getServer();
-    this.userService
-      .getUsers()
-      .subscribe((users: any) => {
-        this.users = users;
-      });
-    this.avatarService
-      .getAvatars()
-      .pipe(take(1))
-      .subscribe((avatars: any) => {
-        this.avatars = avatars;
-      });
-    this.diseaseService
+    this.users$ = this.userService.getUsers();
+    this.avatars$ = this.avatarService.getAvatars();
+    this.diseases$ = this.diseaseService
       .getDiseases()
-      .pipe(take(1))
-      .subscribe((diseases: any) => {
-        this.diseases = diseases.availableDisease;
+      .pipe(map((data: any) => data.availableDisease));
+    this.jobs$ = this.jobService.getJobs();
+    this.expMachines$ = this.expMachineService.getExpMachines();
+  }
+
+  avatars() {
+    this.avatarService.getAvatars().subscribe((a: any) => {
+      a.forEach(el => {
+        if (el.isBanned) {
+          this.avatarBanned++
+        } else {
+          this.avatarAvailable++
+        }
+        console.log(this.avatarAvailable, this.avatarBanned)
       });
-    this.jobService
-      .getJobs()
-      .pipe(take(1))
-      .subscribe((jobs: any) => {
-        this.jobs = jobs;
-      });
-    this.expMachineService
-      .getExpMachines()
-      .pipe(take(1))
-      .subscribe((expMachines: any) => {
-        this.expMachines = expMachines;
-      });
+    })
   }
 
   // refresh() {
