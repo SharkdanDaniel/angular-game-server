@@ -1,3 +1,4 @@
+import { SnackbarService } from 'src/app/core/services/snackbar.service';
 import { FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
@@ -7,19 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export abstract class BaseFormComponent implements OnInit {
   form: FormGroup;
+  submiting = false;
 
-  constructor() {}
+  constructor(protected snackBar: SnackbarService) {}
   ngOnInit(): void {}
 
   abstract submit();
 
   onSubmit() {
     this.form.markAllAsTouched();
-    console.log(this.form);
     if (this.form.valid) {
+      this.submiting = true;
       this.submit();
     } else {
       console.log('formulário inválido');
+      this.snackBar.showMessage('Verifique os erros e tente novamente!', true)
     }
   }
 
@@ -27,7 +30,7 @@ export abstract class BaseFormComponent implements OnInit {
     return !this.form.get(field).valid && this.form.get(field).touched;
   }
 
-  checkValid(field: string) {
+  checkValidTouched(field: string) {
     return this.form.get(field).valid && this.form.get(field).touched;
   }
 
@@ -52,7 +55,7 @@ export abstract class BaseFormComponent implements OnInit {
       };
     } else {
       return {
-        'is-valid': this.checkValid(field)
+        'is-valid': this.checkValidTouched(field)
       }
     }
   }

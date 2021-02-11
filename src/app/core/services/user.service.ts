@@ -50,6 +50,7 @@ export class UserService {
   deleteUser(id: string): Observable<any> {
     return this.http.delete<any>(
       `https://hcs.dev4.com.br/api/Users/DelUser/${this.token.getToken()}/${id}`
-    );
+    )
+    .pipe(take(1));
   }
 }

@@ -160,7 +160,6 @@ export class HomeComponent implements OnInit {
         } else {
           this.avatarAvailable++
         }
-        console.log(this.avatarAvailable, this.avatarBanned)
       });
     })
   }

@@ -14,16 +14,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserCreateComponent extends BaseFormComponent implements OnInit {
   user: any;
-  form: FormGroup;
+  // form: FormGroup;
 
   constructor(
     private userService: UserService,
     private formBuilder: FormBuilder,
     private router: Router,
     private ngxSpinner: NgxSpinnerService,
-    private snackBar: SnackbarService
+    protected snackBar: SnackbarService
   ) {
-    super();
+    super(snackBar);
   }
 
   ngOnInit(): void {
@@ -41,26 +41,39 @@ export class UserCreateComponent extends BaseFormComponent implements OnInit {
     }, 200);
   }
 
-  submit() {}
-
-  onSubmit() {
-    this.form.markAllAsTouched();
-    if (this.form.valid) {
-      this.userService
-        .createUser(this.form.value)
-        .pipe(take(1))
-        .subscribe((res) => {
-          this.snackBar.showMessage('Usuário adicionado com sucesso!')
-          console.log('usuário criado', res);
-          this.router.navigate(['/users']);
-        }),
-        (err) => {
-          console.log(err)
-          this.snackBar.showMessage('Não foi possível adicionar o usuário!')
-        }
-    } else {
-      this.snackBar.showMessage('Verifique os erros e tente novamente!', true)
-      console.log('invalid');
-    }
+  submit() {
+    this.userService
+      .createUser(this.form.value)
+      .pipe(take(1))
+      .subscribe((res) => {
+        this.snackBar.showMessage('Usuário adicionado com sucesso!');
+        console.log('usuário criado', res);
+        this.router.navigate(['/users']);
+      }),
+      (err) => {
+        console.log(err);
+        this.snackBar.showMessage('Não foi possível adicionar o usuário!');
+      };
   }
+
+  // save() {
+  //   this.form.markAllAsTouched();
+  //   if (this.form.valid) {
+  //     this.userService
+  //       .createUser(this.form.value)
+  //       .pipe(take(1))
+  //       .subscribe((res) => {
+  //         this.snackBar.showMessage('Usuário adicionado com sucesso!')
+  //         console.log('usuário criado', res);
+  //         this.router.navigate(['/users']);
+  //       }),
+  //       (err) => {
+  //         console.log(err)
+  //         this.snackBar.showMessage('Não foi possível adicionar o usuário!')
+  //       }
+  //   } else {
+  //     this.snackBar.showMessage('Verifique os erros e tente novamente!', true)
+  //     console.log('invalid');
+  //   }
+  // }
 }

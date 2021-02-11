@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  API: 'https://hcs.dev4.com.br/api/'
 };

@@ -83,20 +83,25 @@
               </button>
               <div class="text-center ngbDropdown" ngbDropdownMenu>
                 <button
+                  ngbDropdownItem
+                >
+                  Perfil
+                </button>
+                <button
                   *ngIf="user.permission > 1"
                   ngbDropdownItem
                   routerLink="/servers"
                 >
                   Trocar de Servidor
                 </button>
-                <button
+                <!-- <button
                   *ngIf="user.permission > 1"
                   ngbDropdownItem
                   routerLink="/server/create"
                 >
                   Adicionar
-                </button>
-                <hr />
+                </button> -->
+                <hr class="my-2" />
                 <button ngbDropdownItem (click)="logout()">Sair</button>
               </div>
             </div>

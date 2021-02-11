@@ -15,7 +15,7 @@ import { BaseFormComponent } from 'src/app/shared/components/base-form/base-form
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent extends BaseFormComponent implements OnInit {
-  form: FormGroup;
+  // form: FormGroup;
   submitted = false;
   passwordInvalid = false;
 
@@ -24,11 +24,10 @@ export class LoginComponent extends BaseFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private userService: UserService,
-    private snackBar: SnackbarService,
+    protected snackBar: SnackbarService,
     private ngxSpinner: NgxSpinnerService,
-    private auth: AuthGuard
   ) {
-    super();
+    super(snackBar);
   }
 
   ngOnInit(): void {

@@ -1,3 +1,5 @@
+import { UserFormComponent } from './user-form/user-form.component';
+import { FormGuard } from './../../core/guards/form.guard';
 import { UserDeleteComponent } from './user-delete/user-delete.component';
 import { UserUpdateComponent } from './user-update/user-update.component';
 import { UserCreateComponent } from './user-create/user-create.component';
@@ -13,16 +15,18 @@ const routes: Routes = [
   },
   {
     path: 'create',
-    component: UserCreateComponent,
+    component: UserFormComponent,
+    canDeactivate: [FormGuard]
   },
   {
     path: 'update/:id',
-    component: UserUpdateComponent,
+    component: UserFormComponent,
+    canDeactivate: [FormGuard]
   },
-  {
-    path: 'delete/:id',
-    component: UserDeleteComponent,
-  },
+  // {
+  //   path: 'delete/:id',
+  //   component: UserDeleteComponent,
+  // },
 ];
 
 @NgModule({

@@ -1,5 +1,4 @@
 import { NavbarGuard } from './core/guards/navbar.guard';
-import { ServerGuard } from './core/guards/server.guard';
 import { AccessGuard } from './core/guards/access.guard';
 import { AuthGuard } from './core/guards/auth.guard';
 import { NgModule } from '@angular/core';
