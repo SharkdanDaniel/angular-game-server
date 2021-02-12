@@ -1,4 +1,15 @@
-<div
+<app-table
+  [data]="data"
+  [dataBkp]="dataBkp"
+  [showBody]="showBody"
+  [page]="page"
+  [pageSize]="pageSize"
+  [collectionSize]="collectionSize"
+  searchPlaceholder="Buscar usuário"
+  title="Usuários"
+></app-table>
+
+<!-- <div
   class="background d-flex justify-content-center align-items-center align-items-center"
 >
   <div class="card">
@@ -49,7 +60,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let user of users; index as i">
+            <tr *ngFor="let user of users | ngbPagination:page:pageSize; index as i">
               <td class="pl-3 pr-5">
                 <strong>{{ i + (this.page - 1) * this.pageSize + 1 }}</strong>
               </td>
@@ -112,35 +123,4 @@
       </div>
     </div>
   </div>
-</div>
-
-<!-- <div class="container">
-  <div class="d-flex justify-content-center">
-      <h1>Lista de Usuários</h1>
-  </div>
-  <table class="table table-striped">
-      <thead class="">
-          <tr>
-              <th scope="col">Nome</th>
-              <th scope="col">Email</th>
-              <th scope="col">Servidor</th>
-              <th width="15%" scope="col">Permissão</th>
-              <th width="18%" scope="col">Ações</th>
-          </tr>
-      </thead>
-      <tbody>
-          <tr *ngFor="let user of users">
-              <td>{{ user.name }}</td>
-              <td>{{ user.email }}</td>
-              <td *ngIf="user.server != null">{{ user.server.name }}</td>
-              <td *ngIf="user.server == null">Nenhum servidor</td>
-              <td>{{ user.permission }}</td>
-              <td>
-                  <button routerLink="/users/update/{{ user.id }}" class="btn btn-info mr-2">Editar</button>
-                  <button routerLink="/users/delete/{{ user.id }}" class="btn btn-danger">Excluir</button>
-              </td>
-          </tr>
-      </tbody>
-  </table>
-  <button routerLink="/users/create" class="btn btn-primary">Adicionar Usuário</button>
 </div> -->

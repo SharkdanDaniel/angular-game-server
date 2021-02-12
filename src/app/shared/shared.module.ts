@@ -1,5 +1,5 @@
 import { RouterModule } from '@angular/router';
-import { AtbTableModule } from './modules/table/table.module';
+import { TableModule } from './modules/table/table.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -24,9 +24,9 @@ import { ModalConfirmComponent } from './components/modal-confirm/modal-confirm.
     ReactiveFormsModule,
     NgbCollapseModule,
     NgxSpinnerModule,
-    AtbTableModule,
     NgbPaginationModule,
-    RouterModule
+    RouterModule,
+    TableModule
   ],
   exports: [
     CommonModule,
@@ -37,9 +37,9 @@ import { ModalConfirmComponent } from './components/modal-confirm/modal-confirm.
     NgxSpinnerModule,
     ErrorMsgComponent,
     InputFieldComponent,
-    AtbTableModule,
     NgbPaginationModule,
-    NavbarRouteComponent
+    NavbarRouteComponent,
+    TableModule
   ],
 })
 export class SharedModule {}

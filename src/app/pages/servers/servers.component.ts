@@ -1,8 +1,8 @@
 import { NgxSpinnerService } from 'ngx-spinner';
-import {
+/* import {
   TableColumn,
   TableAction,
-} from './../../shared/modules/table/table-models.model';
+} from './../../shared/modules/table/table-models.model'; */
 import { Router } from '@angular/router';
 import { take } from 'rxjs/operators';
 import { ServersService } from './../../core/services/servers.service';

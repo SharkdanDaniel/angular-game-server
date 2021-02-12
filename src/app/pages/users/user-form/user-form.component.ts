@@ -1,3 +1,4 @@
+import { ServersService } from './../../../core/services/servers.service';
 import { ModalConfirmComponent } from './../../../shared/components/modal-confirm/modal-confirm.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { take } from 'rxjs/operators';
@@ -20,6 +21,7 @@ export class UserFormComponent extends BaseFormComponent implements OnInit {
 
   constructor(
     private userService: UserService,
+    private serverService: ServersService,
     private formBuilder: FormBuilder,
     private router: Router,
     private ngxSpinner: NgxSpinnerService,
@@ -36,9 +38,9 @@ export class UserFormComponent extends BaseFormComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
       permission: [null, [Validators.required]],
-      serverId: [JSON.parse(sessionStorage.getItem('server')).id],
+      serverId: [this.serverService.getServerID()],
     });
-    this.user = JSON.parse(sessionStorage.getItem('user'));
+    this.user = this.userService.getUser();
     if (this.route.snapshot.routeConfig['path'] === 'update/:id') {
       this.editing = true;
       const id = this.route.snapshot.paramMap.get('id');

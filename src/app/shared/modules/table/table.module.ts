@@ -1,14 +1,28 @@
-import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { TableComponent } from "./table.component";
-import { MatTableModule } from "@angular/material/table";
-import { PagePipe } from "./page.pipe";
-import { NgbDropdownModule } from "@ng-bootstrap/ng-bootstrap";
-import { FirstLetterCapitalPipe } from "./first-letter-capital.pipe";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { NgbPaginationPipe } from './../../pipes/ngb-pagination.pipe';
+import { RouterModule } from '@angular/router';
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { TableComponent } from './table.component';
+
+
 
 @NgModule({
-  declarations: [TableComponent, PagePipe, FirstLetterCapitalPipe],
-  imports: [CommonModule, MatTableModule, NgbDropdownModule],
-  exports: [TableComponent, FirstLetterCapitalPipe],
+  declarations: [TableComponent, NgbPaginationPipe],
+  imports: [
+    CommonModule,
+    NgbPaginationModule,
+    RouterModule,
+    NgxSpinnerModule,
+    ReactiveFormsModule,
+    FormsModule
+  ],
+  exports: [
+    TableComponent,
+    NgbPaginationPipe,
+    NgxSpinnerModule
+  ],
 })
-export class AtbTableModule {}
+export class TableModule { }

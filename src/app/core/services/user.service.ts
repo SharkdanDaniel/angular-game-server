@@ -53,4 +53,14 @@ export class UserService {
     )
     .pipe(take(1));
   }
+
+  getUser() {
+    let user = {}
+    if (localStorage.getItem('user')) {
+      user = JSON.parse(localStorage.getItem('user'));
+    } else {
+      user = JSON.parse(sessionStorage.getItem('user'));
+    }
+    return user;
+  }
 }

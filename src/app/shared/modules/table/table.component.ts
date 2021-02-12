@@ -1,72 +1,94 @@
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { TableAction, TableColumn } from "./table-models.model";
+import { ModalConfirmComponent } from './../../components/modal-confirm/modal-confirm.component';
+import { SnackbarService } from './../../../core/services/snackbar.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { Component, OnInit, Injectable, Input } from '@angular/core';
 
+@Injectable()
 @Component({
-  selector: "atb-table",
-  templateUrl: "./table.component.html",
-  styleUrls: ["./table.component.scss"],
+  selector: 'app-table',
+  templateUrl: './table.component.html',
+  styleUrls: ['./table.component.scss'],
 })
 export class TableComponent implements OnInit {
-  @Input() dataSource: any;
-  @Input() totalItems: number;
-  @Input() columns: TableColumn[];
-  @Input() actions: TableAction[];
-  @Output() page = new EventEmitter();
-  @Output() action = new EventEmitter();
+  @Input() data: any[] = [];
+  @Input() dataBkp: any[] = [];
 
-  currentPage = 0;
-  pages = [{ index: 1 }, { index: 2 }, { index: 3 }];
-  pageSize = 10;
-  _columns: string[];
+  @Input() title = 'Título';
 
-  constructor() {}
+  @Input() showBody = true;
+  @Input() page = 1;
+  @Input() pageSize = 4;
+  @Input() collectionSize = 0;
+  @Input() searchPlaceholder = 'Buscar dados';
 
-  ngOnInit() {
-    this._columns = this.columns.map((x) => x.columnName);
-    if (this.actions) {
-      this._columns = [...this._columns, "actions"];
+  constructor(
+    protected ngxSpinner: NgxSpinnerService,
+    protected modalService: NgbModal,
+    protected snackBar: SnackbarService
+  ) {}
+
+  ngOnInit(): void {
+    console.log();
+  }
+
+  refreshAll() {
+    this.ngxSpinner.show('table');
+    this.showBody = false;
+    setTimeout(() => {
+      this.data = this.dataBkp;
+      this.showBody = true;
+      this.ngxSpinner.hide('table');
+    }, 150);
+  }
+
+  refreshData() {
+    this.ngxSpinner.show('table');
+    this.showBody = false;
+    setTimeout(() => {
+      //   this.data = this.dataBkp.slice(
+      //     (this.page - 1) * this.pageSize,
+      //     (this.page - 1) * this.pageSize + this.pageSize
+      //   );
+      this.showBody = true;
+      this.ngxSpinner.hide('table');
+    }, 150);
+  }
+
+  searchData(ev) {
+    let value = ev;
+    if (value.trim() != '') {
+      this.ngxSpinner.show('table');
+      setTimeout(() => {
+        this.data = this.data.filter((data: any) => {
+          this.ngxSpinner.hide('table');
+          return data.name.toLowerCase().indexOf(value.toLowerCase()) > -1;
+        });
+      }, 200);
     }
   }
 
-  getNumberOfElementsInCurrentPage() {}
-
-  setPage(index) {
-    this.currentPage = index - 1;
-    this.page.emit(this.currentPage);
-  }
-
-  nextPage() {
-    if (this.isNextPageDisabled()) return;
-
-    if (this.currentPage === this.pages[2].index - 1) {
-      this.currentPage++;
-      this.pages = [];
-      this.pages = [{ index: this.currentPage + 1 }, { index: this.currentPage + 2 }, { index: this.currentPage + 3 }];
-      return;
+  onKey(ev) {
+    let value = ev.target.value;
+    if (value == '') {
+      this.refreshAll();
     }
-    this.currentPage++;
-    this.page.emit(this.currentPage);
   }
 
-  previousPage() {
-    if (this.currentPage == 0) {
-      return;
-    }
-    if (this.currentPage === this.pages[0].index - 1) {
-      this.pages = [];
-      this.pages = [{ index: this.currentPage - 2 }, { index: this.currentPage - 1 }, { index: this.currentPage }];
-      this.currentPage--;
-      return;
-    }
-    this.currentPage--;
-    this.page.emit(this.currentPage);
-  }
-
-  isNextPageDisabled() {
-    return !(this.totalItems > this.pageSize * (this.currentPage + 1));
-  }
-
-  onAction(action: TableAction, element: any) {
-    this.action.emit({ action: action.eventName, element: element });
+  openModal(id: string) {
+    const modalRef = this.modalService.open(ModalConfirmComponent, {
+      centered: true,
+      windowClass: 'h-75',
+    });
+    modalRef.componentInstance.title = 'Excluir Usuário';
+    modalRef.componentInstance.body =
+      'Tem certeza que deseja excluir este usuário?';
+    modalRef.componentInstance.button = 'danger';
+    modalRef.componentInstance.action = 'Excluir';
+    modalRef.result.then((res) => {
+      if (res) {
+        // this.delete(id);
+      }
+    });
   }
 }
