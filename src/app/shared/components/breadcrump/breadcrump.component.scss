@@ -15,8 +15,9 @@ li {
   color: #68717a;
 }
 
-.active:hover {
+.active:hover i:hover {
   color: #9a77fd !important;
+  outline: none !important;
 }
 
 i:hover {

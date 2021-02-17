@@ -1,8 +1,17 @@
+import { TableColumn, TableAction } from './table-models.model';
 import { ModalConfirmComponent } from './../../components/modal-confirm/modal-confirm.component';
 import { SnackbarService } from './../../../core/services/snackbar.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { Component, OnInit, Injectable, Input } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Injectable,
+  Input,
+  EventEmitter,
+  Output,
+  HostListener,
+} from '@angular/core';
 
 @Injectable()
 @Component({
@@ -11,10 +20,13 @@ import { Component, OnInit, Injectable, Input } from '@angular/core';
   styleUrls: ['./table.component.scss'],
 })
 export class TableComponent implements OnInit {
+  minHeight = '87%';
+
   @Input() data: any[] = [];
-  @Input() dataBkp: any[] = [];
 
   @Input() title = 'Título';
+  @Input() add = 'create';
+  @Input() notFound = 'Nenhum dado encontrado';
 
   @Input() showBody = true;
   @Input() page = 1;
@@ -22,34 +34,29 @@ export class TableComponent implements OnInit {
   @Input() collectionSize = 0;
   @Input() searchPlaceholder = 'Buscar dados';
 
+  @Input() columns: TableColumn[];
+  @Input() actions: TableAction[];
+
+  @Output() action = new EventEmitter();
+  @Output() refresh = new EventEmitter();
+
   constructor(
     protected ngxSpinner: NgxSpinnerService,
     protected modalService: NgbModal,
     protected snackBar: SnackbarService
   ) {}
 
-  ngOnInit(): void {
-    console.log();
-  }
-
-  refreshAll() {
-    this.ngxSpinner.show('table');
-    this.showBody = false;
-    setTimeout(() => {
-      this.data = this.dataBkp;
-      this.showBody = true;
-      this.ngxSpinner.hide('table');
-    }, 150);
-  }
+  ngOnInit(): void {}
 
   refreshData() {
     this.ngxSpinner.show('table');
+    this.pageSize > 4
+      ? (this.minHeight = '100%')
+      : this.pageSize < 4
+      ? (this.minHeight = '73%')
+      : (this.minHeight = '87%');
     this.showBody = false;
     setTimeout(() => {
-      //   this.data = this.dataBkp.slice(
-      //     (this.page - 1) * this.pageSize,
-      //     (this.page - 1) * this.pageSize + this.pageSize
-      //   );
       this.showBody = true;
       this.ngxSpinner.hide('table');
     }, 150);
@@ -71,24 +78,11 @@ export class TableComponent implements OnInit {
   onKey(ev) {
     let value = ev.target.value;
     if (value == '') {
-      this.refreshAll();
+      this.refresh.emit(true);
     }
   }
 
-  openModal(id: string) {
-    const modalRef = this.modalService.open(ModalConfirmComponent, {
-      centered: true,
-      windowClass: 'h-75',
-    });
-    modalRef.componentInstance.title = 'Excluir Usuário';
-    modalRef.componentInstance.body =
-      'Tem certeza que deseja excluir este usuário?';
-    modalRef.componentInstance.button = 'danger';
-    modalRef.componentInstance.action = 'Excluir';
-    modalRef.result.then((res) => {
-      if (res) {
-        // this.delete(id);
-      }
-    });
+  onAction(action: TableAction, item: any) {
+    this.action.emit({ action: action.eventName, item: item });
   }
 }

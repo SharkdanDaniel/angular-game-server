@@ -1,8 +1,9 @@
 <div
-  class="background d-flex justify-content-center align-items-center align-items-center"
+  [ngStyle]="{'min-height': minHeight }"
+  class="background d-flex justify-content-center align-items-center"
 >
   <div class="card">
-    <div class="card-header bg-white px-5 pt-4">
+    <div class="card-header bg-white pl-4 pt-4">
       <h2 class="card-title">{{ title }}</h2>
     </div>
 
@@ -17,10 +18,7 @@
 
       <div>
         <div class="d-flex justify-content-between mb-4 mt-2">
-          <button
-            class="btn btn-outline-primary adding"
-            routerLink="/users/create"
-          >
+          <button class="btn btn-outline-primary adding" routerLink="{{ add }}">
             Adicionar
           </button>
           <form class="input-group form-inline">
@@ -47,7 +45,7 @@
           *ngIf="data.length < 1"
           class="d-flex justify-content-center align-items-center"
         >
-          <span class="m-5 p-5">Nenhum usuário disponível</span>
+          <span class="m-5 p-5">{{ notFound }}</span>
         </div>
         <div class="table-responsive">
           <table
@@ -55,35 +53,64 @@
             class="table table-striped text-justify"
           >
             <thead>
-              <tr>
-                <th class="pl-3 pr-5" scope="col">#</th>
-                <th scope="col">Nome</th>
-                <th scope="col">Email</th>
-                <th scope="col">Servidor</th>
-                <th scope="col">Permissão</th>
-                <th class="text-center" scope="col">Ações</th>
+              <tr class="align-middle">
+                <th class="w-5">#</th>
+                <th
+                  *ngFor="let column of columns"
+                  class="{{ column.className }}"
+                >
+                  {{ column.displayName }}
+                </th>
+                <th *ngIf="actions" class="text-center w-15">Ações</th>
               </tr>
             </thead>
             <tbody>
               <tr
                 *ngFor="
-                  let user of data | ngbPagination: page:pageSize;
+                  let item of data | ngbPagination: page:pageSize;
                   index as i
                 "
               >
-                <td class="pl-3 pr-5">
+                <td class="pr-5">
                   <strong>{{ i + (this.page - 1) * this.pageSize + 1 }}</strong>
                 </td>
-                <td>{{ user.name | titlecase }}</td>
-                <td>
-                  {{ user.email }}
-                </td>
-                <td *ngIf="user.server != null">{{ user.server.name }}</td>
-                <td *ngIf="user.server == null">Nenhum servidor</td>
-                <td *ngIf="user.permission == 0">Moderador</td>
-                <td *ngIf="user.permission > 0">
+                <td
+                  *ngFor="let column of columns; item"
+                  class="{{ column.className }}"
+                >
                   {{
-                    user.permission == 1
+                    column.columnName
+                      ? item[column.columnName]
+                      : column.columnOptional[i]
+                  }}
+                </td>
+                <th class="text-center">
+                  <button
+                    class="btn action"
+                    *ngFor="let action of actions"
+                    (click)="onAction(action, item)"
+                  >
+                    <img
+                      class="icon-action"
+                      src="./assets/icons/{{ action.iconClass }}.svg"
+                      alt=""
+                    />
+                  </button>
+                </th>
+
+                <!-- <td class="pl-3 pr-5">
+                  <strong>{{ i + (this.page - 1) * this.pageSize + 1 }}</strong>
+                </td>
+                <td>{{ item.name | titlecase }}</td>
+                <td>
+                  {{ item.email }}
+                </td>
+                <td *ngIf="item.server != null">{{ item.server.name }}</td>
+                <td *ngIf="item.server == null">Nenhum servidor</td>
+                <td *ngIf="item.permission == 0">Moderador</td>
+                <td *ngIf="item.permission > 0">
+                  {{
+                    item.permission == 1
                       ? "Administrador"
                       : "Administrador Global"
                   }}
@@ -91,14 +118,14 @@
                 <td class="text-center">
                   <a
                     class="mr-3 action"
-                    routerLink="/users/update/{{ user.id }}"
+                    routerLink="/users/update/{{ item.id }}"
                   >
                     <img src="./assets/icons/edit.svg" alt="" />
                   </a>
-                  <a (click)="openModal(user.id)" class="action">
+                  <a (click)="openModal(item.id)" class="action">
                     <img src="./assets/icons/delete.svg" alt="" />
                   </a>
-                </td>
+                </td> -->
               </tr>
             </tbody>
           </table>
@@ -118,13 +145,13 @@
             <option [ngValue]="2">2</option>
             <option [ngValue]="4">4</option>
             <option [ngValue]="6">6</option>
-            <option [ngValue]="10">10</option>
+            <!-- <option [ngValue]="8">8</option> -->
           </select>
         </div>
 
         <ngb-pagination
           *ngIf="data.length > 0"
-          [collectionSize]="collectionSize"
+          [collectionSize]="data.length"
           [(page)]="page"
           [pageSize]="pageSize"
           [maxSize]="3"
