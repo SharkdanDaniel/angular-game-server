@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NavbarRouteComponent } from './navbar-route.component';
+import { BreadcrumpComponent } from './breadcrump.component';
 
 describe('NavbarRouteComponent', () => {
-  let component: NavbarRouteComponent;
-  let fixture: ComponentFixture<NavbarRouteComponent>;
+  let component: BreadcrumpComponent;
+  let fixture: ComponentFixture<BreadcrumpComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NavbarRouteComponent ]
+      declarations: [ BreadcrumpComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NavbarRouteComponent);
+    fixture = TestBed.createComponent(BreadcrumpComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

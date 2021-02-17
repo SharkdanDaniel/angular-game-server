@@ -1,5 +1,4 @@
 .wrapper {
-  // padding: 50px 70px;
   height: 100%;
   width: 100%;
 }
@@ -74,7 +73,10 @@
 // }
 
 @media (max-width: 768px) {
+  // .layout-card {
+  //   max-height: 100%;
+  // }
   .header-navbar {
-    position: fixed;
+    // position: sticky !important;
   }
 }

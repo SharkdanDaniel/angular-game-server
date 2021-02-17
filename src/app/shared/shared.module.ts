@@ -8,14 +8,14 @@ import { NgxSpinnerComponent } from './components/ngx-spinner/ngx-spinner.compon
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ErrorMsgComponent } from './components/error-msg/error-msg.component';
 import { InputFieldComponent } from './components/input-field/input-field.component';
-import { NavbarRouteComponent } from './components/navbar-route/navbar-route.component';
+import { BreadcrumpComponent } from './components/breadcrump/breadcrump.component';
 import { ModalConfirmComponent } from './components/modal-confirm/modal-confirm.component';
 @NgModule({
   declarations: [
     NgxSpinnerComponent,
     ErrorMsgComponent,
     InputFieldComponent,
-    NavbarRouteComponent,
+    BreadcrumpComponent,
     ModalConfirmComponent,
   ],
   imports: [
@@ -38,7 +38,7 @@ import { ModalConfirmComponent } from './components/modal-confirm/modal-confirm.
     ErrorMsgComponent,
     InputFieldComponent,
     NgbPaginationModule,
-    NavbarRouteComponent,
+    BreadcrumpComponent,
     TableModule
   ],
 })

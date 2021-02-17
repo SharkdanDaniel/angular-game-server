@@ -2,11 +2,11 @@ import { Location } from '@angular/common';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-navbar-route',
-  templateUrl: './navbar-route.component.html',
-  styleUrls: ['./navbar-route.component.scss']
+  selector: 'app-breadcrump',
+  templateUrl: './breadcrump.component.html',
+  styleUrls: ['./breadcrump.component.scss']
 })
-export class NavbarRouteComponent implements OnInit {
+export class BreadcrumpComponent implements OnInit {
   @Input() router: string;
   @Input() first: string;
   @Input() current: string;

@@ -1,0 +1,9 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <i (click)="back()" class="align-self-center mr-2 fas fa-arrow-left"></i>
+    <li class="breadcrumb-item" routerLinkActive="active">
+      <a routerLink="{{ router }}">{{ first }}</a>
+    </li>
+    <li class="breadcrumb-item">{{ current }}</li>
+  </ol>
+</nav>

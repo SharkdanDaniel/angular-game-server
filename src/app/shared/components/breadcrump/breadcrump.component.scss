@@ -1,0 +1,24 @@
+.breadcrumb {
+  background-color: white;
+}
+
+i {
+  font-size: 22px;
+  color: #68717a;
+
+  cursor: pointer;
+}
+
+li {
+  font-weight: 800;
+  font-size: 16px;
+  color: #68717a;
+}
+
+.active:hover {
+  color: #9a77fd !important;
+}
+
+i:hover {
+  color: #95989b !important;
+}
