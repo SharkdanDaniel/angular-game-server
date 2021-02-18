@@ -81,7 +81,7 @@
                   {{
                     column.columnName
                       ? item[column.columnName]
-                      : column.columnOptional[i]
+                      : column.columnOptional[i + (this.page - 1) * this.pageSize]
                   }}
                 </td>
                 <th class="text-center">

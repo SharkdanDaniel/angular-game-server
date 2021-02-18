@@ -89,11 +89,12 @@ export class UsersComponent implements OnInit {
 
   getPermissionName() {
     let names = this.users.map((el: any) => {
-      return el.permission < 1
+      return el.permission <= 0
         ? 'Moderador'
-        : 'Administrador'
+        : el.permission == 1
+        ? 'Administrador'
+        : 'Administrador Global';
     });
-    console.log(names)
     return names;
   }
 

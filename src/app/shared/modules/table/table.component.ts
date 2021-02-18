@@ -67,9 +67,12 @@ export class TableComponent implements OnInit {
     if (value.trim() != '') {
       this.ngxSpinner.show('table');
       setTimeout(() => {
+        this.ngxSpinner.hide('table');
         this.data = this.data.filter((data: any) => {
-          this.ngxSpinner.hide('table');
-          return data.name.toLowerCase().indexOf(value.toLowerCase()) > -1;
+          if (Object.values(data).toString().toLowerCase().indexOf(value.toLowerCase()) > -1) {
+            return data;
+          }
+          // return data.name.toLowerCase().indexOf(value.toLowerCase()) > -1;
         });
       }, 200);
     }
