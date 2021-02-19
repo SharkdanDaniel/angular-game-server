@@ -33,13 +33,13 @@
           type="password"
           [ngClass]="applyErrCss('password')"
         />
+        <div class="d-block invalid-feedback" *ngIf="passwordInvalid">
+          E-mail ou senha inválida.
+        </div>
         <app-error-msg
           [label]="'Senha'"
           [control]="form.get('password')"
         ></app-error-msg>
-        <div class="d-block invalid-feedback" *ngIf="passwordInvalid">
-          E-mail ou senha inválida.
-        </div>
       </div>
 
       <div class="form-check class-checkinput">

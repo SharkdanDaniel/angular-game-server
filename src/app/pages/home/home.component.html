@@ -18,7 +18,7 @@
         <div class="d-flex align-items-center h-100">
           <img src="./assets/icons/swordIcon.svg" alt="" />
           <div>
-            <span class="">{{ server.availableItems.length }}</span>
+            <span *ngIf="server.availableItems"  class="">{{ server.availableItems.length }}</span>
             <p class="card-text">Items disponíveis</p>
           </div>
         </div>

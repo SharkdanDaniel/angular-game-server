@@ -76,8 +76,8 @@ export class PasswordStrengthBarComponent implements OnChanges {
       this.msg = '';
     }
     const pwdStrength = this.checkStrength(password);
-    pwdStrength === 40
-      ? this.passwordStrength.emit(true)
+    pwdStrength >= 30
+      ? [this.passwordStrength.emit(true), console.log('true')]
       : this.passwordStrength.emit(false);
     switch (pwdStrength) {
       case 10:
@@ -87,7 +87,7 @@ export class PasswordStrengthBarComponent implements OnChanges {
         this.msg = 'Mediano';
         break;
       case 30:
-        this.msg = 'Normal';
+        this.msg = 'Bom';
         break;
       case 40:
         this.msg = 'Forte';

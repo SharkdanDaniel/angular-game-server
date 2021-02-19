@@ -41,11 +41,18 @@ export class UserFormComponent extends BaseFormComponent implements OnInit {
       serverId: [this.serverService.getServerID()],
     });
     this.user = this.userService.getUser();
-    if (this.route.snapshot.routeConfig['path'] === 'update/:id') {
+    if (this.route.snapshot.paramMap.get('id')) {
       this.editing = true;
       const id = this.route.snapshot.paramMap.get('id');
       this.userService.getUsersById(id).subscribe((user) => {
-        this.form = this.formBuilder.group(user);
+        this.form = this.formBuilder.group({
+          name: [user.name, [Validators.required]],
+          email: [user.email, [Validators.required, Validators.email]],
+          password: [user.password, [Validators.required]],
+          permission: [user.permission, [Validators.required]],
+          serverId: [user.server ? user.server.id : '']
+        });
+        console.log(this.form)
       });
     } else {
       this.ngxSpinner.show();

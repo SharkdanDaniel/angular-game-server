@@ -41,7 +41,7 @@
                 <label for="permission">Nível de Permissão</label>
                 <select
                   [ngClass]="applyErrCss('permission')"
-                  class="form-select form-control"
+                  class="password form-select form-control"
                   aria-label="permission"
                   formControlName="permission"
                 >
@@ -91,7 +91,7 @@
             <div class="mt-md-5 d-flex flex-column flex-md-row">
               <div class="col-12 col-md-4">
                 <label for="">Nova senha</label>
-                <div class="d-flex justify-content-end">
+                <div class="password d-flex justify-content-end">
                   <input
                     [type]="hide2 ? 'password' : 'text'"
                     formControlName="password"
@@ -108,20 +108,20 @@
                     }}</mat-icon>
                   </button>
                 </div>
-                <app-error-msg
-                  [label]="'Senha'"
-                  [control]="form.get('password')"
-                ></app-error-msg>
                 <app-password-strength-bar
                   [passwordToCheck]="form.value.password"
                   (passwordStrength)="passwordValid($event)"
                 >
                 </app-password-strength-bar>
+                <app-error-msg
+                  [label]="'Senha'"
+                  [control]="form.get('password')"
+                ></app-error-msg>
               </div>
 
               <div class="col-12 col-md-4">
                 <label for="">Confirmar senha</label>
-                <div class="d-flex justify-content-end">
+                <div class="password d-flex justify-content-end">
                   <input
                     [type]="hide3 ? 'password' : 'text'"
                     [formControl]="confirmPassword"

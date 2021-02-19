@@ -17,7 +17,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  server: any = {};
+  server: any = { };
   avatars$: Observable<any[]>;
   diseases$: Observable<any[]>;
   jobs$: Observable<any[]>;
@@ -142,7 +142,8 @@ export class HomeComponent implements OnInit {
   }
 
   getAll() {
-    this.server = this.serverService.getServer();
+    this.serverService.getServerById(this.serverService.getServerID()).subscribe((res: any) => this.server = res);
+    console.log(this.server)
     this.users$ = this.userService.getUsers();
     this.avatars$ = this.avatarService.getAvatars();
     this.diseases$ = this.diseaseService
@@ -154,14 +155,14 @@ export class HomeComponent implements OnInit {
 
   avatars() {
     this.avatarService.getAvatars().subscribe((a: any) => {
-      a.forEach(el => {
+      a.forEach((el) => {
         if (el.isBanned) {
-          this.avatarBanned++
+          this.avatarBanned++;
         } else {
-          this.avatarAvailable++
+          this.avatarAvailable++;
         }
       });
-    })
+    });
   }
 
   // refresh() {

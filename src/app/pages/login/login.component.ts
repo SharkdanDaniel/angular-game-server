@@ -59,14 +59,14 @@ export class LoginComponent extends BaseFormComponent implements OnInit {
             } else {
               sessionStorage.setItem('user', JSON.stringify(data));
             }
-            console.table(data);
+            // console.table(data);
             if (data.permission < 2) {
               this.userService.getUsersById(data.id).subscribe((res) => {
                 if (remidme) {
-                  localStorage.setItem('user', JSON.stringify(data));
+                  // localStorage.setItem('user', JSON.stringify(data));
                   localStorage.setItem('server', JSON.stringify(res.server));
                 } else {
-                  sessionStorage.setItem('user', JSON.stringify(data));
+                  // sessionStorage.setItem('user', JSON.stringify(data));
                   sessionStorage.setItem('server', JSON.stringify(res.server));
                 }
                 // this.ngxSpinner.hide();

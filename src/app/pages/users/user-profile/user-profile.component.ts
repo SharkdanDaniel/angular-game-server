@@ -34,23 +34,32 @@ export class UserProfileComponent extends BaseFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      name: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(3)]],
-      permission: [0, [Validators.required]],
+      name: [''],
+      email: [''],
+      password: [''],
+      permission: [0],
       serverId: [''],
     });
     this.user = this.userService.getUser();
     this.userService.getUsersById(this.user.id).subscribe((data: any) => {
-      this.showPassord = new FormControl(data.password)
-      this.form = this.formBuilder.group(data);
-      this.form.get('password').setValue(0, [Validators.required, Validators.minLength(3)]);
-      this.confirmPassword = new FormControl('', CustomValidators.equalTo(this.form.get('password')));
+      this.showPassord = new FormControl(data.password);
+      this.form = this.formBuilder.group({
+        name: [data.name, [Validators.required]],
+        email: [data.email, [Validators.required, Validators.email]],
+        password: ['', [Validators.required]],
+        permission: [data.permisssion, [Validators.required]],
+        serverId: [data.serverId],
+      });
+      this.confirmPassword = new FormControl('', [
+        Validators.required,
+        CustomValidators.equalTo(this.form.get('password')),
+      ]);
     });
   }
 
   submit() {
-    console.log(this.form);
+    this.form.markAllAsTouched();
+    this.showPassord.valid ? console.log(this.form) : console.log('erro');
   }
 
   passwordValid() {}
