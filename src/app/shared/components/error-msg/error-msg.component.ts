@@ -1,4 +1,3 @@
-import { FormValidation } from '../../classes/form.validation';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
@@ -34,10 +33,14 @@ export class ErrorMsgComponent implements OnInit {
   get errorMsg() {
     for (const propertyName in this.control.errors) {
       if (
-        this.control.errors.hasOwnProperty(propertyName) && 
+        this.control.errors.hasOwnProperty(propertyName) &&
         this.control.touched
       ) {
-        return this.getErrorMsg(this.label, propertyName, this.control.errors[propertyName])
+        return this.getErrorMsg(
+          this.label,
+          propertyName,
+          this.control.errors[propertyName]
+        );
       }
     }
     return null;
@@ -49,6 +52,7 @@ export class ErrorMsgComponent implements OnInit {
       minlength: `${fieldname} precisa ter no mínimo ${validatorValue.requiredLength}.`,
       maxlength: `${fieldname} precisa ter no máximo ${validatorValue.requiredLength}.`,
       email: `Email inválido.`,
+      equalTo: `As senhas estão diferentes`,
     };
     return config[validatorName];
   }

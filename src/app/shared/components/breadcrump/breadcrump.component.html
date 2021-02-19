@@ -4,6 +4,6 @@
     <li class="breadcrumb-item" routerLinkActive="active">
       <a routerLink="{{ router }}">{{ first }}</a>
     </li>
-    <li class="breadcrumb-item">{{ current }}</li>
+    <li *ngIf="current"  class="breadcrumb-item">{{ current }}</li>
   </ol>
 </nav>

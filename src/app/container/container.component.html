@@ -67,8 +67,7 @@
       <nav class="navbar d-flex justify-content-between pr-0 pl-2 header-navbar position-relative">
         <div class="nav-item pb-2">
           <button
-            mat-icon-button
-            class=""
+            class="btn shadow-none"
             (click)="drawer.toggle()"
           >
           <mat-icon>menu</mat-icon>
@@ -84,6 +83,7 @@
               <div class="text-center ngbDropdown" ngbDropdownMenu>
                 <button
                   ngbDropdownItem
+                  routerLink="/users/profile/{{ user.id }}"
                 >
                   Perfil
                 </button>

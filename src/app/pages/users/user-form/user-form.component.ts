@@ -26,10 +26,10 @@ export class UserFormComponent extends BaseFormComponent implements OnInit {
     private router: Router,
     private ngxSpinner: NgxSpinnerService,
     private route: ActivatedRoute,
-    private modal: NgbModal,
+    protected modal: NgbModal,
     protected snackBar: SnackbarService
   ) {
-    super(snackBar);
+    super(snackBar, modal);
   }
 
   ngOnInit(): void {
@@ -55,22 +55,22 @@ export class UserFormComponent extends BaseFormComponent implements OnInit {
     }
   }
 
-  openModal() {
-    const modalRef = this.modal.open(ModalConfirmComponent, {
-      centered: true,
-      windowClass: 'h-75',
-    });
-    modalRef.componentInstance.title = 'Confirmar alterações';
-    modalRef.componentInstance.body =
-      'Você tem certeza que deseja alterar os dados?';
-    modalRef.componentInstance.action = 'Salvar alterações';
-    modalRef.result.then((res) => {
-      if (res) {
-        this.submit();
-        this.submiting = true;
-      }
-    });
-  }
+  // openModal() {
+  //   const modalRef = this.modal.open(ModalConfirmComponent, {
+  //     centered: true,
+  //     windowClass: 'h-75',
+  //   });
+  //   modalRef.componentInstance.title = 'Confirmar alterações';
+  //   modalRef.componentInstance.body =
+  //     'Você tem certeza que deseja alterar os dados?';
+  //   modalRef.componentInstance.action = 'Salvar alterações';
+  //   modalRef.result.then((res) => {
+  //     if (res) {
+  //       this.submit();
+  //       this.submiting = true;
+  //     }
+  //   });
+  // }
 
   submit() {
     let service

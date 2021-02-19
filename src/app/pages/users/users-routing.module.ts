@@ -1,3 +1,4 @@
+import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserFormComponent } from './user-form/user-form.component';
 import { FormGuard } from './../../core/guards/form.guard';
 import { UserDeleteComponent } from './user-delete/user-delete.component';
@@ -23,10 +24,10 @@ const routes: Routes = [
     component: UserFormComponent,
     canDeactivate: [FormGuard]
   },
-  // {
-  //   path: 'delete/:id',
-  //   component: UserDeleteComponent,
-  // },
+  {
+    path: 'profile/:id',
+    component: UserProfileComponent,
+  },
 ];
 
 @NgModule({

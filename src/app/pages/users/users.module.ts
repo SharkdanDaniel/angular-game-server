@@ -8,6 +8,7 @@ import { UserCreateComponent } from './user-create/user-create.component';
 import { UserUpdateComponent } from './user-update/user-update.component';
 import { UserDeleteComponent } from './user-delete/user-delete.component';
 import { UserFormComponent } from './user-form/user-form.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { UserFormComponent } from './user-form/user-form.component';
     UserUpdateComponent,
     UserDeleteComponent,
     UserFormComponent,
+    UserProfileComponent,
   ],
   imports: [CommonModule, UsersRoutingModule, SharedModule],
 })

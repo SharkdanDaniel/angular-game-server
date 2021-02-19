@@ -1,3 +1,4 @@
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SnackbarService } from './../../../core/services/snackbar.service';
 import { BaseFormComponent } from 'src/app/shared/components/base-form/base-form.component';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -21,9 +22,10 @@ export class UserCreateComponent extends BaseFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private ngxSpinner: NgxSpinnerService,
-    protected snackBar: SnackbarService
+    protected snackBar: SnackbarService,
+    protected modal: NgbModal
   ) {
-    super(snackBar);
+    super(snackBar, modal);
   }
 
   ngOnInit(): void {

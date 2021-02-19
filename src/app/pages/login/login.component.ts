@@ -1,3 +1,4 @@
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthGuard } from './../../core/guards/auth.guard';
 import { UserService } from './../../core/services/user.service';
 import { LoginService } from '../../core/services/login.service';
@@ -26,8 +27,9 @@ export class LoginComponent extends BaseFormComponent implements OnInit {
     private userService: UserService,
     protected snackBar: SnackbarService,
     private ngxSpinner: NgxSpinnerService,
+    protected modal: NgbModal    
   ) {
-    super(snackBar);
+    super(snackBar, modal);
   }
 
   ngOnInit(): void {
