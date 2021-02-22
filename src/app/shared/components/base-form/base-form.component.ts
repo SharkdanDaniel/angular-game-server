@@ -13,6 +13,7 @@ export abstract class BaseFormComponent implements OnInit {
   form: FormGroup;
   confirmPassword: FormControl;
   submiting = false;
+  editing = false;
 
   constructor(protected snackBar: SnackbarService, protected modal: NgbModal) {}
   ngOnInit(): void {}

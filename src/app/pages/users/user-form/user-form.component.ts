@@ -19,8 +19,7 @@ import { EMPTY } from 'rxjs';
 })
 export class UserFormComponent extends BaseFormComponent implements OnInit {
   user: User;
-  editing = false;
-
+  
   constructor(
     private userService: UserService,
     private serverService: ServersService,

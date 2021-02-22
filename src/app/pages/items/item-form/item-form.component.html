@@ -1,1 +1,93 @@
-<p>item-form works!</p>
+<div class="wrapper d-flex justify-content-center align-items-center">
+  <div class="main-container">
+    <app-breadcrump
+      router="/users"
+      first="Usuário"
+      current="{{ editing ? 'Atualizar' : 'Adicionar' }} usuário"
+    ></app-breadcrump>
+    <div class="card">
+      <span class="card-header bg-white">Dados do usuário</span>
+      <form [formGroup]="form" class="">
+        <div class="d-flex flex-column flex-md-row">
+          <div class="col-12 col-md-8">
+            <label for="">Nome</label>
+            <input
+              formControlName="name"
+              class="form-control"
+              type="text"
+              [ngClass]="applyErrCss('name')"
+            />
+            <app-error-msg
+              [label]="'Nome'"
+              [control]="form.get('name')"
+            ></app-error-msg>
+          </div>
+          <div class="col-12 col-md-4">
+            <label for="">Senha</label>
+            <input
+              formControlName="password"
+              class="form-control"
+              type="password"
+              [ngClass]="applyErrCss('password')"
+            />
+            <app-error-msg
+              [label]="'Senha'"
+              [control]="form.get('password')"
+            ></app-error-msg>
+          </div>
+        </div>
+        <div class="mt-md-5 d-flex flex-column flex-md-row">
+          <div class="col-12 col-md-4">
+            <label for="">E-mail</label>
+            <input
+              formControlName="email"
+              class="form-control"
+              type="email"
+              [ngClass]="applyErrCss('email')"
+            />
+            <app-error-msg
+              [label]="'Email'"
+              [control]="form.get('email')"
+            ></app-error-msg>
+          </div>
+
+          <div class="col-12 col-md-4">
+            <label for="permission">Nível de Permissão</label>
+            <select
+              [ngClass]="applyErrCss('permission')"
+              class="form-select form-control"
+              aria-label="permission"
+              formControlName="permission"
+            >
+              <option *ngIf="!form.get('permission').dirty && !editing"  class="option-selected" selected>Selecionar...</option>
+              <option value="0">Moderador</option>
+              <option *ngIf="user.permission >= 1" value="1">
+                Administrador
+              </option>
+              <option *ngIf="user.permission == 2" value="2">
+                Administrador Global
+              </option>
+            </select>
+            <app-error-msg
+              [label]="'Nível de Permissão'"
+              [control]="form.get('permission')"
+            ></app-error-msg>
+          </div>
+        </div>
+      </form>
+      <div
+        class="bg-white card-footer d-flex justify-content-end align-items-center"
+      >
+        <div class="">
+          <button routerLink="/users" class="btn btn-light">Voltar</button>
+          <button
+            (click)="editing ? openModal() : onSubmit()"
+            class="btn btn-primary"
+          >
+            {{ editing ? "Atualizar" : "Adicionar" }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
