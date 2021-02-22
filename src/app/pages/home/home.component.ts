@@ -143,7 +143,6 @@ export class HomeComponent implements OnInit {
 
   getAll() {
     this.serverService.getServerById(this.serverService.getServerID()).subscribe((res: any) => this.server = res);
-    console.log(this.server)
     this.users$ = this.userService.getUsers();
     this.avatars$ = this.avatarService.getAvatars();
     this.diseases$ = this.diseaseService
