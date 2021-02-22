@@ -1,3 +1,4 @@
+import { User } from './../../../core/models/user';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { catchError } from 'rxjs/operators';
 import { FormValidation } from './../../../shared/classes/form.validation';
@@ -16,7 +17,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./user-profile.component.scss'],
 })
 export class UserProfileComponent extends BaseFormComponent implements OnInit {
-  user: any;
+  user: User;
   active = 1;
   showPassord: FormControl;
 
@@ -46,7 +47,7 @@ export class UserProfileComponent extends BaseFormComponent implements OnInit {
       serverId: [''],
     });
     this.user = this.userService.getUser();
-    this.userService.getUsersById(this.user.id).subscribe((data: any) => {
+    this.userService.getUsersById(this.user.id).subscribe((data: User) => {
       this.showPassord = new FormControl(data.password);
       this.form = this.formBuilder.group({
         id: [data.id],
@@ -74,7 +75,7 @@ export class UserProfileComponent extends BaseFormComponent implements OnInit {
             return err;
           })
         )
-        .subscribe((res) => {
+        .subscribe(() => {
           this.snackBar.showMessage('As alterações foram salvas com sucesso');
           this.location.back();
         });

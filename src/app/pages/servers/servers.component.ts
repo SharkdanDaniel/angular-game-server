@@ -1,3 +1,4 @@
+import { Server } from './../../core/models/server';
 import { NgxSpinnerService } from 'ngx-spinner';
 /* import {
   TableColumn,
@@ -14,8 +15,8 @@ import { EMPTY } from 'rxjs';
   styleUrls: ['./servers.component.scss'],
 })
 export class ServersComponent implements OnInit {
-  servers: any[] = [];
-  serversBkp: any[] = [];
+  servers: Server[] = [];
+  serversBkp: Server[] = [];
 
   showBody = true;
   page = 1;

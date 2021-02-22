@@ -1,3 +1,4 @@
+import { User } from './../../core/models/user';
 import { Router } from '@angular/router';
 import {
   TableColumn,
@@ -19,7 +20,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./users.component.scss'],
 })
 export class UsersComponent implements OnInit {
-  users: any[] = [];
+  users: User[] = [];
   // usersBkp: any[] = [];
 
   // showBody = true;
@@ -52,7 +53,7 @@ export class UsersComponent implements OnInit {
   }
 
   getAll() {
-    this.userService.getUsers().subscribe((res: any) => {
+    this.userService.getUsers().subscribe((res: User[]) => {
       // this.collectionSize = res.length;
       this.users = res;
       // this.usersBkp = res;

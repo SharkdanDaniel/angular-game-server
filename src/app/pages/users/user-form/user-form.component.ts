@@ -1,3 +1,4 @@
+import { User } from './../../../core/models/user';
 import { ServersService } from './../../../core/services/servers.service';
 import { ModalConfirmComponent } from './../../../shared/components/modal-confirm/modal-confirm.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -17,7 +18,7 @@ import { EMPTY } from 'rxjs';
   styleUrls: ['./user-form.component.scss'],
 })
 export class UserFormComponent extends BaseFormComponent implements OnInit {
-  user: any;
+  user: User;
   editing = false;
 
   constructor(
@@ -45,7 +46,7 @@ export class UserFormComponent extends BaseFormComponent implements OnInit {
     if (this.route.snapshot.paramMap.get('id')) {
       this.editing = true;
       const id = this.route.snapshot.paramMap.get('id');
-      this.userService.getUsersById(id).subscribe((user) => {
+      this.userService.getUsersById(id).subscribe((user: User) => {
         // this.form = this.formBuilder.group(user)
         this.form = this.formBuilder.group({
           id: [user.id],

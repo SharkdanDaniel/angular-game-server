@@ -1,3 +1,4 @@
+import { Server } from './../models/server';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { SnackbarService } from './snackbar.service';
 import { CrudService } from './../../shared/classes/crud-service';
@@ -10,7 +11,7 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class ServersService extends CrudService<any> {
+export class ServersService extends CrudService<Server> {
   
   constructor(
     private token: TokenService,
