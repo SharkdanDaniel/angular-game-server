@@ -10,7 +10,7 @@ import {
   HttpInterceptor,
   HttpResponse,
 } from '@angular/common/http';
-import { Observable, EMPTY } from 'rxjs';
+import { Observable, EMPTY, throwError } from 'rxjs';
 
 @Injectable()
 export class HttpRequestInterceptor implements HttpInterceptor {
@@ -30,13 +30,10 @@ export class HttpRequestInterceptor implements HttpInterceptor {
     return next
       .handle(request)
       .pipe(
-        // catchError((err) => {
-        //   this._loading.setLoading(false, request.url);
-        //   this.spinner.hide('content');
-        //   this.spinner.hide();
-        //   this.snackBar.showMessage('Erro ao conectar com o servidor', true)
-        //   return err;
-        // })
+        catchError((err) => {          
+          this.spinner.hide();
+          return throwError(err);
+        })
       )
       .pipe(
         map<HttpEvent<any>, any>((evt: HttpEvent<any>) => {

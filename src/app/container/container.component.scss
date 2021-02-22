@@ -81,8 +81,8 @@
   }
 }
 
-// @media(min-height: 680px) {
-//   .layout-card {
-//     max-height: 100%;
-//   }
-// }
+@media(max-height: 680px) {
+  .layout-card {
+    max-height: 100%;
+  }
+}

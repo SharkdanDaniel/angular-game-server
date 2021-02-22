@@ -47,7 +47,6 @@ export class FormGuard implements CanDeactivate<BaseFormComponent> {
     if (component.form.dirty && !component.submiting) {      
       return this.openModal();
     } else {
-      console.log('pode');
       return true;
     }
   }

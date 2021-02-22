@@ -1,3 +1,5 @@
+import { NgxSpinnerService } from 'ngx-spinner';
+import { catchError } from 'rxjs/operators';
 import { FormValidation } from './../../../shared/classes/form.validation';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from './../../../core/services/user.service';
@@ -6,6 +8,7 @@ import { BaseFormComponent } from 'src/app/shared/components/base-form/base-form
 import { SnackbarService } from 'src/app/core/services/snackbar.service';
 import { Component, OnInit } from '@angular/core';
 import { CustomValidators } from 'ng2-validation';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-user-profile',
@@ -19,7 +22,7 @@ export class UserProfileComponent extends BaseFormComponent implements OnInit {
 
   passwordIsValid = false;
 
-  hide1 = false;
+  hide1 = true;
   hide2 = true;
   hide3 = true;
 
@@ -27,7 +30,9 @@ export class UserProfileComponent extends BaseFormComponent implements OnInit {
     protected snackBar: SnackbarService,
     private userService: UserService,
     private formBuilder: FormBuilder,
-    protected modal: NgbModal
+    protected modal: NgbModal,
+    private ngxSpiner: NgxSpinnerService,
+    private location: Location
   ) {
     super(snackBar, modal);
   }
@@ -44,11 +49,12 @@ export class UserProfileComponent extends BaseFormComponent implements OnInit {
     this.userService.getUsersById(this.user.id).subscribe((data: any) => {
       this.showPassord = new FormControl(data.password);
       this.form = this.formBuilder.group({
+        id: [data.id],
         name: [data.name, [Validators.required]],
         email: [data.email, [Validators.required, Validators.email]],
         password: ['', [Validators.required]],
-        permission: [data.permisssion, [Validators.required]],
-        serverId: [data.serverId],
+        permission: [data.permission, [Validators.required]],
+        server: [data.server ? data.server : ''],
       });
       this.confirmPassword = new FormControl('', [
         Validators.required,
@@ -58,8 +64,21 @@ export class UserProfileComponent extends BaseFormComponent implements OnInit {
   }
 
   submit() {
-    this.form.markAllAsTouched();
-    this.showPassord.valid ? console.log(this.form) : console.log('erro');
+    if (this.showPassord.valid) {
+      this.userService
+        .updateUser(this.form.value)
+        .pipe(
+          catchError((err) => {
+            this.ngxSpiner.hide();
+            this.snackBar.showMessage('Erro ao salvar as alterações', true);
+            return err;
+          })
+        )
+        .subscribe((res) => {
+          this.snackBar.showMessage('As alterações foram salvas com sucesso');
+          this.location.back();
+        });
+    }
   }
 
   passwordValid() {}
