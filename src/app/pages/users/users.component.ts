@@ -43,8 +43,8 @@ export class UsersComponent implements OnInit {
   constructor(
     protected ngxSpinner: NgxSpinnerService,
     private userService: UserService,
-    protected modalService: NgbModal,
-    protected snackBar: SnackbarService,
+    private modalService: NgbModal,
+    private snackBar: SnackbarService,
     private router: Router
   ) {}
 

@@ -7,10 +7,11 @@ import { ItemsComponent } from './items.component';
 import { ItemCreateComponent } from './item-create/item-create.component';
 import { ItemUpdateComponent } from './item-update/item-update.component';
 import { ItemDeleteComponent } from './item-delete/item-delete.component';
+import { ItemFormComponent } from './item-form/item-form.component';
 
 
 @NgModule({
-  declarations: [ItemsComponent, ItemCreateComponent, ItemUpdateComponent, ItemDeleteComponent],
+  declarations: [ItemsComponent, ItemCreateComponent, ItemUpdateComponent, ItemDeleteComponent, ItemFormComponent],
   imports: [
     CommonModule,
     ItemsRoutingModule,

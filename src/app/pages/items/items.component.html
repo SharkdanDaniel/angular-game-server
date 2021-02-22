@@ -1,4 +1,15 @@
-<div class="d-flex justify-content-center">
+<app-table
+  [data]="items"
+  [pageSize]="pageSize"
+  searchPlaceholder="Buscar item"
+  title="Items"
+  [columns]="columns"
+  [actions]="actions"
+  (action)="onAction($event)"
+  (refresh)="getAll()"
+></app-table>
+
+<!-- <div class="d-flex justify-content-center">
     <div class="w-75">
         <div class="d-flex justify-content-center">
             <h1>Itens disponíveis</h1>
@@ -11,7 +22,7 @@
         <table *ngIf="count >=1; else else1" class="table table-striped">
             <thead class="">
                 <tr>
-                    <!-- <th scope="col">Imagem</th> -->
+                    <th scope="col">Imagem</th>
                     <th scope="col">Nome</th>
                     <th scope="col">Vida</th>
                     <th scope="col">Colete</th>
@@ -27,7 +38,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let item of items">
-                    <!-- <td>{{ item.imageId }}</td> -->
+                    <td>{{ item.imageId }}</td>
                     <td>{{ item.name }}</td>
                     <td>{{ item.health }}</td>
                     <td>{{ item.vest }}</td>
@@ -47,4 +58,4 @@
         </table>
         <button routerLink="/items/create" class="btn btn-primary">Adicionar</button>
     </div>
-</div>
+</div> -->
