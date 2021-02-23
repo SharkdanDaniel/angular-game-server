@@ -1,16 +1,16 @@
 <div class="wrapper d-flex justify-content-center align-items-center">
   <div class="main-container">
     <app-breadcrump
-      router="/users"
-      first="Usuário"
-      current="{{ editing ? 'Atualizar' : 'Adicionar' }} usuário"
+      router="/items"
+      first="Items"
+      current="{{ editing ? 'Atualizar' : 'Adicionar' }} item"
     ></app-breadcrump>
     <div class="card">
-      <span class="card-header bg-white">Dados do usuário</span>
+      <span class="card-header bg-white">Dados do item</span>
       <form [formGroup]="form" class="">
         <div class="d-flex flex-column flex-md-row">
-          <div class="col-12 col-md-8">
-            <label for="">Nome</label>
+          <div class="col-md-8">
+            <label for="name">Nome</label>
             <input
               formControlName="name"
               class="form-control"
@@ -22,56 +22,99 @@
               [control]="form.get('name')"
             ></app-error-msg>
           </div>
-          <div class="col-12 col-md-4">
-            <label for="">Senha</label>
+          <div class="col-md-4">
+            <label for="health">Vida</label>
             <input
-              formControlName="password"
+              formControlName="health"
               class="form-control"
-              type="password"
-              [ngClass]="applyErrCss('password')"
+              type="number"
+              [ngClass]="applyErrCss('health')"
             />
             <app-error-msg
-              [label]="'Senha'"
-              [control]="form.get('password')"
+              [label]="'Vida'"
+              [control]="form.get('health')"
             ></app-error-msg>
           </div>
         </div>
-        <div class="mt-md-5 d-flex flex-column flex-md-row">
-          <div class="col-12 col-md-4">
-            <label for="">E-mail</label>
+        <div class="mt-md-4 d-flex mt-0">
+          <div class="col-md-4">
+            <label for="vest">Colete</label>
             <input
-              formControlName="email"
+              formControlName="vest"
               class="form-control"
-              type="email"
-              [ngClass]="applyErrCss('email')"
+              type="number"
+              [ngClass]="applyErrCss('vest')"
             />
             <app-error-msg
-              [label]="'Email'"
-              [control]="form.get('email')"
+              [label]="'Colete'"
+              [control]="form.get('vest')"
             ></app-error-msg>
           </div>
-
-          <div class="col-12 col-md-4">
-            <label for="permission">Nível de Permissão</label>
-            <select
-              [ngClass]="applyErrCss('permission')"
-              class="form-select form-control"
-              aria-label="permission"
-              formControlName="permission"
-            >
-              <option *ngIf="!form.get('permission').dirty && !editing"  class="option-selected" selected>Selecionar...</option>
-              <option value="0">Moderador</option>
-              <option *ngIf="user.permission >= 1" value="1">
-                Administrador
-              </option>
-              <option *ngIf="user.permission == 2" value="2">
-                Administrador Global
-              </option>
-            </select>
+          <div class="col-md-4">
+            <label for="experience">Experiência</label>
+            <input
+              formControlName="experience"
+              class="form-control"
+              type="number"
+              [ngClass]="applyErrCss('experience')"
+            />
             <app-error-msg
-              [label]="'Nível de Permissão'"
-              [control]="form.get('permission')"
+              [label]="'Experiência'"
+              [control]="form.get('experience')"
             ></app-error-msg>
+          </div>
+          <div class="col-md-4">
+            <label for="hungry">Fome</label>
+            <input
+              formControlName="hungry"
+              class="form-control"
+              type="number"
+              [ngClass]="applyErrCss('hungry')"
+            />
+            <app-error-msg
+              [label]="'Fome'"
+              [control]="form.get('hungry')"
+            ></app-error-msg>
+          </div>
+        </div>
+        <div class="mt-md-4 d-flex">
+          <div class="col-md-4">
+            <label for="money">Dinheiro</label>
+            <input
+              formControlName="vest"
+              class="form-control"
+              type="number"
+              [ngClass]="applyErrCss('money')"
+            />
+            <app-error-msg
+              [label]="'Dinheiro'"
+              [control]="form.get('money')"
+            ></app-error-msg>
+          </div>
+          <div class="col-md-4">
+            <label for="statusPoint">Status</label>
+            <input
+              formControlName="statusPoint"
+              class="form-control"
+              type="number"
+              [ngClass]="applyErrCss('statusPoint')"
+            />
+            <app-error-msg
+              [label]="'Status'"
+              [control]="form.get('statusPoint')"
+            ></app-error-msg>
+          </div>
+          <div class="form-check col-md-2">
+            <label class="form-check-label pl-1 mb-1" for="isVirtual"
+              >Virtual</label
+            ><br />
+            <toggler formControlName="isVirtual"></toggler>
+          </div>
+          <div class="form-check col-md-2">
+            <label class="form-check-label pl-2 mb-1" for="isInitial"
+              >Inicial</label
+            ><br />
+            <toggler formControlName="isInitial"></toggler>
           </div>
         </div>
       </form>
@@ -79,7 +122,7 @@
         class="bg-white card-footer d-flex justify-content-end align-items-center"
       >
         <div class="">
-          <button routerLink="/users" class="btn btn-light">Voltar</button>
+          <button routerLink="/items" class="btn btn-light">Voltar</button>
           <button
             (click)="editing ? openModal() : onSubmit()"
             class="btn btn-primary"

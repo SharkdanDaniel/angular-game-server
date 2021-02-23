@@ -35,17 +35,17 @@ export class ItemDeleteComponent implements OnInit {
       isVirtual: [{ value: null, disabled: true }],
     });
     const id = this.route.snapshot.paramMap.get('id');
-    this.itemsService
-      .getItems()
-      .pipe(take(1))
-      .subscribe((data) => {
-        data.availableItems.forEach((i) => {
-          if (i.id == id) {
-            this.form = this.formBuilder.group(i);
-            console.log(this.form.value);
-          }
-        });
-      });
+    // this.itemsService
+    //   .getItems()
+    //   .pipe(take(1))
+    //   .subscribe((data) => {
+    //     data.availableItems.forEach((i) => {
+    //       if (i.id == id) {
+    //         this.form = this.formBuilder.group(i);
+    //         console.log(this.form.value);
+    //       }
+    //     });
+    //   });
   }
 
   delete() {

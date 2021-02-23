@@ -53,3 +53,12 @@
     }
   }
 }
+
+@media(max-width: 768px) {
+  .card .main-container {
+    max-height: 100% !important;
+  }
+  .form {
+    padding: 0 !important;
+  }
+}

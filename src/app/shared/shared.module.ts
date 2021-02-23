@@ -1,3 +1,4 @@
+import { TogglerModule } from './modules/toggler/toggler.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
@@ -15,6 +16,7 @@ import { ModalConfirmComponent } from './components/modal-confirm/modal-confirm.
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { Ng9PasswordStrengthBarModule } from 'ng9-password-strength-bar';
 import { PasswordStrengthBarComponent } from './components/password-strength-bar/password-strength-bar.component';
+import { InputSwitchModule } from 'primeng/inputswitch';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { PasswordStrengthBarComponent } from './components/password-strength-bar
     NgbNavModule,
     MatIconModule,
     MatButtonModule,
+    TogglerModule,
     MatFormFieldModule,
+    InputSwitchModule,
     Ng9PasswordStrengthBarModule
   ],
   exports: [
@@ -54,8 +58,10 @@ import { PasswordStrengthBarComponent } from './components/password-strength-bar
     TableModule,
     NgbNavModule,
     MatIconModule,
+    TogglerModule,
     MatButtonModule,
     MatFormFieldModule,
+    InputSwitchModule,
     Ng9PasswordStrengthBarModule,
     PasswordStrengthBarComponent
   ],

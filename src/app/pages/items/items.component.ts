@@ -21,7 +21,59 @@ export class ItemsComponent implements OnInit {
   items: Item[] = [];
   pageSize = 4;
 
-  columns: TableColumn[];
+  columns = [
+    {
+      displayName: 'Nome',
+      columnName: 'name',
+    },
+    {
+      displayName: 'Vida',
+      columnName: 'health',
+      className: 'text-center',
+    },
+    {
+      displayName: 'Colete',
+      columnName: 'vest',
+      className: 'text-center',
+    },
+
+    {
+      displayName: 'Experiência',
+      columnName: 'experience',
+      className: 'text-center',
+    },
+    {
+      displayName: 'Fome',
+      columnName: 'hungry',
+      className: 'text-center',
+    },
+    {
+      displayName: 'Dinheiro',
+      columnName: 'money',
+      className: 'text-center',
+    },
+    {
+      displayName: 'Status',
+      columnName: 'statusPoint',
+      className: 'text-center',
+    },
+    {
+      displayName: 'Inicial',
+      columnName: 'isInitial',
+      className: 'text-center',
+    },
+    {
+      displayName: 'Quantidade Inicial',
+      columnName: 'quantityInitial',
+      className: 'text-center',
+    },
+    {
+      displayName: 'Virtual',
+      columnName: 'isVirtual',
+      className: 'text-center',
+    },
+  ];
+
   actions: TableAction[] = [
     {
       iconClass: 'edit',
@@ -57,62 +109,9 @@ export class ItemsComponent implements OnInit {
     this.itemsService.getItems().subscribe((res: any) => {
       // this.collectionSize = res.length;
       this.items = res;
-      console.log(res)
       // this.usersBkp = res;
       // this.getServersName();
       // this.getPermissionName();
-      this.columns = [
-        {
-          displayName: 'Nome',
-          columnName: 'name',
-        },
-        {
-          displayName: 'Vida',
-          columnName: 'health',
-          className: 'text-center'
-        },
-        {
-          displayName: 'Colete',
-          columnName: 'vest',
-          className: 'text-center'
-        },
-
-        {
-          displayName: 'Experiência',
-          columnName: 'experience',
-          className: 'text-center'
-        },
-        {
-          displayName: 'Fome',
-          columnName: 'hungry',
-          className: 'text-center'
-        },
-        {
-          displayName: 'Dinheiro',
-          columnName: 'money',
-          className: 'text-center'
-        },
-        {
-          displayName: 'Status',
-          columnName: 'statusPoint',
-          className: 'text-center'
-        },
-        {
-          displayName: 'Inicial',
-          columnName: 'isInitial',
-          className: 'text-center'
-        },
-        {
-          displayName: 'Quantidade Inicial',
-          columnName: 'quantityInitial',
-          className: 'text-center'
-        },
-        {
-          displayName: 'Virtual',
-          columnName: 'isVirtual',
-          className: 'text-center'
-        },
-      ];
     });
   }
 
@@ -153,27 +152,27 @@ export class ItemsComponent implements OnInit {
 
   delete(id: string) {
     this.itemsService.deleteItem(id).subscribe((res) => {
-      this.items.forEach((val, index, arr) => {
-        if (val.id === id) {
-          this.items.splice(
-            this.items.findIndex((a) => a.id === id),
-            1
-          );
-          if (Object.is(arr.length - 1, index)) {
-            this.getAll();
-          }
-        }
-      });
-      console.log('Usuário deletado', res);
-      this.snackBar.showMessage('Usuário excluído com sucesso!');
+      // this.items.forEach((val, index, arr) => {
+      //   if (val.id === id) {
+      //     this.items.splice(
+      //       this.items.findIndex((a) => a.id === id),
+      //       1
+      //     );
+      //     if (Object.is(arr.length - 1, index)) {
+      //       this.getAll();
+      //     }
+      //   }
+      // });
+      this.items = this.items.filter((el) => el.id != id);
+      console.log('Item deletado', res);
+      this.getAll();
+      this.snackBar.showMessage('Item excluído com sucesso!');
     }),
       (err) => {
         console.log(err);
-        this.snackBar.showMessage(
-          'Não foi possível excluir este usuário',
-          true
-        );
-      };
+        this.snackBar.showMessage('Não foi possível excluir este item', true);
+      },
+      (res) => {};
   }
 
   onAction(ev: any) {
