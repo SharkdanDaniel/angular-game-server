@@ -144,7 +144,8 @@
       </div>
     </div>
     <div class="card-footer bg-white mt-4">
-      <div *ngIf="data.length > 0" class="d-flex justify-content-between pt-3">
+      <div *ngIf="data.length < 2" class="p-4"></div>
+      <div *ngIf="data.length > 2" class="d-flex justify-content-between pt-3">
         <div>
           <strong class="mr-2">Resultados por página: </strong>
           <select
@@ -154,8 +155,8 @@
             (ngModelChange)="refreshData()"
           >
             <option [ngValue]="2">2</option>
-            <option [ngValue]="4">4</option>
-            <option [ngValue]="6">6</option>
+            <option *ngIf="data.length >= 4" [ngValue]="4">4</option>
+            <option *ngIf="data.length >= 6"   [ngValue]="6">6</option>
             <!-- <option [ngValue]="8">8</option> -->
           </select>
         </div>

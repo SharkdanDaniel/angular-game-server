@@ -1,0 +1,110 @@
+<div class="wrapper d-flex justify-content-center align-items-center">
+  <div class="main-container">
+    <app-breadcrump
+      router="/jobs"
+      first="Profissões"
+      current="{{ editing ? 'Atualizar' : 'Adicionar' }} profissão"
+    ></app-breadcrump>
+    <div class="card">
+      <span class="card-header bg-white">Dados da profissão</span>
+      <form [formGroup]="form" class="">
+        <div class="d-flex flex-column flex-md-row">
+          <div class="inputs">
+            <div class="d-flex flex-column flex-md-row">
+              <div class="col-12">
+                <label for="name">Nome</label>
+                <input
+                  formControlName="name"
+                  class="form-control"
+                  type="text"
+                  [ngClass]="applyErrCss('name')"
+                />
+                <app-error-msg
+                  [label]="'Nome'"
+                  [control]="form.get('name')"
+                ></app-error-msg>
+              </div>
+            </div>
+            <div class="d-flex flex-column flex-md-row">
+              <div class="col-md-6 mt-4">
+                <label for="requirementXp">Xp necessária</label>
+                <input
+                  formControlName="requirementXp"
+                  class="form-control"
+                  type="number"
+                  [ngClass]="applyErrCss('requirementXp')"
+                />
+                <app-error-msg
+                  [label]="'Xp necessária'"
+                  [control]="form.get('requirementXp')"
+                ></app-error-msg>
+              </div>
+              <div class="col-md-6 mt-4">
+                <label for="color">Cor</label>
+                <input
+                  formControlName="color"
+                  class="form-control"
+                  type="text"
+                  [ngClass]="applyErrCss('color')"
+                />
+                <app-error-msg
+                  [label]="'Cor'"
+                  [control]="form.get('color')"
+                ></app-error-msg>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex">
+            <div class="d-flex d-md-block flex-wrap mr-md-4">
+              <div class="form-check mb-2">
+                <label class="form-check-label pl-1 mb-1" for="publicJob"
+                  >Público</label
+                ><br />
+                <toggler formControlName="publicJob"></toggler>
+              </div>
+              <div class="form-check mb-2">
+                <label class="form-check-label pl-2 mb-1" for="canDoMarriage"
+                  >Pode casar</label
+                ><br />
+                <toggler formControlName="canDoMarriage"></toggler>
+              </div>
+              <div class="form-check mb-2">
+                <label class="form-check-label pl-2 mb-1" for="canHeal"
+                  >Pode curar</label
+                ><br />
+                <toggler formControlName="canHeal"></toggler>
+              </div>
+            </div>
+            <div class="d-flex d-md-block flex-wrap">
+              <div class="form-check mb-2">
+                <label class="form-check-label pl-1 mb-1" for="isDefault"
+                  >Padrão</label
+                ><br />
+                <toggler formControlName="isDefault"></toggler>
+              </div>
+              <div class="form-check mb-2">
+                <label class="form-check-label pl-2 mb-1" for="canArrest"
+                  >Pode prender</label
+                ><br />
+                <toggler formControlName="canArrest"></toggler>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div
+        class="bg-white card-footer d-flex justify-content-end align-items-center"
+      >
+        <div class="">
+          <button routerLink="/jobs" class="btn btn-light">Voltar</button>
+          <button
+            (click)="editing ? openModal() : onSubmit()"
+            class="btn btn-primary"
+          >
+            {{ editing ? "Atualizar" : "Adicionar" }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

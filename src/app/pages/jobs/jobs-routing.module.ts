@@ -1,3 +1,4 @@
+import { JobFormComponent } from './job-form/job-form.component';
 import { JobUpdateComponent } from './job-update/job-update.component';
 import { JobDeleteComponent } from './job-delete/job-delete.component';
 import { JobCreateComponent } from './job-create/job-create.component';
@@ -13,16 +14,16 @@ const routes: Routes = [
   },
   {
     path: 'create',
-    component: JobCreateComponent
-  },
-  {
-    path: 'delete/:id',
-    component: JobDeleteComponent
-  },
+    component: JobFormComponent
+  },  
   {
     path: 'update/:id',
-    component: JobUpdateComponent
-  }
+    component: JobFormComponent
+  },
+  // {
+  //   path: 'delete/:id',
+  //   component: JobDeleteComponent
+  // },
 ];
 
 @NgModule({
