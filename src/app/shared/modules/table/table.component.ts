@@ -25,6 +25,7 @@ export class TableComponent implements OnInit {
   @Input() data: any[] = [];
 
   @Input() title = 'Título';
+  @Input() showAdd = true;
   @Input() add = 'create';
   @Input() notFound = 'Nenhum dado encontrado';
 

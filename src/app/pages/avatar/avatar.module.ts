@@ -7,10 +7,11 @@ import { AvatarComponent } from './avatar.component';
 import { AvatarUpdateComponent } from './avatar-update/avatar-update.component';
 import { AvatarBanComponent } from './avatar-ban/avatar-ban.component';
 import { AvatarUnbanComponent } from './avatar-unban/avatar-unban.component';
+import { AvatarFormComponent } from './avatar-form/avatar-form.component';
 
 
 @NgModule({
-  declarations: [AvatarComponent, AvatarUpdateComponent, AvatarBanComponent, AvatarUnbanComponent],
+  declarations: [AvatarComponent, AvatarUpdateComponent, AvatarBanComponent, AvatarUnbanComponent, AvatarFormComponent],
   imports: [
     CommonModule,
     AvatarRoutingModule,

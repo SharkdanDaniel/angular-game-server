@@ -1,0 +1,176 @@
+<div class="wrapper d-flex justify-content-center align-items-center">
+  <div class="main-container">
+    <app-breadcrump
+      router="/avatar"
+      first="Avatares"
+      current="{{ editing ? 'Atualizar' : 'Adicionar' }} avatar"
+    ></app-breadcrump>
+    <div class="card">
+      <span class="card-header bg-white">Dados do avatar</span>
+      <form [formGroup]="form" class="">
+        <div class="d-flex flex-column flex-md-row">
+          <div class="col-md-8">
+            <label for="name">Nome</label>
+            <input
+              formControlName="name"
+              class="form-control"
+              type="text"
+              [ngClass]="applyErrCss('name')"
+            />
+            <app-error-msg
+              [label]="'Nome'"
+              [control]="form.get('name')"
+            ></app-error-msg>
+          </div>
+          <div class="col-md-4">
+            <label for="title">Título</label>
+            <input
+              formControlName="title"
+              class="form-control"
+              type="text"
+              [ngClass]="applyErrCss('title')"
+            />
+            <app-error-msg
+              [label]="'Título'"
+              [control]="form.get('title')"
+            ></app-error-msg>
+          </div>
+        </div>
+        <div class="mt-md-4 d-flex mt-0">
+          <div class="col-md-4">
+            <label for="health">HP</label>
+            <input
+              formControlName="health"
+              class="form-control"
+              type="number"
+              [ngClass]="applyErrCss('health')"
+            />
+            <app-error-msg
+              [label]="'HP'"
+              [control]="form.get('health')"
+            ></app-error-msg>
+          </div>
+          <div class="col-md-4">
+            <label for="armor">Armadura</label>
+            <input
+              formControlName="armor"
+              class="form-control"
+              type="number"
+              [ngClass]="applyErrCss('armor')"
+            />
+            <app-error-msg
+              [label]="'Armadura'"
+              [control]="form.get('armor')"
+            ></app-error-msg>
+          </div>
+          <div class="col-md-4">
+            <label for="bannedReason">Motivo do ban</label>
+            <input
+              formControlName="bannedReason"
+              class="form-control"
+              type="text"
+              [ngClass]="applyErrCss('bannedReason')"
+            />
+            <app-error-msg
+              [label]="'Motivo do ban'"
+              [control]="form.get('bannedReason')"
+            ></app-error-msg>
+          </div>
+        </div>
+        <div class="mt-md-4 d-flex">
+          <div class="col-md-4">
+            <label for="hungry">Fome</label>
+            <input
+              formControlName="hungry"
+              class="form-control"
+              type="number"
+              [ngClass]="applyErrCss('hungry')"
+            />
+            <app-error-msg
+              [label]="'Dinheiro'"
+              [control]="form.get('hungry')"
+            ></app-error-msg>
+          </div>
+          <div class="col-md-4">
+            <label for="experience">Exp</label>
+            <input
+              formControlName="experience"
+              class="form-control"
+              type="number"
+              [ngClass]="applyErrCss('experience')"
+            />
+            <app-error-msg
+              [label]="'Exp'"
+              [control]="form.get('experience')"
+            ></app-error-msg>
+          </div>
+          <div class="form-check col-md-2">
+            <label class="form-check-label pl-1 mb-1" for="leader"
+              >Líder</label
+            ><br />
+            <toggler formControlName="leader"></toggler>
+          </div>
+          <div class="form-check col-md-2">
+            <label class="form-check-label pl-2 mb-1" for="isBanned"
+              >Banido</label
+            ><br />
+            <toggler formControlName="isBanned"></toggler>
+          </div>
+        </div>
+        <div class="mt-md-4 d-flex">
+          <div class="col-md-4">
+            <label for="money">Dinheiro</label>
+            <input
+              formControlName="hungry"
+              class="form-control"
+              type="number"
+              [ngClass]="applyErrCss('money')"
+            />
+            <app-error-msg
+              [label]="'Dinheiro'"
+              [control]="form.get('money')"
+            ></app-error-msg>
+          </div>
+          <div class="col-md-4">
+            <label for="statusPoint">Pontos de status</label>
+            <input
+              formControlName="statusPoint"
+              class="form-control"
+              type="number"
+              [ngClass]="applyErrCss('statusPoint')"
+            />
+            <app-error-msg
+              [label]="'Pontos de status'"
+              [control]="form.get('statusPoint')"
+            ></app-error-msg>
+          </div>
+          <div class="form-check col-md-2">
+            <label class="form-check-label pl-1 mb-1" for="isDead"
+              >Morto</label
+            ><br />
+            <toggler formControlName="isDead"></toggler>
+          </div>
+          <div class="form-check col-md-2">
+            <label class="form-check-label pl-2 mb-1" for="isAdmin"
+              >Admin</label
+            ><br />
+            <toggler formControlName="isAdmin"></toggler>
+          </div>
+        </div>
+      </form>
+      <div
+        class="bg-white card-footer d-flex justify-content-end align-items-center"
+      >
+        <div class="">
+          <button routerLink="/avatar" class="btn btn-light">Voltar</button>
+          <button
+            (click)="editing ? openModal() : onSubmit()"
+            class="btn btn-primary"
+          >
+            {{ editing ? "Atualizar" : "Adicionar" }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

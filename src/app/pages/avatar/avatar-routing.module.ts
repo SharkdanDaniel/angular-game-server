@@ -1,3 +1,4 @@
+import { AvatarFormComponent } from './avatar-form/avatar-form.component';
 import { AvatarUnbanComponent } from './avatar-unban/avatar-unban.component';
 import { AvatarBanComponent } from './avatar-ban/avatar-ban.component';
 import { AvatarUpdateComponent } from './avatar-update/avatar-update.component';
@@ -13,7 +14,7 @@ const routes: Routes = [
   },
   {
     path: 'update/:id',
-    component: AvatarUpdateComponent,
+    component: AvatarFormComponent,
   },
   {
     path: 'ban/:id',
