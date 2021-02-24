@@ -21,7 +21,7 @@ export class ItemsComponent implements OnInit {
   items: Item[] = [];
   pageSize = 4;
 
-  columns = [
+  columns: TableColumn[] = [
     {
       displayName: 'Nome',
       columnName: 'name',

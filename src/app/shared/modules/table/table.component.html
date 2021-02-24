@@ -79,15 +79,20 @@
                   class="{{ column.className }}"
                 >
                   {{
-                    item[column.columnName] == true
-                      ? "Sim"
-                      : item[column.columnName] == false
-                      ? "Não"
-                      : column.columnName
-                      ? item[column.columnName]
-                      : column.columnOptional[
+                    column.columnOptional
+                      ? column.columnOptional[
                           i + (this.page - 1) * this.pageSize
                         ]
+                      : item[column.columnName] === ""
+                      ? "Nenhum"
+                      : item[column.columnName] === true
+                      ? "Sim"
+                      : item[column.columnName] === 0
+                      ? 0
+                      : item[column.columnName]
+                      ? 
+                      item[column.columnName] 
+                      : "Não"
                   }}
                 </td>
                 <th class="text-center actions">
