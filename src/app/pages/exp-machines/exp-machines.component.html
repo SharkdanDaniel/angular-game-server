@@ -1,4 +1,16 @@
-<div class="container">
+<app-table
+  [data]="expMachines"
+  [pageSize]="pageSize"
+  [showAdd]="false"
+  searchPlaceholder="Buscar máquina de xp"
+  title="Máquinas de xp"
+  [columns]="columns"
+  [actions]="actions"
+  (action)="onAction($event)"
+  (refresh)="getAll()"
+></app-table>
+
+<!-- <div class="container">
     <div class="d-flex justify-content-center">
         <h1>Maquinas de Experiência</h1>
     </div>
@@ -30,10 +42,10 @@
                 <td>{{ expMachine.enabled ? 'Sim' : 'Não' }}</td>
                 <td>
                     <button routerLink="/exp-machines/update/{{ expMachine.id }}" class="btn btn-info mr-2">Editar</button>
-                    <!-- <button routerLink="/exp-machines/delete/{{ expMachine.id }}" class="btn btn-danger">Excluir</button> -->
+                    <button routerLink="/exp-machines/delete/{{ expMachine.id }}" class="btn btn-danger">Excluir</button>
                 </td>
             </tr>
         </tbody>
     </table>
-    <!-- <button routerLink="/exp-machines/create" class="btn btn-primary">Adicionar</button> -->
-</div>
+    <button routerLink="/exp-machines/create" class="btn btn-primary">Adicionar</button>
+</div> -->

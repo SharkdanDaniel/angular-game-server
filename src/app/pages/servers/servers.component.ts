@@ -67,6 +67,7 @@ export class ServersComponent implements OnInit {
 
   getAll() {
     this.serversService.getAll().subscribe((data) => {
+      // console.log(data);
       this.collectionSize = data.length;
       this.serversBkp = data;
       this.servers = data.slice(

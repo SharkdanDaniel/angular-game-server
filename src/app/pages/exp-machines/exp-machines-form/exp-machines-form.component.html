@@ -1,0 +1,109 @@
+<div class="wrapper d-flex justify-content-center align-items-center">
+  <div class="main-container">
+    <app-breadcrump
+      router="/exp-machines"
+      first="Máquinas de xp"
+      current="{{ editing ? 'Atualizar' : 'Adicionar' }} máquina de xp"
+    ></app-breadcrump>
+    <div class="card">
+      <span class="card-header bg-white">Dados da máquina de xp</span>
+      <form [formGroup]="form" class="">
+        <div class="d-flex flex-column flex-md-row">
+          <!-- Description -->
+          <div class="col-md-8 mb-4">
+            <label for="description">Descrição</label>
+            <input
+              formControlName="description"
+              class="form-control"
+              type="text"
+              [ngClass]="applyErrCss('description')"
+            />
+            <app-error-msg
+              [label]="'Descrição'"
+              [control]="form.get('description')"
+            ></app-error-msg>
+          </div>
+
+          <!-- ExpEachMinute -->
+          <div class="col-md-4 mb-4">
+            <label for="expEachMinute">Experiência por minuto</label>
+            <input
+              formControlName="expEachMinute"
+              class="form-control"
+              type="number"
+              [ngClass]="applyErrCss('expEachMinute')"
+            />
+            <app-error-msg
+              [label]="'Experiência por minuto'"
+              [control]="form.get('expEachMinute')"
+            ></app-error-msg>
+          </div>
+        </div>
+        <div class="mt-md-4 d-flex mt-0 flex-wrap">
+          <!-- HourStart -->
+          <div class="col-md-4 mb-4">
+            <label for="hourStart">Hora de início</label>
+            <input
+              formControlName="hourStart"
+              class="form-control"
+              type="time"
+              [ngClass]="applyErrCss('hourStart')"
+            />
+            <app-error-msg
+              [label]="'Hora de início'"
+              [control]="form.get('hourStart')"
+            ></app-error-msg>
+          </div>
+
+          <!-- HourEnds -->
+          <div class="col-md-4 mb-4">
+            <label for="hourEnds">Hora de término</label>
+            <input
+              formControlName="hourEnds"
+              class="form-control"
+              type="time"
+              [ngClass]="applyErrCss('hourEnds')"
+            />
+            <app-error-msg
+              [label]="'Hora de término'"
+              [control]="form.get('hourEnds')"
+            ></app-error-msg>
+          </div>
+
+          <div class="d-flex justify-content-between col-md-3">
+            <!-- Virtual -->
+            <div class="form-check">
+              <label class="form-check-label pl-1 mb-1" for="enabled"
+                >Ativado</label
+              ><br />
+              <toggler formControlName="enabled"></toggler>
+            </div>
+
+            <!-- Inicial -->
+            <div class="form-check">
+              <label class="form-check-label pl-2 mb-1" for="automaticStart"
+                >Automática</label
+              ><br />
+              <toggler formControlName="automaticStart"></toggler>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div
+        class="bg-white card-footer d-flex justify-content-end align-items-center"
+      >
+        <div class="">
+          <button routerLink="/exp-machines" class="btn btn-light">
+            Voltar
+          </button>
+          <button
+            (click)="editing ? openModal() : onSubmit()"
+            class="btn btn-primary"
+          >
+            {{ editing ? "Atualizar" : "Adicionar" }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
