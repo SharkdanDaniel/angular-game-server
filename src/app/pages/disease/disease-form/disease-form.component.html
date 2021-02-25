@@ -1,0 +1,89 @@
+<div class="wrapper d-flex justify-content-center align-items-center">
+  <div class="main-container">
+    <app-breadcrump
+      router="/disease"
+      first="Debuffs"
+      current="{{ editing ? 'Atualizar' : 'Adicionar' }} debuff"
+    ></app-breadcrump>
+    <div class="card">
+      <span class="card-header bg-white">Dados da máquina de xp</span>
+      <form [formGroup]="form" class="">
+        <div class="d-flex flex-column flex-md-row">
+
+          <!-- Name -->
+          <div class="col-md-8 mb-4">
+            <label for="name">Nome</label>
+            <input
+              formControlName="name"
+              class="form-control"
+              type="text"
+              [ngClass]="applyErrCss('name')"
+            />
+            <app-error-msg
+              [label]="'Nome'"
+              [control]="form.get('name')"
+            ></app-error-msg>
+          </div>
+
+          <!-- DamageEachTenMinutes -->
+          <div class="col-md-4 mb-4">
+            <label for="damageEachTenMinutes">Dano por minuto</label>
+            <input
+              formControlName="damageEachTenMinutes"
+              class="form-control"
+              type="number"
+              [ngClass]="applyErrCss('damageEachTenMinutes')"
+            />
+            <app-error-msg
+              [label]="'Dano por minuto'"
+              [control]="form.get('damageEachTenMinutes')"
+            ></app-error-msg>
+          </div>
+        </div>
+        <div class="mt-md-4 d-flex mt-0 flex-wrap">
+
+          <!-- DurationInMinutes -->
+          <div class="col-md-4 mb-4">
+            <label for="durationInMinutes">Duração por minuto</label>
+            <input
+              formControlName="durationInMinutes"
+              class="form-control"
+              type="number"
+              [ngClass]="applyErrCss('durationInMinutes')"
+            />
+            <app-error-msg
+              [label]="'Duração'"
+              [control]="form.get('durationInMinutes')"
+            ></app-error-msg>
+          </div>
+
+          <div class="d-flex justify-content-between col-md-3">
+            <!-- Contagious -->
+            <div class="form-check">
+              <label class="form-check-label pl-1 mb-1" for="contagious"
+                >Contagioso</label
+              ><br />
+              <toggler formControlName="contagious"></toggler>
+            </div>
+
+          </div>
+        </div>
+      </form>
+      <div
+        class="bg-white card-footer d-flex justify-content-end align-items-center"
+      >
+        <div class="">
+          <button routerLink="/disease" class="btn btn-light">
+            Voltar
+          </button>
+          <button
+            (click)="editing ? openModal() : onSubmit()"
+            class="btn btn-primary"
+          >
+            {{ editing ? "Atualizar" : "Adicionar" }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

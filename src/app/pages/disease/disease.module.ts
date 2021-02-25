@@ -7,10 +7,11 @@ import { DiseaseComponent } from './disease.component';
 import { DiseaseCreateComponent } from './disease-create/disease-create.component';
 import { DiseaseDeleteComponent } from './disease-delete/disease-delete.component';
 import { DiseaseUpdateComponent } from './disease-update/disease-update.component';
+import { DiseaseFormComponent } from './disease-form/disease-form.component';
 
 
 @NgModule({
-  declarations: [DiseaseComponent, DiseaseCreateComponent, DiseaseDeleteComponent, DiseaseUpdateComponent],
+  declarations: [DiseaseComponent, DiseaseCreateComponent, DiseaseDeleteComponent, DiseaseUpdateComponent, DiseaseFormComponent],
   imports: [
     CommonModule,
     DiseaseRoutingModule,

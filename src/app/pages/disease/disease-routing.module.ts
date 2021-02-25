@@ -1,3 +1,4 @@
+import { DiseaseFormComponent } from './disease-form/disease-form.component';
 import { DiseaseDeleteComponent } from './disease-delete/disease-delete.component';
 import { DiseaseUpdateComponent } from './disease-update/disease-update.component';
 import { DiseaseCreateComponent } from './disease-create/disease-create.component';
@@ -13,11 +14,11 @@ const routes: Routes = [
   },
   {
     path: 'create',
-    component: DiseaseCreateComponent,
+    component: DiseaseFormComponent,
   },
   {
     path: 'update/:id',
-    component: DiseaseUpdateComponent,
+    component: DiseaseFormComponent,
   },
   {
     path: 'delete/:id',

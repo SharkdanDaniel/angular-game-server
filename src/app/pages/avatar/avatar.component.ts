@@ -136,7 +136,6 @@ export class AvatarComponent implements OnInit {
       .getAvatars()
       .subscribe((data) => {
         this.avatars = data;
-        console.log(this.avatars);
       });
   }
 
