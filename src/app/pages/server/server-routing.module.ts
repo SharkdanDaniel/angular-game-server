@@ -1,3 +1,4 @@
+import { ServerFormComponent } from './server-form/server-form.component';
 import { ParcelFormComponent } from './parcels/parcel-form/parcel-form.component';
 import { ExpTableFormComponent } from './exp-table/exp-table-form/exp-table-form.component';
 import { AuthGuard } from './../../core/guards/auth.guard';
@@ -39,7 +40,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   { path: 'edit/:id',
-    component: ServerUpdateComponent,
+    component: ServerFormComponent,
     canActivate: [AuthGuard]
   },
   { path: ':id/exptable',

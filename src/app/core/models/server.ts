@@ -6,7 +6,7 @@ import { ExpTable } from './exp-table';
 export interface Server {
   id?: string;
   name: string;
-  token: string;
+  token?: string;
   shared: boolean;
   hasDisease: boolean;
   initialMoney: number;
