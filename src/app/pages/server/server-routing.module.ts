@@ -1,3 +1,4 @@
+import { ExpTableFormComponent } from './exp-table/exp-table-form/exp-table-form.component';
 import { AuthGuard } from './../../core/guards/auth.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -45,11 +46,11 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   { path: ':id/exptable/create',
-    component: ExpTableCreateComponent,
+    component: ExpTableFormComponent,
     canActivate: [AuthGuard]
   },
   { path: ':id/exptable/edit/:expid',
-    component: ExpTableUpdateComponent,
+    component: ExpTableFormComponent,
     canActivate: [AuthGuard]
   },
   { path: ':id/exptable/delete/:expid',

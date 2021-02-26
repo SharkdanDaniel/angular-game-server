@@ -1,0 +1,81 @@
+<div class="wrapper d-flex justify-content-center align-items-center">
+  <div class="main-container">
+    <app-breadcrump
+      router="/server/{{ serverId }}/exptable"
+      first="Tabelas de xp"
+      current="{{ editing ? 'Atualizar' : 'Adicionar' }} tabela de xp"
+    ></app-breadcrump>
+    <div class="card">
+      <span class="card-header bg-white">Dados da tabela de xp</span>
+      <form [formGroup]="form" class="">
+        <div class="d-flex flex-column flex-md-row">
+
+          <!-- Title -->
+          <div class="col-md-12 mb-5">
+            <label for="title">Título</label>
+            <input
+              formControlName="title"
+              class="form-control"
+              type="text"
+              [ngClass]="applyErrCss('title')"
+            />
+            <app-error-msg
+              [label]="'Título'"
+              [control]="form.get('title')"
+            ></app-error-msg>
+          </div>
+
+        </div>
+        <div class="d-flex flex-column flex-md-row ">
+
+          <!-- Exp -->
+          <div class="col-md-6 mb-5">
+            <label for="exp">Experiência</label>
+            <input
+              formControlName="exp"
+              class="form-control"
+              type="number"
+              [ngClass]="applyErrCss('exp')"
+            />
+            <app-error-msg
+              [label]="'Experiência'"
+              [control]="form.get('exp')"
+            ></app-error-msg>
+          </div>
+
+          <!-- Level -->
+          <div class="col-md-6 mb-5">
+            <label for="level">Level</label>
+            <input
+              formControlName="level"
+              class="form-control"
+              type="number"
+              [ngClass]="applyErrCss('level')"
+            />
+            <app-error-msg
+              [label]="'Level'"
+              [control]="form.get('level')"
+            ></app-error-msg>
+          </div>
+
+          
+        </div>
+      </form>
+      <div
+        class="bg-white card-footer d-flex justify-content-end align-items-center"
+      >
+        <div class="">
+          <button routerLink="/server/{{ serverId }}/exptable" class="btn btn-light">
+            Voltar
+          </button>
+          <button
+            (click)="editing ? openModal() : onSubmit()"
+            class="btn btn-primary"
+          >
+            {{ editing ? "Atualizar" : "Adicionar" }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

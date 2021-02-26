@@ -1,4 +1,15 @@
-<div class="container">
+<app-table
+[data]="expTables"
+[pageSize]="pageSize"
+searchPlaceholder="Buscar tabela de xp"
+title="Tabelas de xp"
+[columns]="columns"
+[actions]="actions"
+(action)="onAction($event)"
+(refresh)="getAll()"
+></app-table>
+
+<!-- <div class="container">
     <div class="d-flex justify-content-center">
         <h1>Tabelas de experiência</h1>
     </div>
@@ -30,4 +41,4 @@
     </table>
     <button routerLink="/server/{{ serverId }}/exptable/create" class="btn btn-primary">Adicionar</button>
     <button routerLink="/server/profile/{{ serverId }}" class="btn">Voltar</button>
-</div>
+</div> -->
