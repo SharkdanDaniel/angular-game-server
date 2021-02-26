@@ -1,0 +1,65 @@
+<div class="wrapper d-flex justify-content-center align-items-center">
+  <div class="main-container">
+    <app-breadcrump
+      router="/server/{{ serverId }}/parcels"
+      first="Tabelas de xp"
+      current="{{ editing ? 'Atualizar' : 'Adicionar' }} mapa"
+    ></app-breadcrump>
+    <div class="card">
+      <span class="card-header bg-white">Dados do mapa</span>
+      <form [formGroup]="form" class="">
+        <div class="d-flex flex-column flex-md-row justify-content-md-center">
+          <!-- ParcelName -->
+          <div class="col-md-10 mb-4">
+            <label for="parcelName">Nome</label>
+            <input
+              formControlName="parcelName"
+              class="form-control"
+              type="text"
+              [ngClass]="applyErrCss('parcelName')"
+            />
+            <app-error-msg
+              [label]="'Título'"
+              [control]="form.get('parcelName')"
+            ></app-error-msg>
+          </div>
+        </div>
+        <div class="d-flex flex-column flex-md-row justify-content-md-center">
+          <!-- ParcelDescription -->
+          <div class="col-md-10 mb-4">
+            <label for="parcelDescription">Descrição</label>
+            <textarea
+              formControlName="parcelDescription"
+              class="form-control"
+              type="text"
+              rows="4"
+              [ngClass]="applyErrCss('parcelDescription')"
+            ></textarea>
+            <app-error-msg
+              [label]="'Descrição'"
+              [control]="form.get('parcelDescription')"
+            ></app-error-msg>
+          </div>
+        </div>
+      </form>
+      <div
+        class="bg-white card-footer d-flex justify-content-end align-items-center"
+      >
+        <div class="">
+          <button
+            routerLink="/server/{{ serverId }}/parcels"
+            class="btn btn-light"
+          >
+            Voltar
+          </button>
+          <button
+            (click)="editing ? openModal() : onSubmit()"
+            class="btn btn-primary"
+          >
+            {{ editing ? "Atualizar" : "Adicionar" }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -20,6 +20,7 @@ import { CommonModule } from '@angular/common';
 import { ServerRoutingModule } from './server-routing.module';
 import { ServerComponent } from './server.component';
 import { ExpTableFormComponent } from './exp-table/exp-table-form/exp-table-form.component';
+import { ParcelFormComponent } from './parcels/parcel-form/parcel-form.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { ExpTableFormComponent } from './exp-table/exp-table-form/exp-table-form
     ParcelsCreateComponent,
     ParcelsDeleteComponent,
     ParcelsUpdateComponent,
-    ExpTableFormComponent
+    ExpTableFormComponent,
+    ParcelFormComponent
   ],
   imports: [
     CommonModule,

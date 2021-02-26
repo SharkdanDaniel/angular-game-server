@@ -1,3 +1,4 @@
+import { ParcelFormComponent } from './parcels/parcel-form/parcel-form.component';
 import { ExpTableFormComponent } from './exp-table/exp-table-form/exp-table-form.component';
 import { AuthGuard } from './../../core/guards/auth.guard';
 import { NgModule } from '@angular/core';
@@ -78,7 +79,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   { path: ':id/parcels/create',
-    component: ParcelsCreateComponent,
+    component: ParcelFormComponent,
     canActivate: [AuthGuard]
   },
   { path: ':id/parcels/delete/:pid',
@@ -86,7 +87,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   { path: ':id/parcels/edit/:pid',
-    component: ParcelsUpdateComponent,
+    component: ParcelFormComponent,
     canActivate: [AuthGuard]
   },
 ];
