@@ -1,20 +1,20 @@
+import { Avatar } from './../../core/models/avatar';
 import { ModalConfirmComponent } from './../../shared/components/modal-confirm/modal-confirm.component';
 import { SnackbarService } from './../../core/services/snackbar.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
 import {
   TableAction,
-  TableColumn,
+  TableColumn
 } from './../../shared/modules/table/table-models.model';
 import { Router } from '@angular/router';
-import { take } from 'rxjs/operators';
 import { AvatarService } from './../../core/services/avatar.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-avatar',
   templateUrl: './avatar.component.html',
-  styleUrls: ['./avatar.component.scss'],
+  styleUrls: ['./avatar.component.scss']
 })
 export class AvatarComponent implements OnInit {
   avatars: any[] = [];
@@ -23,100 +23,103 @@ export class AvatarComponent implements OnInit {
   columns: TableColumn[] = [
     {
       displayName: 'Nome',
-      columnName: 'name',
+      columnName: 'name'
     },
     {
       displayName: 'Título',
-      columnName: 'title',
+      columnName: 'title'
     },
     {
       displayName: 'Vida',
       columnName: 'health',
-      className: 'text-center',
+      className: 'text-center'
     },
 
     {
       displayName: 'Armadura',
       columnName: 'armor',
-      className: 'text-center',
+      className: 'text-center'
     },
     {
       displayName: 'Fome',
       columnName: 'hungry',
-      className: 'text-center',
+      className: 'text-center'
     },
     {
       displayName: 'Líder',
       columnName: 'leader',
-      className: 'text-center',
+      className: 'text-center'
     },
     {
       displayName: 'Experiência',
       columnName: 'experience',
-      className: 'text-center',
+      className: 'text-center'
     },
     {
       displayName: 'Money',
       columnName: 'money',
-      className: 'text-center',
+      className: 'text-center'
     },
     {
       displayName: 'Pontos de status',
       columnName: 'statusPoint',
-      className: 'text-center',
+      className: 'text-center'
     },
     {
       displayName: 'Banido',
       columnName: 'isBanned',
-      className: 'text-center',
+      className: 'text-center'
     },
     {
       displayName: 'Motivo do ban',
       columnName: 'bannedReason',
-      className: 'text-center',
+      className: 'text-center'
     },
     {
       displayName: 'Admin',
       columnName: 'isAdmin',
-      className: 'text-center',
+      className: 'text-center'
     },
     {
       displayName: 'Morte',
       columnName: 'isDead',
-      className: 'text-center',
+      className: 'text-center'
     },
     {
       displayName: 'Str',
       columnName: 'strength',
-      className: 'text-center',
+      className: 'text-center'
     },
     {
       displayName: 'Res',
       columnName: 'endurance',
-      className: 'text-center',
+      className: 'text-center'
     },
     {
       displayName: 'Agi',
       columnName: 'agility',
-      className: 'text-center',
+      className: 'text-center'
     },
     {
       displayName: 'Acc',
       columnName: 'accuracy',
-      className: 'text-center',
-    },
-
+      className: 'text-center'
+    }
   ];
 
   actions: TableAction[] = [
     {
       iconClass: 'edit',
-      eventName: 'edit',
+      eventName: 'edit'
     },
     {
-      iconClass: 'delete',
-      eventName: 'delete',
+      iconClass: 'like',
+      eventName: 'unban'
     },
+    {
+      iconClass: 'ban',
+      eventName: 'ban'
+    }
   ];
 
   constructor(
@@ -132,11 +135,9 @@ export class AvatarComponent implements OnInit {
   }
 
   getAll() {
-    this.avatarService
-      .getAvatars()
-      .subscribe((data) => {
-        this.avatars = data;
-      });
+    this.avatarService.getAvatars().subscribe(data => {
+      this.avatars = data;
+    });
   }
 
   ban(avatar: any) {
@@ -146,8 +147,7 @@ export class AvatarComponent implements OnInit {
     } else {
       this.avatarService
         .banAvatar(avatar, reason)
-        .pipe(take(1))
-        .subscribe((res) => {
+        .subscribe(res => {
           console.log('Avatar banido', res);
           this.getAll();
         });
@@ -157,37 +157,37 @@ export class AvatarComponent implements OnInit {
   unBan(avatar: any) {
     this.avatarService
       .unbanAvatar(avatar)
-      .pipe(take(1))
-      .subscribe((res) => {
+      .subscribe(res => {
         console.log('Avatar desbanido', res);
         this.getAll();
       });
   }
 
-  openModal(id: string) {
+  openModal(avatar: Avatar, ban: boolean) {
     const modalRef = this.modalService.open(ModalConfirmComponent, {
       centered: true,
-      windowClass: 'h-75',
+      windowClass: 'h-75'
     });
-    modalRef.componentInstance.title = 'Excluir profissão';
+    modalRef.componentInstance.title = ban? 'Banir avatar' : 'Desbanir avatar';
+    modalRef.componentInstance.ban = ban ? true : false;
     modalRef.componentInstance.body =
-      'Tem certeza que deseja excluir esta profissão?';
-    modalRef.componentInstance.button = 'danger';
-    modalRef.componentInstance.action = 'Excluir';
-    modalRef.result.then((res) => {
+      'Motivo do ban';
+    modalRef.componentInstance.button = ban ? 'danger' : 'primary';
+    modalRef.componentInstance.action = ban ? 'Banir' : 'Desbanir';
+    modalRef.result.then(res => {
       if (res) {
-        // this.delete(id);
+        console.log(ban, res)
       }
     });
   }
 
   onAction(ev: any) {
     if (ev.action === 'edit') {
-      console.log(ev.item)
+      console.log(ev.item);
       return this.router.navigate(['/avatar/update', ev.item.uuid]);
     }
-    if (ev.action === 'delete') {
-      return this.openModal(ev.item.uuid);
+    if (ev.action) {
+      return this.openModal(ev.item, ev.action == 'ban' ? true : false);
     }
   }
 
