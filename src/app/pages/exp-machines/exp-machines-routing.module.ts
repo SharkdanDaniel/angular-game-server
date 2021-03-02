@@ -11,7 +11,7 @@ const routes: Routes = [
     component: ExpMachinesComponent,
   },
   {
-    path: 'update',
+    path: 'update/:id',
     component: ExpMachinesFormComponent,
   },
   // {

@@ -15,8 +15,8 @@ import { EMPTY } from 'rxjs';
   templateUrl: './exp-machines-form.component.html',
   styleUrls: ['./exp-machines-form.component.scss']
 })
-export class ExpMachinesFormComponent extends BaseFormComponent implements OnInit {
-
+export class ExpMachinesFormComponent extends BaseFormComponent
+  implements OnInit {
   constructor(
     private expMachine: ExpMachinesService,
     private formBuilder: FormBuilder,
@@ -26,7 +26,7 @@ export class ExpMachinesFormComponent extends BaseFormComponent implements OnIni
     protected modal: NgbModal,
     protected snackBar: SnackbarService
   ) {
-    super(snackBar, modal)
+    super(snackBar, modal);
   }
 
   ngOnInit(): void {
@@ -37,17 +37,22 @@ export class ExpMachinesFormComponent extends BaseFormComponent implements OnIni
       automaticStart: [false, [Validators.required]],
       hourStart: ['', [Validators.required]],
       hourEnds: ['', [Validators.required]],
-      enabled: [false, [Validators.required]],
+      enabled: [false, [Validators.required]]
     });
     if (this.route.snapshot.paramMap.get('id')) {
       const id = this.route.snapshot.paramMap.get('id');
       this.editing = true;
-      this.expMachine.getExpMachines().pipe(map((data: any) => {
-        let array = data.filter((el) => el.id === id);
-        return array[0];
-      })).subscribe((exp: ExpMachine) => {
-        this.form.patchValue(exp);
-      });
+      this.expMachine
+        .getExpMachines()
+        .pipe(
+          map((data: any) => {
+            let array = data.filter(el => el.id === id);
+            return array[0];
+          })
+        )
+        .subscribe((exp: ExpMachine) => {
+          this.form.patchValue(exp);
+        });
     } else {
       this.ngxSpinner.show();
       setTimeout(() => {
@@ -57,36 +62,35 @@ export class ExpMachinesFormComponent extends BaseFormComponent implements OnIni
   }
 
   submit() {
-    console.log(this.form.value)
-    // this.expMachine.updateExpMachine(this.form.value)
-    //   .pipe(
-    //     catchError((err) => {
-    //       if (err) {
-    //         this.ngxSpinner.hide();
-    //         console.log(err);
-    //         this.snackBar.showMessage(
-    //           `${
-    //             this.editing
-    //               ? 'Erro ao salvar as alterações!'
-    //               : 'Não foi possível adicionar a máquina de xp!'
-    //           }`,
-    //           true
-    //         );
-    //       }
-    //       return EMPTY;
-    //     })
-    //   )
-    //   .subscribe((res) => {
-    //     this.snackBar.showMessage(
-    //       `${
-    //         this.editing
-    //           ? 'As alterações foram salvas com sucesso!'
-    //           : 'Máquina de xp adicionado com sucesso!'
-    //       }`
-    //     );
-    //     console.log('sucesso', res);
-    //     this.router.navigate(['/exp-machines']);
-    //   });
+    this.expMachine
+      .updateExpMachine(this.form.value)
+      .pipe(
+        catchError(err => {
+          if (err) {
+            this.ngxSpinner.hide();
+            console.log(err);
+            this.snackBar.showMessage(
+              `${
+                this.editing
+                  ? 'Erro ao salvar as alterações!'
+                  : 'Não foi possível adicionar a máquina de xp!'
+              }`,
+              true
+            );
+          }
+          return EMPTY;
+        })
+      )
+      .subscribe(res => {
+        this.snackBar.showMessage(
+          `${
+            this.editing
+              ? 'As alterações foram salvas com sucesso!'
+              : 'Máquina de xp adicionado com sucesso!'
+          }`
+        );
+        console.log('sucesso', res);
+        this.router.navigate(['/exp-machines']);
+      });
   }
-
 }
