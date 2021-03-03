@@ -63,18 +63,15 @@
               [control]="form.get('armor')"
             ></app-error-msg>
           </div>
-          <div class="col-md-4">
-            <label for="bannedReason">Motivo do ban</label>
-            <input
-              formControlName="bannedReason"
-              class="form-control"
-              type="text"
-              [ngClass]="applyErrCss('bannedReason')"
-            />
-            <app-error-msg
-              [label]="'Motivo do ban'"
-              [control]="form.get('bannedReason')"
-            ></app-error-msg>
+          <div class="form-check col-md-2">
+            <label class="form-check-label pl-1 mb-1" for="leader">Líder</label
+            ><br />
+            <toggler formControlName="leader"></toggler>
+          </div>
+          <div class="form-check col-md-2">
+            <label class="form-check-label pl-2 mb-1" for="isAdmin">Admin</label
+            ><br />
+            <toggler formControlName="isAdmin"></toggler>
           </div>
         </div>
         <div class="mt-md-4 d-flex">
@@ -105,16 +102,9 @@
             ></app-error-msg>
           </div>
           <div class="form-check col-md-2">
-            <label class="form-check-label pl-1 mb-1" for="leader"
-              >Líder</label
+            <label class="form-check-label pl-1 mb-1" for="isDead">Morto</label
             ><br />
-            <toggler formControlName="leader"></toggler>
-          </div>
-          <div class="form-check col-md-2">
-            <label class="form-check-label pl-2 mb-1" for="isBanned"
-              >Banido</label
-            ><br />
-            <toggler formControlName="isBanned"></toggler>
+            <toggler formControlName="isDead"></toggler>
           </div>
         </div>
         <div class="mt-md-4 d-flex">
@@ -143,18 +133,6 @@
               [label]="'Pontos de status'"
               [control]="form.get('statusPoint')"
             ></app-error-msg>
-          </div>
-          <div class="form-check col-md-2">
-            <label class="form-check-label pl-1 mb-1" for="isDead"
-              >Morto</label
-            ><br />
-            <toggler formControlName="isDead"></toggler>
-          </div>
-          <div class="form-check col-md-2">
-            <label class="form-check-label pl-2 mb-1" for="isAdmin"
-              >Admin</label
-            ><br />
-            <toggler formControlName="isAdmin"></toggler>
           </div>
         </div>
       </form>

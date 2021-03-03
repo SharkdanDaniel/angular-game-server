@@ -6,12 +6,14 @@
 </div>
 <div class="modal-body">
     <p *ngIf="body">{{ body }}</p>
-    <form *ngIf="input" [formGroup]="form">
-        <label for="">{{ input }}</label>
-        <textarea class="form-control"  formControl="name" name="name" id="name" cols="30" rows="10"></textarea>
-    </form>
+    <div *ngIf="input">
+        <form>
+            <label for="">{{ input }}</label>
+            <textarea [disabled]="!ban" class="form-control" [(ngModel)]="name" name="name" id="name" rows="2"></textarea>
+        </form>
+    </div>
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="activeModal.close()">Cancel</button>
-    <button type="button" class="btn btn-{{ button }}" (click)="input ? activeModal.close(form.value) : activeModal.close(true)">{{ action }}</button>
+    <button [disabled]="!name && ban && input" type="button" class="btn btn-{{ button }}" (click)="input ? activeModal.close(name) : activeModal.close(true)">{{ action }}</button>
 </div>

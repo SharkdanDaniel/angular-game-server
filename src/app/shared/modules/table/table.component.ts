@@ -17,11 +17,12 @@ import {
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
-  styleUrls: ['./table.component.scss'],
+  styleUrls: ['./table.component.scss']
 })
 export class TableComponent implements OnInit {
   minHeight = '87%';
 
+  dataBkp: any[] = [];
   @Input() data: any[] = [];
 
   @Input() title = 'Título';
@@ -70,7 +71,12 @@ export class TableComponent implements OnInit {
       setTimeout(() => {
         this.ngxSpinner.hide('table');
         this.data = this.data.filter((data: any) => {
-          if (Object.values(data).toString().toLowerCase().indexOf(value.toLowerCase()) > -1) {
+          if (
+            Object.values(data)
+              .toString()
+              .toLowerCase()
+              .indexOf(value.toLowerCase()) > -1
+          ) {
             return data;
           }
           // return data.name.toLowerCase().indexOf(value.toLowerCase()) > -1;
@@ -81,7 +87,7 @@ export class TableComponent implements OnInit {
 
   onKey(ev) {
     let value = ev.target.value;
-    if (value == '') {
+    if (value === '') {
       this.refresh.emit(true);
     }
   }

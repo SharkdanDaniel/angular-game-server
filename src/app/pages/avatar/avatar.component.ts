@@ -114,11 +114,15 @@ export class AvatarComponent implements OnInit {
     },
     {
       iconClass: 'like',
-      eventName: 'unban'
+      eventName: 'unban',
+      disabledName: 'isBanned',
+      isDisabled: false
     },
     {
       iconClass: 'ban',
-      eventName: 'ban'
+      eventName: 'ban',
+      disabledName: 'isBanned',
+      isDisabled: true
     }
   ];
 
@@ -140,8 +144,7 @@ export class AvatarComponent implements OnInit {
     });
   }
 
-  ban(avatar: any) {
-    let reason = prompt('Motivo do ban', '');
+  ban(avatar: any, reason: string) {
     if (reason == null || reason == '') {
       console.log('ban cancelado');
     } else {
@@ -170,13 +173,14 @@ export class AvatarComponent implements OnInit {
     });
     modalRef.componentInstance.title = ban? 'Banir avatar' : 'Desbanir avatar';
     modalRef.componentInstance.ban = ban ? true : false;
-    modalRef.componentInstance.body =
-      'Motivo do ban';
+    modalRef.componentInstance.name = ban ? null : avatar.bannedReason;
+    modalRef.componentInstance.input =
+      'Motivo do banimento';
     modalRef.componentInstance.button = ban ? 'danger' : 'primary';
-    modalRef.componentInstance.action = ban ? 'Banir' : 'Desbanir';
+    modalRef.componentInstance.action = 'Confirmar';
     modalRef.result.then(res => {
       if (res) {
-        console.log(ban, res)
+        ban ? this.ban(avatar, res) : this.unBan(avatar);
       }
     });
   }
@@ -190,13 +194,4 @@ export class AvatarComponent implements OnInit {
       return this.openModal(ev.item, ev.action == 'ban' ? true : false);
     }
   }
-
-  // setStyle(avatar: any) {
-  //   if (avatar.isBanned) {
-  //     let style = {
-  //       color: 'red',
-  //     };
-  //     return style;
-  //   }
-  // }
 }

@@ -1,4 +1,3 @@
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -8,7 +7,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./modal-confirm.component.scss']
 })
 export class ModalConfirmComponent implements OnInit {
-  form: FormGroup;
+  name: string;
   @Input() title: string;
   @Input() body: string;
   @Input() input: string;
@@ -17,15 +16,7 @@ export class ModalConfirmComponent implements OnInit {
   @Input() action = 'Salvar';
 
   constructor(
-    public activeModal: NgbActiveModal,
-    private formBuilder: FormBuilder
-  ) {}
+    public activeModal: NgbActiveModal) {}
 
-  ngOnInit(): void {
-    if (this.input) {
-      this.form = this.formBuilder.group({
-        name: [{value: null, disabled : this.ban ? false : true}]
-      });
-    }
-  }
+  ngOnInit(): void {}
 }

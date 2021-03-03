@@ -8,6 +8,8 @@ export interface TableColumn {
 export interface TableAction {
   iconClass: string;
   eventName?: string;
+  disabledName?: string
+  isDisabled?: boolean;
   isMenu?: boolean;
   children?: ActionMenuChildren[];
 }

@@ -31,7 +31,7 @@
           <form class="input-group form-inline">
             <input
               #search
-              (change)="onKey($event)"
+              (keyup)="onKey($event)"
               type="search"
               class="form-control"
               placeholder="{{ searchPlaceholder }}"
@@ -103,11 +103,18 @@
                       : "Não"
                   }}
                 </td>
-                <th class="text-center actions">
+                <td class="text-center actions">
                   <button
                     class="btn action shadow-none"
                     *ngFor="let action of actions"
                     (click)="onAction(action, item)"
+                    [disabled]="
+                      item[action.disabledName] === true && action.isDisabled === true
+                        ? item[action.disabledName]
+                        : item[action.disabledName] === false && action.isDisabled === false
+                        ? !item[action.disabledName]
+                        : null
+                    "
                   >
                     <img
                       class="icon-action"
@@ -115,36 +122,7 @@
                       alt=""
                     />
                   </button>
-                </th>
-
-                <!-- <td class="pl-3 pr-5">
-                  <strong>{{ i + (this.page - 1) * this.pageSize + 1 }}</strong>
                 </td>
-                <td>{{ item.name | titlecase }}</td>
-                <td>
-                  {{ item.email }}
-                </td>
-                <td *ngIf="item.server != null">{{ item.server.name }}</td>
-                <td *ngIf="item.server == null">Nenhum servidor</td>
-                <td *ngIf="item.permission == 0">Moderador</td>
-                <td *ngIf="item.permission > 0">
-                  {{
-                    item.permission == 1
-                      ? "Administrador"
-                      : "Administrador Global"
-                  }}
-                </td>
-                <td class="text-center">
-                  <a
-                    class="mr-3 action"
-                    routerLink="/users/update/{{ item.id }}"
-                  >
-                    <img src="./assets/icons/edit.svg" alt="" />
-                  </a>
-                  <a (click)="openModal(item.id)" class="action">
-                    <img src="./assets/icons/delete.svg" alt="" />
-                  </a>
-                </td> -->
               </tr>
             </tbody>
           </table>
