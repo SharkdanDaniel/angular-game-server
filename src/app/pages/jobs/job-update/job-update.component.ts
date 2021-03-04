@@ -33,7 +33,7 @@ export class JobUpdateComponent implements OnInit {
     });
     this.id = this.route.snapshot.paramMap.get('id');
     this.jobsService
-      .getJobs()
+      .getAll()
       .pipe(take(1))
       .subscribe((job) => {
         job.forEach((j) => {
@@ -47,7 +47,7 @@ export class JobUpdateComponent implements OnInit {
 
   update() {
     this.jobsService
-      .updateJob(this.form.value)
+      .update(this.form.value)
       .pipe(take(1))
       .subscribe((res) => {
         console.log(res);

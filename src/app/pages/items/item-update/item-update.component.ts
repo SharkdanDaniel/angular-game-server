@@ -50,7 +50,7 @@ export class ItemUpdateComponent implements OnInit {
 
   update() {
     this.itemsService
-      .updateItem(this.form.value)
+      .update(this.form.value)
       .pipe(take(1))
       .subscribe((res) => {
         console.log(res, 'Item atualizado');

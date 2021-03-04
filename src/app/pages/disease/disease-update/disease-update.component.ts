@@ -33,9 +33,8 @@ export class DiseaseUpdateComponent implements OnInit {
     });
     const id = this.route.snapshot.paramMap.get('id');
     this.diseaseService
-      .getDiseases()
-      .pipe(take(1))
-      .subscribe((data) => {
+      .getAll()
+      .subscribe((data: any) => {
         data.availableDisease.forEach((el) => {
           if (el.id == id) {
             this.form = this.formBuilder.group(el);
@@ -50,7 +49,7 @@ export class DiseaseUpdateComponent implements OnInit {
     Object.assign(this.form.value, {ServerId: this.ServerId})
     console.log(this.form.value);
       this.diseaseService
-        .updateDisease(this.form.value)
+        .update(this.form.value)
         .pipe(take(1))
         .subscribe((res) => {
           console.log('Disease atualizado', res);

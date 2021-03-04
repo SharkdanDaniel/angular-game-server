@@ -31,9 +31,9 @@ export class DiseaseDeleteComponent implements OnInit {
       vacinePrice: [{value: 0, disabled: true}],
     });
     const id = this.route.snapshot.paramMap.get('id');
-    this.diseaseService.getDiseases()
+    this.diseaseService.getAll()
     .pipe(take(1))
-    .subscribe((data) => {
+    .subscribe((data: any) => {
       data.availableDisease.forEach(el => {
         if (el.id == id) {
           this.form = this.formBuilder.group(el)
@@ -45,7 +45,7 @@ export class DiseaseDeleteComponent implements OnInit {
 
   delete() {
     this.diseaseService
-      .deleteDisease(this.form.value.id)
+      .delete(this.form.value.id)
       .pipe(take(1))
       .subscribe((res) => {
         console.log('Disease excluido', res);

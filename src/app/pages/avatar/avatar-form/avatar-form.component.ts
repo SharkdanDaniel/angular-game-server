@@ -26,7 +26,7 @@ export class AvatarFormComponent extends BaseFormComponent implements OnInit {
     private route: ActivatedRoute,
     protected modal: NgbModal,
     protected snackBar: SnackbarService
-  ) { 
+  ) {
     super(snackBar, modal);
   }
 
@@ -49,17 +49,22 @@ export class AvatarFormComponent extends BaseFormComponent implements OnInit {
       strength: [false, [Validators.required]],
       endurance: [false, [Validators.required]],
       agility: [false, [Validators.required]],
-      accuracy: [false, [Validators.required]],
+      accuracy: [false, [Validators.required]]
     });
     if (this.route.snapshot.paramMap.get('id')) {
       const id = this.route.snapshot.paramMap.get('id');
       this.editing = true;
-      this.avatarService.getAvatars().pipe(map((data: any) => {
-        let array = data.filter((el) => el.uuid === id);
-        return array[0];
-      })).subscribe((avatar: Avatar) => {
-        this.form.patchValue(avatar);
-      });
+      this.avatarService
+        .getAll()
+        .pipe(
+          map((data: any) => {
+            let array = data.filter(el => el.uuid === id);
+            return array[0];
+          })
+        )
+        .subscribe((avatar: Avatar) => {
+          this.form.patchValue(avatar);
+        });
     } else {
       this.ngxSpinner.show();
       setTimeout(() => {
@@ -75,9 +80,10 @@ export class AvatarFormComponent extends BaseFormComponent implements OnInit {
     // } else {
     //   service = this.avatarService.createJob(this.form.value);
     // }
-    this.avatarService.updateAvatar(this.form.value)
+    this.avatarService
+      .update(this.form.value)
       .pipe(
-        catchError((err) => {
+        catchError(err => {
           if (err) {
             this.ngxSpinner.hide();
             console.log(err);
@@ -93,7 +99,7 @@ export class AvatarFormComponent extends BaseFormComponent implements OnInit {
           return EMPTY;
         })
       )
-      .subscribe((res) => {
+      .subscribe(res => {
         this.snackBar.showMessage(
           `${
             this.editing
@@ -104,6 +110,5 @@ export class AvatarFormComponent extends BaseFormComponent implements OnInit {
         console.log('sucesso', res);
         this.router.navigate(['/avatar']);
       });
-    }
-
+  }
 }

@@ -45,7 +45,7 @@ export class ServerFormComponent extends BaseFormComponent implements OnInit {
     if (this.route.snapshot.paramMap.get('id')) {
       this.editing = true;
       const id = this.route.snapshot.paramMap.get('id');
-      this.serverService.getServerById(id).subscribe((server: Server) => {
+      this.serverService.getById(id).subscribe((server: Server) => {
         server.parcels.forEach(el => {
           el.id = null
         });
@@ -57,9 +57,9 @@ export class ServerFormComponent extends BaseFormComponent implements OnInit {
   submit() {
     let service;
     if (this.editing) {
-      service = this.serverService.updateServer(this.form.value);
+      service = this.serverService.update(this.form.value);
     } else {
-      service = this.serverService.createServer(this.form.value);
+      service = this.serverService.create(this.form.value);
     }
     service
       .pipe(

@@ -45,7 +45,7 @@ export class JobFormComponent extends BaseFormComponent implements OnInit {
     if (this.route.snapshot.paramMap.get('id')) {
       const id = this.route.snapshot.paramMap.get('id');
       this.editing = true;
-      this.jobsService.getJobs().pipe(map((data: any) => {
+      this.jobsService.getAll().pipe(map((data: any) => {
         let array = data.filter((el) => el.id === id);
         return array[0];
       })).subscribe((job: Job) => {
@@ -62,9 +62,9 @@ export class JobFormComponent extends BaseFormComponent implements OnInit {
   submit() {
     let service;
     if (this.editing) {
-      service = this.jobsService.updateJob(this.form.value);
+      service = this.jobsService.update(this.form.value);
     } else {
-      service = this.jobsService.createJob(this.form.value);
+      service = this.jobsService.create(this.form.value);
     }
     service
       .pipe(

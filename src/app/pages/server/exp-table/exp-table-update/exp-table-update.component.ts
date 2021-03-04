@@ -31,7 +31,7 @@ export class ExpTableUpdateComponent implements OnInit {
     this.serverId = this.route.snapshot.paramMap.get('id');
     this.expId = this.route.snapshot.paramMap.get('expid');
     this.serversService
-      .getServerById(this.serverId)
+      .getById(this.serverId)
       .pipe(take(1))
       .subscribe((data) => {
         this.expTables = data.expTable;

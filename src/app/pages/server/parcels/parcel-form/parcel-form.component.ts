@@ -39,7 +39,7 @@ export class ParcelFormComponent extends BaseFormComponent implements OnInit {
       parcelName: [null, [Validators.required]],
     });
     const id = this.route.snapshot.paramMap.get('id');
-    this.serversService.getServerById(id).subscribe((data) => {
+    this.serversService.getById(id).subscribe((data) => {
       this.parcels = data.parcels;
       this.server = data;
       this.serverId = data.id;
@@ -70,7 +70,7 @@ export class ParcelFormComponent extends BaseFormComponent implements OnInit {
       });
       this.server['parcels'] = this.parcels;
       this.serversService
-        .updateServer(this.server)
+        .update(this.server)
         .pipe(
           catchError((err) => {
             console.log(err);

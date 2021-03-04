@@ -49,8 +49,8 @@ export class ItemFormComponent extends BaseFormComponent implements OnInit {
     if (this.route.snapshot.paramMap.get('id')) {
       const id = this.route.snapshot.paramMap.get('id');
       this.editing = true;
-      this.itemService.getItems().pipe(map((data: any) => {
-        let array = data.filter((el) => el.id === id);
+      this.itemService.getAll().pipe(map((data: any) => {
+        let array = data.availableItems.filter((el) => el.id === id);
         return array[0];
       })).subscribe((item: Item) => {
         this.form.patchValue(item);
@@ -66,9 +66,9 @@ export class ItemFormComponent extends BaseFormComponent implements OnInit {
   submit() {
     let service;
     if (this.editing) {
-      service = this.itemService.updateItem(this.form.value);
+      service = this.itemService.update(this.form.value);
     } else {
-      service = this.itemService.createItem(this.form.value);
+      service = this.itemService.create(this.form.value);
     }
     service
       .pipe(

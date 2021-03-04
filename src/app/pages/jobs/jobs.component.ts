@@ -87,8 +87,8 @@ export class JobsComponent implements OnInit {
   }
 
   getAll() {
-    this.jobsService.getJobs().subscribe((res) => {
-      // console.log(res);
+    this.jobsService.getAll().subscribe((res) => {
+      console.log(res);
       this.jobs = res;
     });
   }
@@ -111,7 +111,7 @@ export class JobsComponent implements OnInit {
   }
 
   delete(id: string) {
-    this.jobsService.deleteJob(id).subscribe((res) => {
+    this.jobsService.delete(id).subscribe((res) => {
       this.jobs = this.jobs.filter((el) => el.id != id);
       console.log('Item deletado', res);
       this.getAll();

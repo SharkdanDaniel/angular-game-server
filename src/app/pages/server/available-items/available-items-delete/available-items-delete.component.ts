@@ -40,7 +40,7 @@ export class AvailableItemsDeleteComponent implements OnInit {
     this.serverId = this.route.snapshot.paramMap.get('id');
     this.itId = this.route.snapshot.paramMap.get('itid');
     this.serversService
-      .getServerById(this.serverId)
+      .getById(this.serverId)
       .pipe(take(1))
       .subscribe((data) => {
         this.availableItems = data.availableItems;

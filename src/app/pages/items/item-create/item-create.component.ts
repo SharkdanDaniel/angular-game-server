@@ -38,7 +38,7 @@ export class ItemCreateComponent implements OnInit {
 
   create() {
     this.itemsService
-      .createItem(this.form.value)
+      .create(this.form.value)
       .pipe(take(1))
       .subscribe((res) => {
         console.log(res, 'Item criado');

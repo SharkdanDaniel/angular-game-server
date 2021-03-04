@@ -23,7 +23,7 @@ export class ServerProfileComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id')
-    this.serversService.getServerById(id)
+    this.serversService.getById(id)
       .pipe(take(1))
       .subscribe((data) => {
         this.server = data;

@@ -25,7 +25,7 @@ export class AvatarBanComponent implements OnInit {
       reason: [''],
     });
     const id = this.route.snapshot.paramMap.get('id');
-    this.avatarService.getAvatars()
+    this.avatarService.getAll()
     .pipe(take(1))
     .subscribe(res => {
       res.forEach(s => {

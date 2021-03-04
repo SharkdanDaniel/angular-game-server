@@ -21,7 +21,7 @@ export class AvailableItemsComponent implements OnInit {
   ngOnInit(): void {
     this.serverId = this.route.snapshot.paramMap.get('id');
     this.serversService
-      .getServerById(this.serverId)
+      .getById(this.serverId)
       .pipe(take(1))
       .subscribe((data) => {
         this.availableItems = data.availableItems;

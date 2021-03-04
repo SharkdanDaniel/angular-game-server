@@ -40,7 +40,7 @@ export class ExpTableFormComponent extends BaseFormComponent implements OnInit {
     });
     this.serverId = this.route.snapshot.paramMap.get('id');
     this.serversService
-      .getServerById(this.serverId)
+      .getById(this.serverId)
       .pipe(
         map((data: Server) => {
           return data.expTable;

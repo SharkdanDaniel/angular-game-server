@@ -139,7 +139,7 @@ export class AvatarComponent implements OnInit {
   }
 
   getAll() {
-    this.avatarService.getAvatars().subscribe(data => {
+    this.avatarService.getAll().subscribe(data => {
       this.avatars = data;
     });
   }
@@ -148,22 +148,18 @@ export class AvatarComponent implements OnInit {
     if (reason == null || reason == '') {
       console.log('ban cancelado');
     } else {
-      this.avatarService
-        .banAvatar(avatar, reason)
-        .subscribe(res => {
-          console.log('Avatar banido', res);
-          this.getAll();
-        });
+      this.avatarService.banAvatar(avatar, reason).subscribe(res => {
+        console.log('Avatar banido', res);
+        this.getAll();
+      });
     }
   }
 
   unBan(avatar: any) {
-    this.avatarService
-      .unbanAvatar(avatar)
-      .subscribe(res => {
-        console.log('Avatar desbanido', res);
-        this.getAll();
-      });
+    this.avatarService.unbanAvatar(avatar).subscribe(res => {
+      console.log('Avatar desbanido', res);
+      this.getAll();
+    });
   }
 
   openModal(avatar: Avatar, ban: boolean) {
@@ -171,11 +167,10 @@ export class AvatarComponent implements OnInit {
       centered: true,
       windowClass: 'h-75'
     });
-    modalRef.componentInstance.title = ban? 'Banir avatar' : 'Desbanir avatar';
+    modalRef.componentInstance.title = ban ? 'Banir avatar' : 'Desbanir avatar';
     modalRef.componentInstance.ban = ban ? true : false;
     modalRef.componentInstance.name = ban ? null : avatar.bannedReason;
-    modalRef.componentInstance.input =
-      'Motivo do banimento';
+    modalRef.componentInstance.input = 'Motivo do banimento';
     modalRef.componentInstance.button = ban ? 'danger' : 'primary';
     modalRef.componentInstance.action = 'Confirmar';
     modalRef.result.then(res => {

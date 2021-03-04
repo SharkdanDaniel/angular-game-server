@@ -38,7 +38,7 @@ export class AvatarUpdateComponent implements OnInit {
     });
     const id = this.route.snapshot.paramMap.get('id');
     this.avatarService
-      .getAvatars()
+      .getAll()
       .pipe(take(1))
       .subscribe((data) => {
         data.forEach((el) => {
@@ -52,7 +52,7 @@ export class AvatarUpdateComponent implements OnInit {
 
   update() {
     this.avatarService
-      .updateAvatar(this.form.value)
+      .update(this.form.value)
       .pipe(take(1))
       .subscribe((res) => {
         this.router.navigate(['avatar']);

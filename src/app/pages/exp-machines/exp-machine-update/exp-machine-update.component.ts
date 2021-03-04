@@ -34,7 +34,7 @@ export class ExpMachineUpdateComponent implements OnInit {
     });
     const id = this.route.snapshot.paramMap.get('id');
     this.expMachineService
-      .getExpMachines()
+      .getAll()
       .pipe(take(1))
       .subscribe((data) => {
         data.forEach((e) => {
@@ -47,7 +47,7 @@ export class ExpMachineUpdateComponent implements OnInit {
   }
 
   update() {
-    this.expMachineService.updateExpMachine(this.form.value)
+    this.expMachineService.update(this.form.value)
     .pipe(take(1))
     .subscribe((res) => {
       this.snackBar.showMessage('Atualizado com sucesso!')

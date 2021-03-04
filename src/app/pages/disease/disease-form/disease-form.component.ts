@@ -44,7 +44,7 @@ export class DiseaseFormComponent extends BaseFormComponent implements OnInit {
       const id = this.route.snapshot.paramMap.get('id');
       this.editing = true;
       this.diseaseService
-        .getDiseases()
+        .getAll()
         .pipe(
           map((data: any) => {
             let array = data.availableDisease.filter((el) => el.id === id);
@@ -66,13 +66,13 @@ export class DiseaseFormComponent extends BaseFormComponent implements OnInit {
   submit() {
     let service;
     if (this.editing) {
-      service = this.diseaseService.updateDisease(
+      service = this.diseaseService.update(
         Object.assign(this.form.value, {
           ServerId: this.serversService.getServerID(),
         })
       );
     } else {
-      service = this.diseaseService.createDisease(this.form.value);
+      service = this.diseaseService.create(this.form.value);
     }
     service
       .pipe(

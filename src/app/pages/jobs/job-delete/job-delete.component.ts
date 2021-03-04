@@ -33,7 +33,7 @@ export class JobDeleteComponent implements OnInit {
     });
     this.id = this.route.snapshot.paramMap.get('id');
     this.jobsService
-      .getJobs()
+      .getAll()
       .pipe(take(1))
       .subscribe((job) => {
         job.forEach((j) => {
@@ -47,7 +47,7 @@ export class JobDeleteComponent implements OnInit {
 
   delete() {
     this.jobsService
-      .deleteJob(this.id)
+      .delete(this.id)
       .pipe(take(1))
       .subscribe((res) => {
         console.log(res);

@@ -68,7 +68,7 @@ export class ExpMachinesComponent implements OnInit {
   }
 
   getAll() {
-    this.expMachineService.getExpMachines().subscribe(data => {
+    this.expMachineService.getAll().subscribe(data => {
       this.expMachines = data;
     });
   }

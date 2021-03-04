@@ -30,7 +30,7 @@ export class ParcelsCreateComponent implements OnInit {
     });
     this.serverId = this.route.snapshot.paramMap.get('id')
     this.pId = this.route.snapshot.paramMap.get('pid')
-    this.serversService.getServerById(this.serverId)
+    this.serversService.getById(this.serverId)
       .pipe(take(1))
       .subscribe((data) => {
         this.parcels = data.parcels;
@@ -53,7 +53,7 @@ export class ParcelsCreateComponent implements OnInit {
     this.parcels.push(this.form.value);
     console.log(this.parcels);
     console.log(this.server);
-    this.serversService.updateServer(this.server)
+    this.serversService.update(this.server)
       .pipe(take(1))
       .subscribe((res) => {
         console.log('expTable criado', res);

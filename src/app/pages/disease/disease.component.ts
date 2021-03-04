@@ -5,7 +5,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
 import {
   TableColumn,
-  TableAction,
+  TableAction
 } from './../../shared/modules/table/table-models.model';
 import { Disease } from './../../core/models/disease';
 import { take } from 'rxjs/operators';
@@ -15,7 +15,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-disease',
   templateUrl: './disease.component.html',
-  styleUrls: ['./disease.component.scss'],
+  styleUrls: ['./disease.component.scss']
 })
 export class DiseaseComponent implements OnInit {
   diseases: Disease[] = [];
@@ -24,34 +24,34 @@ export class DiseaseComponent implements OnInit {
   columns: TableColumn[] = [
     {
       displayName: 'Nome',
-      columnName: 'name',
+      columnName: 'name'
     },
     {
       displayName: 'Dano por minuto',
       columnName: 'damageEachTenMinutes',
-      className: 'text-center',
+      className: 'text-center'
     },
     {
       displayName: 'Duração',
       columnName: 'damageEachTenMinutes',
-      className: 'text-center',
+      className: 'text-center'
     },
     {
       displayName: 'Contagioso',
       columnName: 'contagious',
-      className: 'text-center',
-    },
+      className: 'text-center'
+    }
   ];
 
   actions: TableAction[] = [
     {
       iconClass: 'edit',
-      eventName: 'edit',
+      eventName: 'edit'
     },
     {
       iconClass: 'delete',
-      eventName: 'delete',
-    },
+      eventName: 'delete'
+    }
   ];
 
   constructor(
@@ -68,9 +68,8 @@ export class DiseaseComponent implements OnInit {
 
   getAll() {
     this.diseaseService
-      .getDiseases()
-      .pipe(take(1))
-      .subscribe((data) => {
+      .getAll()
+      .subscribe((data: any) => {
         this.diseases = data.availableDisease;
       });
   }
@@ -78,14 +77,14 @@ export class DiseaseComponent implements OnInit {
   openModal(id: string) {
     const modalRef = this.modalService.open(ModalConfirmComponent, {
       centered: true,
-      windowClass: 'h-75',
+      windowClass: 'h-75'
     });
     modalRef.componentInstance.title = 'Excluir debuff';
     modalRef.componentInstance.body =
       'Tem certeza que deseja excluir este debuff?';
     modalRef.componentInstance.button = 'danger';
     modalRef.componentInstance.action = 'Excluir';
-    modalRef.result.then((res) => {
+    modalRef.result.then(res => {
       if (res) {
         this.delete(id);
       }
@@ -93,17 +92,17 @@ export class DiseaseComponent implements OnInit {
   }
 
   delete(id: string) {
-    this.diseaseService.deleteDisease(id).subscribe((res) => {
-      this.diseases = this.diseases.filter((el) => el.id != id);
+    this.diseaseService.delete(id).subscribe(res => {
+      this.diseases = this.diseases.filter(el => el.id != id);
       console.log('Item deletado', res);
       this.getAll();
       this.snackBar.showMessage('Debuff excluído com sucesso!');
     }),
-      (err) => {
+      err => {
         console.log(err);
         this.snackBar.showMessage('Não foi possível excluir este debuff', true);
       },
-      (res) => {};
+      res => {};
   }
 
   onAction(ev: any) {

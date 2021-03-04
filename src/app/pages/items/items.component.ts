@@ -106,9 +106,9 @@ export class ItemsComponent implements OnInit {
     //   });
   }
   getAll() {
-    this.itemsService.getItems().subscribe((res: any) => {
+    this.itemsService.getAll().subscribe((res: any) => {
       // this.collectionSize = res.length;
-      this.items = res;
+      this.items = res.availableItems;
       // this.usersBkp = res;
       // this.getServersName();
       // this.getPermissionName();
@@ -151,7 +151,7 @@ export class ItemsComponent implements OnInit {
   }
 
   delete(id: string) {
-    this.itemsService.deleteItem(id).subscribe((res) => {
+    this.itemsService.delete(id).subscribe((res) => {
       // this.items.forEach((val, index, arr) => {
       //   if (val.id === id) {
       //     this.items.splice(

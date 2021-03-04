@@ -65,7 +65,7 @@ export class ExpTableComponent implements OnInit {
 
   getAll() {
     this.serverId = this.route.snapshot.paramMap.get('id');
-    this.serversService.getServerById(this.serverId).subscribe((data) => {
+    this.serversService.getById(this.serverId).subscribe((data) => {
       this.expTables = data.expTable.sort((a, b) => (a.exp > b.exp ? 1 : -1));
     });
   }

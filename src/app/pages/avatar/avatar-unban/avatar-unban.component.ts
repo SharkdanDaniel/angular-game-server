@@ -25,7 +25,7 @@ export class AvatarUnbanComponent implements OnInit {
     });
     const id = this.route.snapshot.paramMap.get('id');
     this.avatarService
-      .getAvatars()
+      .getAll()
       .pipe(take(1))
       .subscribe((res) => {
         res.forEach((s) => {

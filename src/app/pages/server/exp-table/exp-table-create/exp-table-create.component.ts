@@ -28,7 +28,7 @@ export class ExpTableCreateComponent implements OnInit {
       level: [0]
     });
     this.serverId = this.route.snapshot.paramMap.get('id')
-    this.serversService.getServerById(this.serverId)
+    this.serversService.getById(this.serverId)
       .pipe(take(1))
       .subscribe((data) => {
         this.expTables = data.expTable;

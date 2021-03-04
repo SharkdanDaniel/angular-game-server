@@ -43,7 +43,7 @@ export class ExpMachinesFormComponent extends BaseFormComponent
       const id = this.route.snapshot.paramMap.get('id');
       this.editing = true;
       this.expMachine
-        .getExpMachines()
+        .getAll()
         .pipe(
           map((data: any) => {
             let array = data.filter(el => el.id === id);
@@ -63,7 +63,7 @@ export class ExpMachinesFormComponent extends BaseFormComponent
 
   submit() {
     this.expMachine
-      .updateExpMachine(this.form.value)
+      .update(this.form.value)
       .pipe(
         catchError(err => {
           if (err) {

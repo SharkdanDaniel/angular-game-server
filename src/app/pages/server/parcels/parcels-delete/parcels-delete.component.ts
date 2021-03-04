@@ -31,7 +31,7 @@ export class ParcelsDeleteComponent implements OnInit {
     this.serverId = this.route.snapshot.paramMap.get('id');
     this.pId = this.route.snapshot.paramMap.get('pid');
     this.serversService
-      .getServerById(this.serverId)
+      .getById(this.serverId)
       .pipe(take(1))
       .subscribe((data) => {
         this.parcels = data.parcels;
@@ -60,7 +60,7 @@ export class ParcelsDeleteComponent implements OnInit {
     console.log(this.parcels);
     console.log(this.server);
     this.serversService
-      .updateServer(this.server)
+      .update(this.server)
       .pipe(take(1))
       .subscribe((res) => {
         console.log('pacote excluído', res);

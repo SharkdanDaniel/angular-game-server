@@ -35,7 +35,7 @@ export class JobCreateComponent implements OnInit {
 
   create() {
     this.jobsService
-      .createJob(this.form.value)
+      .create(this.form.value)
       .pipe(take(1))
       .subscribe((res) => {
         console.log(res);

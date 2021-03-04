@@ -50,7 +50,7 @@ export class ItemDeleteComponent implements OnInit {
 
   delete() {
     this.itemsService
-      .deleteItem(this.form.value.id)
+      .delete(this.form.value.id)
       .pipe(take(1))
       .subscribe((res) => {
         console.log('Item excluído', res);

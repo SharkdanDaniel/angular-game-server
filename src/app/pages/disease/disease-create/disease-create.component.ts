@@ -34,7 +34,7 @@ export class DiseaseCreateComponent implements OnInit {
 
   create() {
     this.diseaseService
-      .createDisease(this.form.value)
+      .create(this.form.value)
       .pipe(take(1))
       .subscribe((res) => {
         console.log('Disease criado', res);

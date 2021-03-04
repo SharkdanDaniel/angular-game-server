@@ -33,7 +33,7 @@ export class ServerUpdateComponent implements OnInit {
     //   initialStatsPoints: [null],
     // });
     this.serverId = this.route.snapshot.paramMap.get('id');
-    this.serversService.getServerById(this.serverId)
+    this.serversService.getById(this.serverId)
       .pipe(take(1))
       .subscribe((server: any) => {
         this.parcels = server.parcels;
@@ -51,8 +51,7 @@ export class ServerUpdateComponent implements OnInit {
     });
     // console.log(this.server)
     this.serversService
-      .updateServer(this.server)
-      .pipe(take(1))
+      .update(this.server)
       .subscribe((res) => {
         console.log(res);
         console.log('servidor atualizado');

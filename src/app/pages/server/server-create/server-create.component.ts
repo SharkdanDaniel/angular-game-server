@@ -40,7 +40,7 @@ export class ServerCreateComponent implements OnInit {
 
   create() {
     // console.log(this.form.value);
-    this.serversService.createServer(this.form.value)
+    this.serversService.create(this.form.value)
       .pipe(take(1))
       .subscribe((res) => {
         console.log('Servidor criado', res);

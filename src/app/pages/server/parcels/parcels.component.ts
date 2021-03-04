@@ -59,7 +59,7 @@ export class ParcelsComponent implements OnInit {
 
   getAll() {
     const id = this.route.snapshot.paramMap.get('id');
-    this.serversService.getServerById(id).subscribe((data) => {
+    this.serversService.getById(id).subscribe((data) => {
       this.server = data;
       this.parcels = data.parcels;
     });
@@ -92,7 +92,7 @@ export class ParcelsComponent implements OnInit {
         return count;
       }, []);
       this.server['parcels'] = this.parcels;
-      this.serversService.updateServer(this.server).subscribe((res) => {
+      this.serversService.update(this.server).subscribe((res) => {
         this.snackBar.showMessage('Mapa excluído com sucesso!');
         console.log('parcel excluído', res);
         this.router.navigate(['/server/', this.server.id, 'parcels']);
