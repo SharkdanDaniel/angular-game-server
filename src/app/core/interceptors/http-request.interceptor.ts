@@ -25,12 +25,11 @@ export class HttpRequestInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     this._loading.setLoading(true, request.url);
-    // this.spinner.show('content');
     this.spinner.show();
     return next
       .handle(request)
       .pipe(
-        catchError((err) => {          
+        catchError((err) => {        
           this.spinner.hide();
           return throwError(err);
         })
@@ -39,7 +38,6 @@ export class HttpRequestInterceptor implements HttpInterceptor {
         map<HttpEvent<any>, any>((evt: HttpEvent<any>) => {
           if (evt instanceof HttpResponse) {
             this._loading.setLoading(false, request.url);
-            this.spinner.hide('content');
             this.spinner.hide();
           }
           return evt;

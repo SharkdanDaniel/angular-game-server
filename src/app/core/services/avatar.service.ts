@@ -1,10 +1,7 @@
 import { take } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { SnackbarService } from 'src/app/core/services/snackbar.service';
 import { CrudService } from 'src/app/shared/classes/crud-service';
 import { Avatar } from './../models/avatar';
-import { ServersService } from './servers.service';
-import { TokenService } from './token.service';
 import { Injectable, Injector } from '@angular/core';
 
 @Injectable({
@@ -13,13 +10,10 @@ import { Injectable, Injector } from '@angular/core';
 export class AvatarService extends CrudService<Avatar> {
   constructor(
     protected injector: Injector,
-    protected tokenService: TokenService,
-    private server: ServersService,
-    protected snackBar: SnackbarService,
   ) {
-    super(snackBar, injector, tokenService);
-    this.setGetAll = `Avatar/ListAvatars/${this.token}/${this.server.getServerID()}`;
-    this.setUpdate = `Avatar/EditAvatar/${this.token}`;
+    super(injector);
+    this.setGetAll = `Avatar/ListAvatars/${this.tokenService.getToken()}/${this.loginService.getServer().id}`;
+    this.setUpdate = `Avatar/EditAvatar/${this.tokenService.getToken()}`;
   }
 
   banAvatar(avatar: any, reason: string): Observable<any> {

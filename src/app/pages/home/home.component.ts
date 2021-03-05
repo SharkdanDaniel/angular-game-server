@@ -1,3 +1,4 @@
+import { LoginService } from './../../core/services/login.service';
 import { ExpMachinesService } from './../../core/services/exp-machines.service';
 import { JobsService } from './../../core/services/jobs.service';
 import { DiseaseService } from './../../core/services/disease.service';
@@ -123,6 +124,7 @@ export class HomeComponent implements OnInit {
   };
 
   constructor(
+    private loginService: LoginService,
     private serverService: ServersService,
     private userService: UserService,
     private avatarService: AvatarService,
@@ -139,9 +141,9 @@ export class HomeComponent implements OnInit {
 
   getAll() {
     this.serverService
-      .getById(this.serverService.getServerID())
+      .getById(this.loginService.getServer().id)
       .subscribe((res: any) => (this.server = res));
-    this.users$ = this.userService.getUsers();
+    this.users$ = this.userService.getAll();
     this.avatars$ = this.avatarService.getAll();
     this.diseases$ = this.diseaseService
       .getAll()
@@ -161,33 +163,4 @@ export class HomeComponent implements OnInit {
       });
     });
   }
-
-  // refresh() {
-  // this.login.getUser().pipe(take(1)).subscribe((res: any) => {
-  //   console.log('home user')
-  //   this.user = res;
-  // }),
-  // (err) => {
-  //   console.log(err)
-  // }
-  // this.serverService.getServer().pipe(take(1)).subscribe((res: any) => {
-  //   console.log('home server')
-  //   this.server = res;
-  // }),
-  // (err) => {
-  //   console.log(err)
-  // }
-  //   if (localStorage.getItem('user')) {
-  //     this.user = JSON.parse(localStorage.getItem('user'));
-  //   } else {
-  //     this.user = JSON.parse(sessionStorage.getItem('user'));
-  //   }
-
-  //   if (localStorage.getItem('server')) {
-  //     this.server = JSON.parse(localStorage.getItem('server'));
-  //   } else {
-  //     this.server = JSON.parse(sessionStorage.getItem('server'));
-  //   }
-
-  // }
 }

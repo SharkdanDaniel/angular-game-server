@@ -1,3 +1,4 @@
+import { LoginService } from './../../../core/services/login.service';
 import { ServersService } from './../../../core/services/servers.service';
 import { Disease } from './../../../core/models/disease';
 import { map, catchError } from 'rxjs/operators';
@@ -25,7 +26,8 @@ export class DiseaseFormComponent extends BaseFormComponent implements OnInit {
     private route: ActivatedRoute,
     protected modal: NgbModal,
     protected snackBar: SnackbarService,
-    private serversService: ServersService
+    private serversService: ServersService,
+    private loginService: LoginService
   ) {
     super(snackBar, modal);
   }
@@ -68,7 +70,7 @@ export class DiseaseFormComponent extends BaseFormComponent implements OnInit {
     if (this.editing) {
       service = this.diseaseService.update(
         Object.assign(this.form.value, {
-          ServerId: this.serversService.getServerID(),
+          ServerId: this.loginService.getServer().id,
         })
       );
     } else {

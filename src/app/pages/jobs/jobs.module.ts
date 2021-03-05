@@ -4,14 +4,11 @@ import { CommonModule } from '@angular/common';
 
 import { JobsRoutingModule } from './jobs-routing.module';
 import { JobsComponent } from './jobs.component';
-import { JobCreateComponent } from './job-create/job-create.component';
-import { JobDeleteComponent } from './job-delete/job-delete.component';
-import { JobUpdateComponent } from './job-update/job-update.component';
 import { JobFormComponent } from './job-form/job-form.component';
 
 
 @NgModule({
-  declarations: [JobsComponent, JobCreateComponent, JobDeleteComponent, JobUpdateComponent, JobFormComponent],
+  declarations: [JobsComponent, JobFormComponent],
   imports: [
     CommonModule,
     JobsRoutingModule,

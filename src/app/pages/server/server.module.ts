@@ -6,9 +6,6 @@ import { AvailableItemsUpdateComponent } from './available-items/available-items
 import { AvailableItemsDeleteComponent } from './available-items/available-items-delete/available-items-delete.component';
 import { AvailableItemsCreateComponent } from './available-items/available-items-create/available-items-create.component';
 import { AvailableItemsComponent } from './available-items/available-items.component';
-import { ExpTableDeleteComponent } from './exp-table/exp-table-delete/exp-table-delete.component';
-import { ExpTableCreateComponent } from './exp-table/exp-table-create/exp-table-create.component';
-import { ExpTableUpdateComponent } from './exp-table/exp-table-update/exp-table-update.component';
 import { ExpTableComponent } from './exp-table/exp-table.component';
 import { ServerCreateComponent } from './server-create/server-create.component';
 import { ServerUpdateComponent } from './server-update/server-update.component';
@@ -31,9 +28,6 @@ import { ServerFormComponent } from './server-form/server-form.component';
     ServerUpdateComponent,
     ServerCreateComponent,
     ExpTableComponent,
-    ExpTableUpdateComponent,
-    ExpTableCreateComponent,
-    ExpTableDeleteComponent,
     AvailableItemsComponent,
     AvailableItemsCreateComponent,
     AvailableItemsDeleteComponent,

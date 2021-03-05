@@ -1,6 +1,5 @@
 import { ModalConfirmComponent } from './../../shared/components/modal-confirm/modal-confirm.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { UserCreateComponent } from './../../pages/users/user-create/user-create.component';
 import { BaseFormComponent } from 'src/app/shared/components/base-form/base-form.component';
 import { Injectable } from '@angular/core';
 import {

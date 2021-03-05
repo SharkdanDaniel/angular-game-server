@@ -21,12 +21,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class UsersComponent implements OnInit {
   users: User[] = [];
-  // usersBkp: any[] = [];
-
-  // showBody = true;
-  // page = 1;
   pageSize = 4;
-  // collectionSize = 0;
 
   columns: TableColumn[];
   actions: TableAction[] = [
@@ -53,10 +48,8 @@ export class UsersComponent implements OnInit {
   }
 
   getAll() {
-    this.userService.getUsers().subscribe((res: User[]) => {
-      // this.collectionSize = res.length;
+    this.userService.getAll().subscribe((res: User[]) => {
       this.users = res;
-      // this.usersBkp = res;
       this.getServersName();
       this.getPermissionName();
       this.columns = [
@@ -117,18 +110,8 @@ export class UsersComponent implements OnInit {
   }
 
   delete(id: string) {
-    this.userService.deleteUser(id).subscribe((res) => {
-      this.users.forEach((val, index, arr) => {
-        if (val.id === id) {
-          this.users.splice(
-            this.users.findIndex((a) => a.id === id),
-            1
-          );
-          if (Object.is(arr.length - 1, index)) {
-            this.getAll();
-          }
-        }
-      });
+    this.userService.delete(id).subscribe((res) => {
+      this.users = this.users.filter(u => u.id !== id);
       console.log('Usuário deletado', res);
       this.snackBar.showMessage('Usuário excluído com sucesso!');
     }),

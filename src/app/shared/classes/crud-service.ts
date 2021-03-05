@@ -1,5 +1,6 @@
-import { BaseModel } from './../../core/models/base.model';
+import { LoginService } from './../../core/services/login.service';
 import { TokenService } from './../../core/services/token.service';
+import { BaseModel } from './../../core/models/base.model';
 import { catchError, take } from 'rxjs/operators';
 import { SnackbarService } from 'src/app/core/services/snackbar.service';
 import { HttpClient } from '@angular/common/http';
@@ -8,22 +9,22 @@ import { environment } from 'src/environments/environment';
 import { Injector } from '@angular/core';
 
 export abstract class CrudService<T extends BaseModel> {
+  private readonly API_URL = environment.API;
   protected http: HttpClient;
-  protected token: string;
-  private API_URL = environment.API;
+  protected snackBar: SnackbarService;
+  protected tokenService: TokenService;
+  protected loginService: LoginService;
   private getAll_URL: string;
   private getById_URL: string;
   private update_URL: string;
   private create_URL: string;
   private delete_URL: string;
 
-  constructor(
-    protected snackBar: SnackbarService,
-    protected injector: Injector,
-    protected tokenService: TokenService
-  ) {
+  constructor(protected injector: Injector) {
     this.http = injector.get(HttpClient);
-    this.token = this.tokenService.getToken();
+    this.snackBar = injector.get(SnackbarService);
+    this.tokenService = injector.get(TokenService);
+    this.loginService = injector.get(LoginService);
   }
 
   getAll(): Observable<T[]> {
@@ -37,7 +38,7 @@ export abstract class CrudService<T extends BaseModel> {
     );
   }
 
-  getById(id): Observable<T> {
+  getById(id: string): Observable<T> {
     return this.http.get<T>(`${this.API_URL}${this.getById_URL}/${id}`).pipe(
       take(1),
       catchError(err => {
@@ -77,7 +78,7 @@ export abstract class CrudService<T extends BaseModel> {
       );
   }
 
-  delete(id): Observable<T> {
+  delete(id: string): Observable<T> {
     return this.http.delete<T>(`${this.API_URL}${this.delete_URL}/${id}`).pipe(
       take(1),
       catchError(err => {

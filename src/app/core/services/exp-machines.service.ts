@@ -12,25 +12,9 @@ import { Injectable, Injector } from '@angular/core';
 export class ExpMachinesService extends CrudService<any> {
   constructor(
     protected injector: Injector,
-    protected tokenService: TokenService,
-    private server: ServersService,
-    protected snackBar: SnackbarService,
   ) {
-    super(snackBar, injector, tokenService);
-    this.setGetAll = `ExpMachines/GetExpMachines/${this.token}/${this.server.getServerID()}`;
-    this.setUpdate = `ExpMachines/EditExpMachine/${this.token}`;
+    super(injector);
+    this.setGetAll = `ExpMachines/GetExpMachines/${this.tokenService.getToken()}/${this.loginService.getServer().id}`;
+    this.setUpdate = `ExpMachines/EditExpMachine/${this.tokenService.getToken()}`;
   }
-
-  // getExpMachines(): Observable<any[]> {
-  //   return this.http.get<any[]>(
-  //     `https://hcs.dev4.com.br/api/ExpMachines/GetExpMachines/${this.token.getToken()}/${this.server.getServerID()}`
-  //   ).pipe(take(1));
-  // }
-
-  // updateExpMachine(expMachine: any): Observable<any> {
-  //   return this.http.put<any>(
-  //     `https://hcs.dev4.com.br/api/ExpMachines/EditExpMachine/${this.token.getToken()}/${expMachine.id}`,
-  //     expMachine
-  //   ).pipe(take(1));
-  // }
 }

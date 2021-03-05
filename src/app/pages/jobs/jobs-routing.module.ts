@@ -1,7 +1,4 @@
 import { JobFormComponent } from './job-form/job-form.component';
-import { JobUpdateComponent } from './job-update/job-update.component';
-import { JobDeleteComponent } from './job-delete/job-delete.component';
-import { JobCreateComponent } from './job-create/job-create.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -20,10 +17,6 @@ const routes: Routes = [
     path: 'update/:id',
     component: JobFormComponent
   },
-  // {
-  //   path: 'delete/:id',
-  //   component: JobDeleteComponent
-  // },
 ];
 
 @NgModule({

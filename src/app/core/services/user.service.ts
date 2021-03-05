@@ -1,67 +1,41 @@
+import { CrudService } from 'src/app/shared/classes/crud-service';
 import { User } from './../models/user';
-import { take } from 'rxjs/operators';
-import { Observable } from 'rxjs';
-import { TokenService } from './token.service';
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
-  constructor(private http: HttpClient, private token: TokenService) {}
-
-  getUsers(): Observable<User[]> {
-    return this.http
-      .get<User[]>(
-        `https://hcs.dev4.com.br/api/Users/GetUsers/${this.token.getToken()}`
-      )
-      .pipe(take(1));
+export class UserService extends CrudService<User> {
+  constructor(
+    protected http: HttpClient,
+    protected injector: Injector
+  ) {
+    super(injector);
   }
 
-  getUsersById(id: string): Observable<User> {
-    return this.http
-      .get<User>(
-        `https://hcs.dev4.com.br/api/Users/GetUser/${this.token.getToken()}/${id}`
-      )
-      .pipe(take(1));
+  getAll() {
+    this.setGetAll = `Users/GetUsers/${this.tokenService.getToken()}`;
+    return super.getAll();
   }
 
-  createUser(user: User): Observable<User> {
-    return this.http
-      .post<User>(
-        `https://hcs.dev4.com.br/api/Users/AddUser/${this.token.getToken()}`,
-        user
-      )
-      .pipe(take(1));
+  getById(id: string) {
+    this.setGetById = `Users/GetUser/${this.tokenService.getToken()}`;
+    return super.getById(id);
   }
 
-  updateUser(user: User): Observable<User> {
-    return this.http
-      .put<User>(
-        `https://hcs.dev4.com.br/api/Users/EditUser/${this.token.getToken()}/${
-          user.id
-        }`,
-        user
-      )
-      .pipe(take(1));
+  create(user: User) {
+    this.setCreate = `Users/AddUser/${this.tokenService.getToken()}`;
+    return super.create(user);
   }
 
-  deleteUser(id: string): Observable<User> {
-    return this.http
-      .delete<User>(
-        `https://hcs.dev4.com.br/api/Users/DelUser/${this.token.getToken()}/${id}`
-      )
-      .pipe(take(1));
+  update(user: User) {
+    this.setUpdate = `Users/EditUser/${this.tokenService.getToken()}`;
+    return super.update(user);
   }
 
-  getUser() {
-    let user: User;
-    if (localStorage.getItem('user')) {
-      user = JSON.parse(localStorage.getItem('user'));
-    } else {
-      user = JSON.parse(sessionStorage.getItem('user'));
-    }
-    return user;
+  delete(id: string) {
+    this.setDelete = `Users/DelUser/${this.tokenService.getToken()}`;
+    return super.delete(id);
   }
 }

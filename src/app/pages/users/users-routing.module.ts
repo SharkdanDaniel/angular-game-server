@@ -1,9 +1,6 @@
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserFormComponent } from './user-form/user-form.component';
 import { FormGuard } from './../../core/guards/form.guard';
-import { UserDeleteComponent } from './user-delete/user-delete.component';
-import { UserUpdateComponent } from './user-update/user-update.component';
-import { UserCreateComponent } from './user-create/user-create.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 

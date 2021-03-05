@@ -1,3 +1,4 @@
+import { LoginService } from './../../../core/services/login.service';
 import { User } from './../../../core/models/user';
 import { ServersService } from './../../../core/services/servers.service';
 import { ModalConfirmComponent } from './../../../shared/components/modal-confirm/modal-confirm.component';
@@ -22,7 +23,7 @@ export class UserFormComponent extends BaseFormComponent implements OnInit {
   
   constructor(
     private userService: UserService,
-    private serverService: ServersService,
+    private loginService: LoginService,
     private formBuilder: FormBuilder,
     private router: Router,
     private ngxSpinner: NgxSpinnerService,
@@ -39,13 +40,13 @@ export class UserFormComponent extends BaseFormComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
       permission: [null, [Validators.required]],
-      serverId: [this.serverService.getServerID()],
+      serverId: [this.loginService.getServer().id],
     });
-    this.user = this.userService.getUser();
+    this.user = this.loginService.getUser();
     if (this.route.snapshot.paramMap.get('id')) {
       this.editing = true;
       const id = this.route.snapshot.paramMap.get('id');
-      this.userService.getUsersById(id).subscribe((user: User) => {
+      this.userService.getById(id).subscribe((user: User) => {
         // this.form = this.formBuilder.group(user)
         this.form = this.formBuilder.group({
           id: [user.id],
@@ -85,9 +86,9 @@ export class UserFormComponent extends BaseFormComponent implements OnInit {
   submit() {
     let service;
     if (this.editing) {
-      service = this.userService.updateUser(this.form.value);
+      service = this.userService.update(this.form.value);
     } else {
-      service = this.userService.createUser(this.form.value);
+      service = this.userService.create(this.form.value);
     }
     service
       .pipe(

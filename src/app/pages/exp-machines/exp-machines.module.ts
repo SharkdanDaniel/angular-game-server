@@ -4,12 +4,11 @@ import { CommonModule } from '@angular/common';
 
 import { ExpMachinesRoutingModule } from './exp-machines-routing.module';
 import { ExpMachinesComponent } from './exp-machines.component';
-import { ExpMachineUpdateComponent } from './exp-machine-update/exp-machine-update.component';
 import { ExpMachinesFormComponent } from './exp-machines-form/exp-machines-form.component';
 
 
 @NgModule({
-  declarations: [ExpMachinesComponent, ExpMachineUpdateComponent, ExpMachinesFormComponent],
+  declarations: [ExpMachinesComponent, ExpMachinesFormComponent],
   imports: [
     CommonModule,
     ExpMachinesRoutingModule,

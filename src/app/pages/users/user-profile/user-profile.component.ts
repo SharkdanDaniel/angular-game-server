@@ -1,3 +1,4 @@
+import { LoginService } from './../../../core/services/login.service';
 import { User } from './../../../core/models/user';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { catchError } from 'rxjs/operators';
@@ -30,6 +31,7 @@ export class UserProfileComponent extends BaseFormComponent implements OnInit {
   constructor(
     protected snackBar: SnackbarService,
     private userService: UserService,
+    private LoginService: LoginService,
     private formBuilder: FormBuilder,
     protected modal: NgbModal,
     private ngxSpiner: NgxSpinnerService,
@@ -46,8 +48,8 @@ export class UserProfileComponent extends BaseFormComponent implements OnInit {
       permission: [0],
       serverId: [''],
     });
-    this.user = this.userService.getUser();
-    this.userService.getUsersById(this.user.id).subscribe((data: User) => {
+    this.user = this.LoginService.getUser();
+    this.userService.getById(this.user.id).subscribe((data: User) => {
       this.showPassord = new FormControl(data.password);
       this.form = this.formBuilder.group({
         id: [data.id],
@@ -67,7 +69,7 @@ export class UserProfileComponent extends BaseFormComponent implements OnInit {
   submit() {
     if (this.showPassord.valid) {
       this.userService
-        .updateUser(this.form.value)
+        .update(this.form.value)
         .pipe(
           catchError((err) => {
             this.ngxSpiner.hide();

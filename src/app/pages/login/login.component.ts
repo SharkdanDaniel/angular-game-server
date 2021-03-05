@@ -61,7 +61,7 @@ export class LoginComponent extends BaseFormComponent implements OnInit {
             }
             // console.table(data);
             if (data.permission < 2) {
-              this.userService.getUsersById(data.id).subscribe((res) => {
+              this.userService.getById(data.id).subscribe((res) => {
                 if (remidme) {
                   // localStorage.setItem('user', JSON.stringify(data));
                   localStorage.setItem('server', JSON.stringify(res.server));
