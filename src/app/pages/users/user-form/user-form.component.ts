@@ -1,46 +1,31 @@
-import { LoginService } from './../../../core/services/login.service';
 import { User } from './../../../core/models/user';
-import { ServersService } from './../../../core/services/servers.service';
-import { ModalConfirmComponent } from './../../../shared/components/modal-confirm/modal-confirm.component';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { take, catchError } from 'rxjs/operators';
 import { BaseFormComponent } from 'src/app/shared/components/base-form/base-form.component';
-import { SnackbarService } from 'src/app/core/services/snackbar.service';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Validators } from '@angular/forms';
 import { UserService } from './../../../core/services/user.service';
-import { Component, OnInit } from '@angular/core';
-import { EMPTY } from 'rxjs';
+import { Component, Injector } from '@angular/core';
 
 @Component({
   selector: 'app-user-form',
   templateUrl: './user-form.component.html',
-  styleUrls: ['./user-form.component.scss'],
+  styleUrls: ['./user-form.component.scss']
 })
-export class UserFormComponent extends BaseFormComponent implements OnInit {
+export class UserFormComponent extends BaseFormComponent<User> {
   user: User;
-  
-  constructor(
-    private userService: UserService,
-    private loginService: LoginService,
-    private formBuilder: FormBuilder,
-    private router: Router,
-    private ngxSpinner: NgxSpinnerService,
-    private route: ActivatedRoute,
-    protected modal: NgbModal,
-    protected snackBar: SnackbarService
-  ) {
-    super(snackBar, modal);
+
+  constructor(private userService: UserService, protected injector: Injector) {
+    super(injector, userService);
+    this.setErrorAdded = "Não foi possível adicionar o usuário!";
+    this.setSuccessAdded = "Usuário adicionado com sucesso!";
+    this.setNavigate = ['/users'];
   }
 
-  ngOnInit(): void {
+  buildForm() {
     this.form = this.formBuilder.group({
       name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
       permission: [null, [Validators.required]],
-      serverId: [this.loginService.getServer().id],
+      serverId: [this.loginService.getServer().id]
     });
     this.user = this.loginService.getUser();
     if (this.route.snapshot.paramMap.get('id')) {
@@ -54,7 +39,7 @@ export class UserFormComponent extends BaseFormComponent implements OnInit {
           email: [user.email, [Validators.required, Validators.email]],
           password: [user.password, [Validators.required]],
           permission: [user.permission, [Validators.required]],
-          serverId: [user.server ? user.server.id : ''],
+          serverId: [user.server ? user.server.id : '']
         });
         console.log(this.form);
       });
@@ -64,71 +49,5 @@ export class UserFormComponent extends BaseFormComponent implements OnInit {
         this.ngxSpinner.hide();
       }, 100);
     }
-  }
-
-  // openModal() {
-  //   const modalRef = this.modal.open(ModalConfirmComponent, {
-  //     centered: true,
-  //     windowClass: 'h-75',
-  //   });
-  //   modalRef.componentInstance.title = 'Confirmar alterações';
-  //   modalRef.componentInstance.body =
-  //     'Você tem certeza que deseja alterar os dados?';
-  //   modalRef.componentInstance.action = 'Salvar alterações';
-  //   modalRef.result.then((res) => {
-  //     if (res) {
-  //       this.submit();
-  //       this.submiting = true;
-  //     }
-  //   });
-  // }
-
-  submit() {
-    let service;
-    if (this.editing) {
-      service = this.userService.update(this.form.value);
-    } else {
-      service = this.userService.create(this.form.value);
-    }
-    service
-      .pipe(
-        catchError((err) => {
-          if (err) {
-            this.ngxSpinner.hide();
-            console.log(err);
-            this.snackBar.showMessage(
-              `${
-                this.editing
-                  ? 'Erro ao salvar as alterações!'
-                  : 'Não foi possível adicionar o usuário!'
-              }`,
-              true
-            );
-          }
-          return EMPTY;
-        })
-      )
-      .subscribe((res) => {
-        this.snackBar.showMessage(
-          `${
-            this.editing
-              ? 'As alterações foram salvas com sucesso!'
-              : 'Usuário adicionado com sucesso!'
-          }`
-        );
-        console.log('sucesso', res);
-        this.router.navigate(['/users']);
-      });
-    // (err) => {
-    //   this.ngxSpinner.hide();
-    //   console.log(err);
-    //   this.snackBar.showMessage(
-    //     `${
-    //       this.editing
-    //         ? 'Erro ao salvar as alterações!'
-    //         : 'Não foi possível adicionar o usuário!'
-    //     }`
-    //   );
-    // };
   }
 }

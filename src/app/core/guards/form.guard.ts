@@ -13,7 +13,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class FormGuard implements CanDeactivate<BaseFormComponent> {
+export class FormGuard implements CanDeactivate<BaseFormComponent<any>> {
   constructor(private modal: NgbModal) {}
 
   openModal() {
@@ -34,7 +34,7 @@ export class FormGuard implements CanDeactivate<BaseFormComponent> {
   }
 
   canDeactivate(
-    component: BaseFormComponent,
+    component: BaseFormComponent<any>,
     currentRoute: ActivatedRouteSnapshot,
     currentState: RouterStateSnapshot,
     nextState?: RouterStateSnapshot

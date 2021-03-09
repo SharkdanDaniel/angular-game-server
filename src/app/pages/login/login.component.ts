@@ -1,57 +1,42 @@
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { AuthGuard } from './../../core/guards/auth.guard';
 import { UserService } from './../../core/services/user.service';
 import { LoginService } from '../../core/services/login.service';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { take } from 'rxjs/operators';
-import { Router } from '@angular/router';
-import { SnackbarService } from 'src/app/core/services/snackbar.service';
-import { NgxSpinnerService } from 'ngx-spinner';
+import { Component, OnInit, Injector } from '@angular/core';
+import { Validators } from '@angular/forms';
 import { BaseFormComponent } from 'src/app/shared/components/base-form/base-form.component';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  styleUrls: ['./login.component.scss']
 })
-export class LoginComponent extends BaseFormComponent implements OnInit {
-  // form: FormGroup;
+export class LoginComponent extends BaseFormComponent<any> {
   submitted = false;
   passwordInvalid = false;
 
   constructor(
-    private login: LoginService,
-    private formBuilder: FormBuilder,
-    private router: Router,
-    private userService: UserService,
-    protected snackBar: SnackbarService,
-    private ngxSpinner: NgxSpinnerService,
-    protected modal: NgbModal    
+    // protected login: LoginService,
+    protected injector: Injector,
+    protected userService: UserService
   ) {
-    super(snackBar, modal);
+    super(injector, userService);
   }
 
-  ngOnInit(): void {
-    
+  buildForm() {
     this.passwordInvalid = false;
     this.form = this.formBuilder.group({
       email: [null, [Validators.required, Validators.email]],
       password: [null, [Validators.required]],
-      remidme: [false],
+      remidme: [false]
     });
   }
-
-  submit() {}
 
   onSubmit() {
     this.form.markAllAsTouched();
     if (this.form.valid) {
       const remidme = this.form.get('remidme').value;
       this.ngxSpinner.show();
-      this.login
+      this.loginService
         .postLogin(this.form.value)
-        // .pipe(take(1))
         .subscribe(
           (data: any) => {
             if (remidme) {
@@ -61,7 +46,7 @@ export class LoginComponent extends BaseFormComponent implements OnInit {
             }
             // console.table(data);
             if (data.permission < 2) {
-              this.userService.getById(data.id).subscribe((res) => {
+              this.userService.getById(data.id).subscribe(res => {
                 if (remidme) {
                   // localStorage.setItem('user', JSON.stringify(data));
                   localStorage.setItem('server', JSON.stringify(res.server));
@@ -77,7 +62,7 @@ export class LoginComponent extends BaseFormComponent implements OnInit {
               this.router.navigate(['/servers']);
             }
           },
-          (err) => {
+          err => {
             if (err.status == 401) {
               // this.snackBar.showMessage('Email ou senha inválido', true);
               this.passwordInvalid = true;
@@ -92,12 +77,4 @@ export class LoginComponent extends BaseFormComponent implements OnInit {
         );
     }
   }
-
-  // erroCss(field: string) {
-  //   console.log('teste');
-  //   return {
-  //     'is-invalid':
-  //       this.form.get(field).errors && this.form.get(field).touched,
-  //   };
-  // }
 }

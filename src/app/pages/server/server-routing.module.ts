@@ -13,7 +13,6 @@ import { AvailableItemsCreateComponent } from './available-items/available-items
 import { AvailableItemsDeleteComponent } from './available-items/available-items-delete/available-items-delete.component';
 import { AvailableItemsUpdateComponent } from './available-items/available-items-update/available-items-update.component';
 import { ParcelsComponent } from './parcels/parcels.component';
-import { ParcelsDeleteComponent } from './parcels/parcels-delete/parcels-delete.component';
 
 const routes: Routes = [
   {
@@ -70,10 +69,6 @@ const routes: Routes = [
   },
   { path: ':id/parcels/create',
     component: ParcelFormComponent,
-    canActivate: [AuthGuard]
-  },
-  { path: ':id/parcels/delete/:pid',
-    component: ParcelsDeleteComponent,
     canActivate: [AuthGuard]
   },
   { path: ':id/parcels/edit/:pid',

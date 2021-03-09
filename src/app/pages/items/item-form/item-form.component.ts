@@ -8,31 +8,28 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ServersService } from './../../../core/services/servers.service';
 import { ItemsService } from './../../../core/services/items.service';
 import { BaseFormComponent } from 'src/app/shared/components/base-form/base-form.component';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injector } from '@angular/core';
 import { EMPTY, pipe } from 'rxjs';
 
 @Component({
   selector: 'app-item-form',
   templateUrl: './item-form.component.html',
-  styleUrls: ['./item-form.component.scss'],
+  styleUrls: ['./item-form.component.scss']
 })
-export class ItemFormComponent extends BaseFormComponent implements OnInit {
+export class ItemFormComponent extends BaseFormComponent<Item> {
   item: Item;
 
   constructor(
-    private itemService: ItemsService,
-    private serverService: ServersService,
-    private formBuilder: FormBuilder,
-    private router: Router,
-    private ngxSpinner: NgxSpinnerService,
-    private route: ActivatedRoute,
-    protected modal: NgbModal,
-    protected snackBar: SnackbarService
+    protected itemService: ItemsService,
+    protected injector: Injector
   ) {
-    super(snackBar, modal);
+    super(injector, itemService);
+    this.setErrorAdded = 'Não foi possível adicionar o item!';
+    this.setSuccessAdded = 'Item adicionado com sucesso!';
+    this.setNavigate = ['/items'];
   }
 
-  ngOnInit(): void {
+  buildForm() {
     this.form = this.formBuilder.group({
       id: [null],
       name: ['', [Validators.required]],
@@ -44,17 +41,22 @@ export class ItemFormComponent extends BaseFormComponent implements OnInit {
       statusPoint: [0],
       quantityInitial: [0],
       isInitial: [false],
-      isVirtual: [false],
+      isVirtual: [false]
     });
     if (this.route.snapshot.paramMap.get('id')) {
       const id = this.route.snapshot.paramMap.get('id');
       this.editing = true;
-      this.itemService.getAll().pipe(map((data: any) => {
-        let array = data.availableItems.filter((el) => el.id === id);
-        return array[0];
-      })).subscribe((item: Item) => {
-        this.form.patchValue(item);
-      });
+      this.itemService
+        .getAll()
+        .pipe(
+          map((data: any) => {
+            let array = data.availableItems.filter(el => el.id === id);
+            return array[0];
+          })
+        )
+        .subscribe((item: Item) => {
+          this.form.patchValue(item);
+        });
     } else {
       this.ngxSpinner.show();
       setTimeout(() => {
@@ -63,41 +65,41 @@ export class ItemFormComponent extends BaseFormComponent implements OnInit {
     }
   }
 
-  submit() {
-    let service;
-    if (this.editing) {
-      service = this.itemService.update(this.form.value);
-    } else {
-      service = this.itemService.create(this.form.value);
-    }
-    service
-      .pipe(
-        catchError((err) => {
-          if (err) {
-            this.ngxSpinner.hide();
-            console.log(err);
-            this.snackBar.showMessage(
-              `${
-                this.editing
-                  ? 'Erro ao salvar as alterações!'
-                  : 'Não foi possível adicionar o item!'
-              }`,
-              true
-            );
-          }
-          return EMPTY;
-        })
-      )
-      .subscribe((res) => {
-        this.snackBar.showMessage(
-          `${
-            this.editing
-              ? 'As alterações foram salvas com sucesso!'
-              : 'Item adicionado com sucesso!'
-          }`
-        );
-        console.log('sucesso', res);
-        this.router.navigate(['/items']);
-      });
-  }
+  // submit() {
+  //   let service;
+  //   if (this.editing) {
+  //     service = this.itemService.update(this.form.value);
+  //   } else {
+  //     service = this.itemService.create(this.form.value);
+  //   }
+  //   service
+  //     .pipe(
+  //       catchError(err => {
+  //         if (err) {
+  //           this.ngxSpinner.hide();
+  //           console.log(err);
+  //           this.snackBar.showMessage(
+  //             `${
+  //               this.editing
+  //                 ? 'Erro ao salvar as alterações!'
+  //                 : 'Não foi possível adicionar o item!'
+  //             }`,
+  //             true
+  //           );
+  //         }
+  //         return EMPTY;
+  //       })
+  //     )
+  //     .subscribe(res => {
+  //       this.snackBar.showMessage(
+  //         `${
+  //           this.editing
+  //             ? 'As alterações foram salvas com sucesso!'
+  //             : 'Item adicionado com sucesso!'
+  //         }`
+  //       );
+  //       console.log('sucesso', res);
+  //       this.router.navigate(['/items']);
+  //     });
+  // }
 }

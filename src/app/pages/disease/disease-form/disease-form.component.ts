@@ -9,30 +9,24 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
 import { DiseaseService } from './../../../core/services/disease.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injector } from '@angular/core';
 import { EMPTY } from 'rxjs';
 
 @Component({
   selector: 'app-disease-form',
   templateUrl: './disease-form.component.html',
-  styleUrls: ['./disease-form.component.scss'],
+  styleUrls: ['./disease-form.component.scss']
 })
-export class DiseaseFormComponent extends BaseFormComponent implements OnInit {
+export class DiseaseFormComponent extends BaseFormComponent<Disease>
+  implements OnInit {
   constructor(
-    private diseaseService: DiseaseService,
-    private formBuilder: FormBuilder,
-    private router: Router,
-    private ngxSpinner: NgxSpinnerService,
-    private route: ActivatedRoute,
-    protected modal: NgbModal,
-    protected snackBar: SnackbarService,
-    private serversService: ServersService,
-    private loginService: LoginService
+    protected diseaseService: DiseaseService,
+    protected injector: Injector
   ) {
-    super(snackBar, modal);
+    super(injector, diseaseService);
   }
 
-  ngOnInit(): void {
+  buildForm() {
     this.form = this.formBuilder.group({
       id: [null],
       name: [''],
@@ -40,7 +34,7 @@ export class DiseaseFormComponent extends BaseFormComponent implements OnInit {
       durationInMinutes: [0],
       contagious: [false],
       hasVacine: [false],
-      vacinePrice: [0],
+      vacinePrice: [0]
     });
     if (this.route.snapshot.paramMap.get('id')) {
       const id = this.route.snapshot.paramMap.get('id');
@@ -49,7 +43,7 @@ export class DiseaseFormComponent extends BaseFormComponent implements OnInit {
         .getAll()
         .pipe(
           map((data: any) => {
-            let array = data.availableDisease.filter((el) => el.id === id);
+            let array = data.availableDisease.filter(el => el.id === id);
             return array[0];
           })
         )
@@ -65,12 +59,12 @@ export class DiseaseFormComponent extends BaseFormComponent implements OnInit {
     }
   }
 
-  submit() {
+  onSubmit() {
     let service;
     if (this.editing) {
       service = this.diseaseService.update(
         Object.assign(this.form.value, {
-          ServerId: this.loginService.getServer().id,
+          ServerId: this.loginService.getServer().id
         })
       );
     } else {
@@ -78,7 +72,7 @@ export class DiseaseFormComponent extends BaseFormComponent implements OnInit {
     }
     service
       .pipe(
-        catchError((err) => {
+        catchError(err => {
           if (err) {
             this.ngxSpinner.hide();
             console.log(err);
@@ -94,7 +88,7 @@ export class DiseaseFormComponent extends BaseFormComponent implements OnInit {
           return EMPTY;
         })
       )
-      .subscribe((res) => {
+      .subscribe(res => {
         this.snackBar.showMessage(
           `${
             this.editing

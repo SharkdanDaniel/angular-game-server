@@ -1,13 +1,9 @@
 import { map, catchError } from 'rxjs/operators';
 import { Avatar } from './../../../core/models/avatar';
-import { SnackbarService } from './../../../core/services/snackbar.service';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Validators } from '@angular/forms';
 import { AvatarService } from './../../../core/services/avatar.service';
 import { BaseFormComponent } from 'src/app/shared/components/base-form/base-form.component';
-import { Component, OnInit } from '@angular/core';
+import { Component, Injector } from '@angular/core';
 import { EMPTY } from 'rxjs';
 
 @Component({
@@ -15,22 +11,20 @@ import { EMPTY } from 'rxjs';
   templateUrl: './avatar-form.component.html',
   styleUrls: ['./avatar-form.component.scss']
 })
-export class AvatarFormComponent extends BaseFormComponent implements OnInit {
+export class AvatarFormComponent extends BaseFormComponent<Avatar> {
   avatar: Avatar;
 
   constructor(
-    private avatarService: AvatarService,
-    private formBuilder: FormBuilder,
-    private router: Router,
-    private ngxSpinner: NgxSpinnerService,
-    private route: ActivatedRoute,
-    protected modal: NgbModal,
-    protected snackBar: SnackbarService
+    protected avatarService: AvatarService,
+    protected injector: Injector
   ) {
-    super(snackBar, modal);
+    super(injector, avatarService);
+    this.setErrorAdded = 'Não foi possível adicionar o avatar!';
+    this.setSuccessAdded = 'Avatar adicionado com sucesso!';
+    this.setNavigate = ['/avatar'];
   }
 
-  ngOnInit(): void {
+  buildForm() {
     this.form = this.formBuilder.group({
       uuid: [null],
       name: ['', [Validators.required]],
@@ -73,42 +67,42 @@ export class AvatarFormComponent extends BaseFormComponent implements OnInit {
     }
   }
 
-  submit() {
+  // submit() {
     // let service;
     // if (this.editing) {
     //   service = this.avatarService.updateAvatar(this.form.value);
     // } else {
     //   service = this.avatarService.createJob(this.form.value);
     // }
-    this.avatarService
-      .update(this.form.value)
-      .pipe(
-        catchError(err => {
-          if (err) {
-            this.ngxSpinner.hide();
-            console.log(err);
-            this.snackBar.showMessage(
-              `${
-                this.editing
-                  ? 'Erro ao salvar as alterações!'
-                  : 'Não foi possível adicionar o avatar!'
-              }`,
-              true
-            );
-          }
-          return EMPTY;
-        })
-      )
-      .subscribe(res => {
-        this.snackBar.showMessage(
-          `${
-            this.editing
-              ? 'As alterações foram salvas com sucesso!'
-              : 'Avatar adicionado com sucesso!'
-          }`
-        );
-        console.log('sucesso', res);
-        this.router.navigate(['/avatar']);
-      });
-  }
+    // this.avatarService
+    //   .update(this.form.value)
+    //   .pipe(
+    //     catchError(err => {
+    //       if (err) {
+    //         this.ngxSpinner.hide();
+    //         console.log(err);
+    //         this.snackBar.showMessage(
+    //           `${
+    //             this.editing
+    //               ? 'Erro ao salvar as alterações!'
+    //               : 'Não foi possível adicionar o avatar!'
+    //           }`,
+    //           true
+    //         );
+    //       }
+    //       return EMPTY;
+    //     })
+    //   )
+    //   .subscribe(res => {
+    //     this.snackBar.showMessage(
+    //       `${
+    //         this.editing
+    //           ? 'As alterações foram salvas com sucesso!'
+    //           : 'Avatar adicionado com sucesso!'
+    //       }`
+    //     );
+    //     console.log('sucesso', res);
+    //     this.router.navigate(['/avatar']);
+    //   });
+  // }
 }
